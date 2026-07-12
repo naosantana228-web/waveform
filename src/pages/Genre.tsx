@@ -1,8 +1,68 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Link, useParams } from "wouter";
-import { ArrowLeft, ThumbsUp, ThumbsDown, AlertTriangle, Play, Shuffle, Search, RotateCcw, Trash2 } from "lucide-react";
+import { ArrowLeft, ThumbsUp, ThumbsDown, AlertTriangle, Shuffle, Search, RotateCcw, Trash2 } from "lucide-react";
 import { genres, getDiscoveryQueue, getLikedTracks, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery } from "@/data";
 import CollectionPlayer from "@/components/CollectionPlayer";
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
+function DiscoveryPlayer({ videoId }: { videoId: string }) {
+  const playerRef = useRef<any>(null);
+
+  useEffect(() => {
+    const loadAPI = () => {
+      if (window.YT && window.YT.Player) {
+        createPlayer();
+        return;
+      }
+      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+      if (!existingScript) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+      window.onYouTubeIframeAPIReady = createPlayer;
+    };
+
+    const createPlayer = () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
+      playerRef.current = new window.YT.Player("discovery-player", {
+        height: "100%",
+        width: "100%",
+        videoId: videoId,
+        playerVars: {
+          autoplay: 1,
+          rel: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          fs: 1,
+        },
+      });
+    };
+
+    loadAPI();
+
+    return () => {
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    };
+  }, [videoId]);
+
+  return (
+    <div className="aspect-video rounded-xl overflow-hidden bg-black">
+      <div id="discovery-player" className="w-full h-full" />
+    </div>
+  );
+}
 
 export default function Genre() {
   const params = useParams<{ genre: string }>();
@@ -105,14 +165,9 @@ export default function Genre() {
           <div className="max-w-2xl mx-auto">
             {currentTrack ? (
               <>
-                {/* YouTube Embed */}
-                <div className="aspect-video rounded-xl overflow-hidden bg-black mb-4">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${currentTrack.youtubeId}?autoplay=1&rel=0`}
-                    className="w-full h-full"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                  />
+                {/* YouTube Player API (less ads than raw embed) */}
+                <div className="mb-4">
+                  <DiscoveryPlayer key={currentTrack.youtubeId} videoId={currentTrack.youtubeId} />
                 </div>
 
                 {/* Track Info */}

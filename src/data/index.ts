@@ -30,6 +30,7 @@ export function getTracksByGenre(genre: string): Track[] {
 
 // localStorage helpers
 const STORAGE_KEY = "waveform_state";
+const INITIALIZED_KEY = "waveform_initialized";
 
 interface AppState {
   liked: Record<string, number[]>; // genre -> track ids
@@ -47,6 +48,20 @@ function getState(): AppState {
 
 function saveState(state: AppState) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// Pre-populate all tracks as liked on first visit
+export function initializeState() {
+  const initialized = localStorage.getItem(INITIALIZED_KEY);
+  if (initialized) return;
+
+  const state: AppState = { liked: {}, disliked: {}, broken: {} };
+  for (const track of allTracks) {
+    if (!state.liked[track.genre]) state.liked[track.genre] = [];
+    state.liked[track.genre].push(track.id);
+  }
+  saveState(state);
+  localStorage.setItem(INITIALIZED_KEY, "true");
 }
 
 export function getLikedTracks(genre: string): Track[] {
@@ -82,6 +97,10 @@ export function dislikeTrack(genre: string, trackId: number) {
   const state = getState();
   if (!state.disliked[genre]) state.disliked[genre] = [];
   if (!state.disliked[genre].includes(trackId)) state.disliked[genre].push(trackId);
+  // Also remove from liked if it was there
+  if (state.liked[genre]) {
+    state.liked[genre] = state.liked[genre].filter((id) => id !== trackId);
+  }
   saveState(state);
 }
 
@@ -89,6 +108,10 @@ export function markBroken(genre: string, trackId: number) {
   const state = getState();
   if (!state.broken[genre]) state.broken[genre] = [];
   if (!state.broken[genre].includes(trackId)) state.broken[genre].push(trackId);
+  // Also remove from liked if it was there
+  if (state.liked[genre]) {
+    state.liked[genre] = state.liked[genre].filter((id) => id !== trackId);
+  }
   saveState(state);
 }
 
@@ -102,7 +125,14 @@ export function unlikeTrack(genre: string, trackId: number) {
 
 export function resetDiscovery(genre: string) {
   const state = getState();
+  // Move disliked and broken back to available (they won't be in liked)
   state.disliked[genre] = [];
   state.broken[genre] = [];
   saveState(state);
+}
+
+export function resetAll() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(INITIALIZED_KEY);
+  initializeState();
 }
