@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, Key, Sparkles, ExternalLink, Trash2, Check } from "lucide-react";
+import { ArrowLeft, Key, Sparkles, Trash2, Check } from "lucide-react";
 import { getGeminiApiKey, setGeminiApiKey, removeGeminiApiKey } from "@/services/gemini";
 import { resetAll } from "@/data";
 
@@ -42,7 +42,7 @@ export default function Settings() {
       </header>
 
       <main className="max-w-lg mx-auto px-6 py-8 space-y-8">
-        {/* Gemini API Key Section */}
+        {/* Groq API Key Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,13 +54,13 @@ export default function Settings() {
             </div>
             <div>
               <h2 className="font-semibold">AI Recommendations</h2>
-              <p className="text-xs text-[oklch(0.6_0.01_260)]">Powered by Google Gemini Flash (free)</p>
+              <p className="text-xs text-[oklch(0.6_0.01_260)]">Powered by Groq + Llama 3.3 (free)</p>
             </div>
           </div>
 
           <p className="text-sm text-[oklch(0.6_0.01_260)] mb-4">
             Get AI-powered music recommendations when you finish discovering all tracks in a genre.
-            You need a free Google AI Studio API key.
+            You need a free Groq API key (no credit card required).
           </p>
 
           <div className="space-y-3">
@@ -70,7 +70,7 @@ export default function Settings() {
                 type="password"
                 value={apiKey}
                 onChange={(e) => { setApiKeyState(e.target.value); setSaved(false); }}
-                placeholder="Paste your Gemini API key here..."
+                placeholder="Paste your Groq API key here (gsk_...)..."
                 className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[oklch(0.7_0.15_200)] transition-colors"
               />
             </div>
@@ -97,13 +97,13 @@ export default function Settings() {
           <div className="mt-4 p-3 rounded-lg bg-white/5 border border-white/5">
             <p className="text-xs text-[oklch(0.6_0.01_260)] mb-2 font-medium">How to get a free API key:</p>
             <ol className="text-xs text-[oklch(0.6_0.01_260)] space-y-1 list-decimal list-inside">
-              <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-[oklch(0.7_0.15_200)] underline">Google AI Studio</a></li>
-              <li>Sign in with your Google account</li>
+              <li>Go to <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" className="text-[oklch(0.7_0.15_200)] underline">console.groq.com/keys</a></li>
+              <li>Create a free account (no credit card needed)</li>
               <li>Click "Create API Key"</li>
               <li>Copy and paste it above</li>
             </ol>
             <p className="text-xs text-[oklch(0.6_0.01_260)] mt-2">
-              Free tier includes ~15 requests/minute — more than enough for recommendations.
+              Free tier: 30 requests/minute, 14,400/day — more than enough for music discovery.
             </p>
           </div>
         </motion.section>
@@ -157,7 +157,7 @@ export default function Settings() {
             No account needed, no tracking, no ads from us.
           </p>
           <p className="text-xs text-[oklch(0.6_0.01_260)] mt-2">
-            6 genres · 600+ curated tracks · AI recommendations via Gemini
+            6 genres · 600+ curated tracks · AI recommendations via Groq
           </p>
         </motion.section>
       </main>

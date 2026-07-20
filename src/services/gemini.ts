@@ -1,21 +1,24 @@
-// Gemini Flash AI Recommendations Service
-// Uses Google AI Studio free tier with @google/genai SDK
-// The SDK supports the new AQ. format authorization keys
+// AI Recommendations Service using Groq (free tier)
+// Groq uses Llama 3.3 70B - fast and free (30 req/min)
+// User provides their API key from console.groq.com/keys
 
-import { GoogleGenAI } from "@google/genai";
-
-const STORAGE_KEY_API = 'waveform_gemini_key';
+const STORAGE_KEY_API = 'waveform_groq_key';
+// Keep backward compat with old gemini key storage
+const STORAGE_KEY_API_LEGACY = 'waveform_gemini_key';
 
 export function getGeminiApiKey(): string | null {
-  return localStorage.getItem(STORAGE_KEY_API);
+  return localStorage.getItem(STORAGE_KEY_API) || localStorage.getItem(STORAGE_KEY_API_LEGACY);
 }
 
 export function setGeminiApiKey(key: string) {
   localStorage.setItem(STORAGE_KEY_API, key);
+  // Clean up legacy key
+  localStorage.removeItem(STORAGE_KEY_API_LEGACY);
 }
 
 export function removeGeminiApiKey() {
   localStorage.removeItem(STORAGE_KEY_API);
+  localStorage.removeItem(STORAGE_KEY_API_LEGACY);
 }
 
 const genreDescriptions: Record<string, string> = {
@@ -38,14 +41,6 @@ export interface RecommendedTrack {
   attributes: { energy: number; groove: number; vocals: number; darkness: number; bpm: number };
 }
 
-// Models to try in order of preference (cheapest/fastest first)
-const MODELS_TO_TRY = [
-  'gemini-2.5-flash-lite',
-  'gemini-2.5-flash',
-  'gemini-1.5-flash',
-  'gemini-pro',
-];
-
 export async function getAIRecommendations(
   genre: string,
   likedTracks: { title: string; artist: string }[],
@@ -54,16 +49,14 @@ export async function getAIRecommendations(
 ): Promise<RecommendedTrack[]> {
   const apiKey = getGeminiApiKey();
   if (!apiKey) {
-    throw new Error('No API key configured. Go to Settings to add your free Gemini API key.');
+    throw new Error('No API key configured. Go to Settings to add your free Groq API key (console.groq.com/keys).');
   }
-
-  const ai = new GoogleGenAI({ apiKey });
 
   const genreDesc = genreDescriptions[genre] || genre;
   const existingList = existingTracks.slice(0, 50).map(t => `${t.artist} - ${t.title}`).join(", ");
   const likedList = likedTracks.slice(0, 15).map(t => `${t.artist} - ${t.title}`).join(", ");
 
-  const prompt = likedTracks.length > 0
+  const userPrompt = likedTracks.length > 0
     ? `Based on these liked tracks in the "${genreDesc}" genre: ${likedList}
 
 Recommend ${limit} NEW and DIFFERENT tracks that match this taste but EXPAND the selection. Dig deeper — suggest tracks from lesser-known artists, B-sides, deep cuts, and underground releases. Prioritize variety and discovery.
@@ -87,68 +80,59 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
 
   const systemPrompt = "You are a crate-digging music expert and record collector with deep knowledge of independent labels and underground music. You NEVER repeat tracks already in the user's library. You always include accurate YouTube video IDs for every recommendation. Always respond with valid JSON only, no markdown formatting. For the infantil genre, all songs MUST be in Spanish.";
 
-  // Try models in order until one works
-  let lastError = '';
-  for (const model of MODELS_TO_TRY) {
-    try {
-      console.log(`Trying model: ${model}...`);
-      const response = await ai.models.generateContent({
-        model,
-        contents: prompt,
-        config: {
-          systemInstruction: systemPrompt,
-          responseMimeType: "application/json",
-          temperature: 0.9,
-        },
-      });
+  // Call Groq API (OpenAI-compatible)
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      temperature: 0.9,
+      max_tokens: 4096,
+      response_format: { type: 'json_object' },
+    }),
+  });
 
-      const text = response.text;
-      if (!text) {
-        lastError = `${model}: empty response`;
-        continue;
-      }
-
-      console.log(`Success with model: ${model}`);
-
-      // Parse the JSON response
-      try {
-        const parsed = JSON.parse(text);
-        const tracks = parsed.tracks || [];
-        const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
-        if (valid.length > 0) return valid;
-        lastError = `${model}: no valid tracks in response`;
-        continue;
-      } catch {
-        // Try to extract JSON from the response
-        const match = text.match(/\{[\s\S]*\}/);
-        if (match) {
-          const parsed = JSON.parse(match[0]);
-          const tracks = parsed.tracks || [];
-          const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
-          if (valid.length > 0) return valid;
-        }
-        lastError = `${model}: failed to parse response`;
-        continue;
-      }
-    } catch (err: any) {
-      const msg = err.message || String(err);
-      console.warn(`Model ${model} failed:`, msg.slice(0, 200));
-
-      // If it's a clear auth/key error, throw immediately
-      if (msg.includes('API_KEY_INVALID') || msg.includes('invalid')) {
-        throw new Error('Invalid API key. Check your key in Settings.');
-      }
-      if (msg.includes('PERMISSION_DENIED') || msg.includes('403')) {
-        throw new Error('API key not authorized. Make sure the Generative Language API is enabled in your Google Cloud project.');
-      }
-      if (msg.includes('RESOURCE_EXHAUSTED') || msg.includes('429') || msg.includes('quota')) {
-        throw new Error('Rate limited. Wait 60 seconds and try again.');
-      }
-
-      lastError = `${model}: ${msg.slice(0, 100)}`;
-      continue;
+  if (!response.ok) {
+    const err = await response.text();
+    if (response.status === 401) {
+      throw new Error('Invalid API key. Get a free key at console.groq.com/keys');
     }
+    if (response.status === 429) {
+      throw new Error('Rate limited. Wait a moment and try again (Groq free tier: 30 req/min).');
+    }
+    throw new Error(`API error (${response.status}): ${err.slice(0, 150)}`);
   }
 
-  throw new Error(`Could not generate recommendations. ${lastError}`);
+  const data = await response.json();
+  const text = data.choices?.[0]?.message?.content;
+
+  if (!text) {
+    throw new Error('Empty response from AI. Try again.');
+  }
+
+  try {
+    const parsed = JSON.parse(text);
+    const tracks = parsed.tracks || [];
+    const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
+    if (valid.length > 0) return valid;
+    // If no valid YouTube IDs, return tracks anyway (user can skip broken ones)
+    if (tracks.length > 0) return tracks;
+    throw new Error('No recommendations generated. Try again.');
+  } catch (parseErr: any) {
+    // Try to extract JSON from the response
+    const match = text.match(/\{[\s\S]*\}/);
+    if (match) {
+      const parsed = JSON.parse(match[0]);
+      const tracks = parsed.tracks || [];
+      if (tracks.length > 0) return tracks;
+    }
+    throw new Error('Failed to parse AI response. Try again.');
+  }
 }
