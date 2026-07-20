@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic } from "lucide-react";
+import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic, Settings } from "lucide-react";
 import { genres, getTracksByGenre } from "@/data";
 
 const genreIcons: Record<string, any> = {
@@ -61,10 +61,14 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-2"
           >
             <Link href="/playlist" className="flex items-center gap-2 px-4 py-2 rounded-full glass-card hover:bg-white/5 transition-colors">
               <ListMusic className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
               <span className="text-sm text-[oklch(0.6_0.01_260)]">My Playlist</span>
+            </Link>
+            <Link href="/settings" className="p-2 rounded-full glass-card hover:bg-white/5 transition-colors">
+              <Settings className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
             </Link>
           </motion.div>
         </header>

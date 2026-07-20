@@ -108,8 +108,9 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
       return;
     }
     playerInstanceRef.current = new window.YT.Player('yt-player-container', {
+      host: 'https://www.youtube-nocookie.com',
       videoId: currentTrack.youtubeId,
-      playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+      playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3, fs: 0 },
       events: {
         onReady: (event: any) => { if (isPlaying) event.target.playVideo(); },
         onStateChange: (event: any) => { if (event.data === 0) handleNextRef.current(); },

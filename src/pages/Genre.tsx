@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ThumbsUp, ThumbsDown, Info, ListMusic, Sparkles, Play, Compass, Trash2, ExternalLink, AlertTriangle, Shuffle, Search, X } from "lucide-react";
+import { ArrowLeft, ThumbsUp, ThumbsDown, Info, ListMusic, Sparkles, Play, Compass, Trash2, ExternalLink, AlertTriangle, Shuffle, Search, X, Loader2 } from "lucide-react";
 import CollectionPlayer from "@/components/CollectionPlayer";
-import { genres, getTracksByGenre, getLikedTracks, getDiscoveryQueue, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery } from "@/data";
+import { genres, getTracksByGenre, getLikedTracks, getDiscoveryQueue, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery, allTracks } from "@/data";
 import type { Track } from "@/data";
+import { getAIRecommendations, searchYouTubeId, getGeminiApiKey } from "@/services/gemini";
 
 const genreColors: Record<string, string> = {
   techno: '#00d4aa',
@@ -99,7 +100,7 @@ function TrackListItem({ track, genreColor, onRemove }: {
               {track.youtubeId && (
                 <div className="aspect-video w-full rounded-lg overflow-hidden mb-3 bg-black/50">
                   <iframe
-                    src={`https://www.youtube.com/embed/${track.youtubeId}?rel=0&modestbranding=1`}
+                    src={`https://www.youtube-nocookie.com/embed/${track.youtubeId}?rel=0&modestbranding=1`}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -156,6 +157,8 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
   const [showInfo, setShowInfo] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [isLoadingAI, setIsLoadingAI] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
 
   useEffect(() => {
     const unseen = getDiscoveryQueue(genreKey);
@@ -200,6 +203,66 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
     }
   }, [queue, currentIndex, genreKey]);
 
+  const handleGetAIRecommendations = useCallback(async () => {
+    const apiKey = getGeminiApiKey();
+    if (!apiKey) {
+      setAiError('No API key. Go to Settings (gear icon on homepage) to add your free Gemini API key.');
+      return;
+    }
+    setIsLoadingAI(true);
+    setAiError(null);
+    try {
+      const genreTracks = getTracksByGenre(genreKey);
+      const liked = getLikedTracks(genreKey);
+      const existingList = genreTracks.map(t => ({ title: t.title, artist: t.artist }));
+      const likedList = liked.map(t => ({ title: t.title, artist: t.artist }));
+
+      const recommendations = await getAIRecommendations(genreKey, likedList, existingList, 5);
+
+      if (recommendations.length === 0) {
+        setAiError('No new recommendations found. Try again later.');
+        return;
+      }
+
+      // Search YouTube for each recommendation
+      const newTracks: Track[] = [];
+      const maxId = Math.max(...allTracks.map(t => t.id), 10000);
+
+      for (let i = 0; i < recommendations.length; i++) {
+        const rec = recommendations[i];
+        const youtubeId = await searchYouTubeId(rec.artist, rec.title);
+        if (!youtubeId) continue;
+
+        newTracks.push({
+          id: maxId + i + 1,
+          title: rec.title,
+          artist: rec.artist,
+          genre: genreKey,
+          youtubeId,
+          attributes: JSON.stringify(rec.attributes),
+          artistBio: rec.artistBio,
+          artistFacts: JSON.stringify(rec.artistFacts),
+          label: rec.label,
+          year: rec.year,
+          isAiRecommended: 1,
+        });
+      }
+
+      if (newTracks.length > 0) {
+        // Add to queue for discovery
+        setQueue(newTracks);
+        setCurrentIndex(0);
+        setCompleted(false);
+      } else {
+        setAiError('Could not find YouTube videos for the recommendations. Try again.');
+      }
+    } catch (e: any) {
+      setAiError(e.message || 'Failed to get recommendations.');
+    } finally {
+      setIsLoadingAI(false);
+    }
+  }, [genreKey]);
+
   if (completed) {
     return (
       <motion.div
@@ -212,8 +275,29 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
         </div>
         <h2 className="text-2xl font-bold mb-2">All Caught Up!</h2>
         <p className="text-[oklch(0.6_0.01_260)] max-w-sm mb-6">
-          You've gone through all available tracks in this genre.
+          You've gone through all available tracks. Want AI-powered recommendations based on your taste?
         </p>
+        {aiError && (
+          <p className="text-red-400 text-xs mb-4 max-w-sm">{aiError}</p>
+        )}
+        <button
+          onClick={handleGetAIRecommendations}
+          disabled={isLoadingAI}
+          className="px-6 py-3 rounded-full font-medium text-sm transition-all hover:scale-105 flex items-center gap-2 disabled:opacity-50 mb-4"
+          style={{ backgroundColor: genreColor, color: '#0d0d0d' }}
+        >
+          {isLoadingAI ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Finding new tracks...
+            </>
+          ) : (
+            <>
+              <Sparkles className="w-4 h-4" />
+              Get AI Recommendations
+            </>
+          )}
+        </button>
         <button
           onClick={() => {
             resetDiscovery(genreKey);
@@ -262,7 +346,7 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
         {currentTrack.youtubeId ? (
           <div className="aspect-video w-full bg-black/50">
             <iframe
-              src={`https://www.youtube.com/embed/${currentTrack.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+              src={`https://www.youtube-nocookie.com/embed/${currentTrack.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
