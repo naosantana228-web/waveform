@@ -1,21 +1,10 @@
 // Gemini Flash AI Recommendations Service
-// Uses Google AI Studio free tier
-// User must provide their own API key via the Settings page
+// Uses Google AI Studio free tier with @google/genai SDK
+// The SDK supports the new AQ. format authorization keys
 
-// Try multiple models in order - some may not be available depending on the API key
-const GEMINI_MODELS = [
-  'gemini-2.5-flash-lite',
-  'gemini-2.5-flash',
-  'gemini-3.5-flash',
-  'gemini-3.1-flash-lite',
-  'gemini-1.5-flash',
-  'gemini-pro',
-];
-
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models';
+import { GoogleGenAI } from "@google/genai";
 
 const STORAGE_KEY_API = 'waveform_gemini_key';
-const STORAGE_KEY_MODEL = 'waveform_working_model';
 
 export function getGeminiApiKey(): string | null {
   return localStorage.getItem(STORAGE_KEY_API);
@@ -23,13 +12,10 @@ export function getGeminiApiKey(): string | null {
 
 export function setGeminiApiKey(key: string) {
   localStorage.setItem(STORAGE_KEY_API, key);
-  // Clear cached model when key changes
-  localStorage.removeItem(STORAGE_KEY_MODEL);
 }
 
 export function removeGeminiApiKey() {
   localStorage.removeItem(STORAGE_KEY_API);
-  localStorage.removeItem(STORAGE_KEY_MODEL);
 }
 
 const genreDescriptions: Record<string, string> = {
@@ -52,75 +38,13 @@ export interface RecommendedTrack {
   attributes: { energy: number; groove: number; vocals: number; darkness: number; bpm: number };
 }
 
-// Helper: call Gemini with model fallback (single call, caches working model)
-async function callGemini(apiKey: string, prompt: string, systemPrompt: string): Promise<string> {
-  const requestBody = JSON.stringify({
-    contents: [{ parts: [{ text: prompt }] }],
-    systemInstruction: { parts: [{ text: systemPrompt }] },
-    generationConfig: {
-      responseMimeType: "application/json",
-      temperature: 0.9,
-    }
-  });
-
-  // Try cached working model first
-  const cachedModel = localStorage.getItem(STORAGE_KEY_MODEL);
-  const modelsToTry = cachedModel
-    ? [cachedModel, ...GEMINI_MODELS.filter(m => m !== cachedModel)]
-    : GEMINI_MODELS;
-
-  let lastError = '';
-
-  for (const model of modelsToTry) {
-    const url = `${BASE_URL}/${model}:generateContent?key=${apiKey}`;
-    console.log(`Trying model: ${model}...`);
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: requestBody,
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) {
-          // Cache the working model for future calls
-          localStorage.setItem(STORAGE_KEY_MODEL, model);
-          console.log(`Success with model: ${model}`);
-          return text;
-        }
-        lastError = `${model}: empty response`;
-        continue;
-      }
-
-      const err = await response.text();
-      console.warn(`Model ${model} failed (${response.status}):`, err.slice(0, 150));
-
-      if (response.status === 400 && err.includes('API_KEY_INVALID')) {
-        throw new Error('Invalid API key. Check your key in Settings.');
-      }
-      if (response.status === 403) {
-        throw new Error('API key not authorized. Make sure your key is valid and the Generative Language API is enabled in your Google Cloud project.');
-      }
-      if (response.status === 429) {
-        throw new Error('Rate limited. Wait 60 seconds and try again. The free tier allows ~15 requests/minute.');
-      }
-
-      lastError = `${model}: ${response.status}`;
-      continue;
-    } catch (fetchErr: any) {
-      if (fetchErr.message.includes('API key') || fetchErr.message.includes('Rate limited') || fetchErr.message.includes('not authorized')) {
-        throw fetchErr;
-      }
-      lastError = `${model}: ${fetchErr.message}`;
-      continue;
-    }
-  }
-
-  throw new Error(`No working model found. Last error: ${lastError}. Make sure your API key is from Google AI Studio (aistudio.google.com/apikey).`);
-}
+// Models to try in order of preference (cheapest/fastest first)
+const MODELS_TO_TRY = [
+  'gemini-2.5-flash-lite',
+  'gemini-2.5-flash',
+  'gemini-1.5-flash',
+  'gemini-pro',
+];
 
 export async function getAIRecommendations(
   genre: string,
@@ -132,6 +56,8 @@ export async function getAIRecommendations(
   if (!apiKey) {
     throw new Error('No API key configured. Go to Settings to add your free Gemini API key.');
   }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const genreDesc = genreDescriptions[genre] || genre;
   const existingList = existingTracks.slice(0, 50).map(t => `${t.artist} - ${t.title}`).join(", ");
@@ -161,20 +87,68 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
 
   const systemPrompt = "You are a crate-digging music expert and record collector with deep knowledge of independent labels and underground music. You NEVER repeat tracks already in the user's library. You always include accurate YouTube video IDs for every recommendation. Always respond with valid JSON only, no markdown formatting. For the infantil genre, all songs MUST be in Spanish.";
 
-  const text = await callGemini(apiKey, prompt, systemPrompt);
+  // Try models in order until one works
+  let lastError = '';
+  for (const model of MODELS_TO_TRY) {
+    try {
+      console.log(`Trying model: ${model}...`);
+      const response = await ai.models.generateContent({
+        model,
+        contents: prompt,
+        config: {
+          systemInstruction: systemPrompt,
+          responseMimeType: "application/json",
+          temperature: 0.9,
+        },
+      });
 
-  try {
-    const parsed = JSON.parse(text);
-    const tracks = parsed.tracks || [];
-    // Filter out tracks without valid-looking YouTube IDs
-    return tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
-  } catch {
-    const match = text.match(/\{[\s\S]*\}/);
-    if (match) {
-      const parsed = JSON.parse(match[0]);
-      const tracks = parsed.tracks || [];
-      return tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
+      const text = response.text;
+      if (!text) {
+        lastError = `${model}: empty response`;
+        continue;
+      }
+
+      console.log(`Success with model: ${model}`);
+
+      // Parse the JSON response
+      try {
+        const parsed = JSON.parse(text);
+        const tracks = parsed.tracks || [];
+        const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
+        if (valid.length > 0) return valid;
+        lastError = `${model}: no valid tracks in response`;
+        continue;
+      } catch {
+        // Try to extract JSON from the response
+        const match = text.match(/\{[\s\S]*\}/);
+        if (match) {
+          const parsed = JSON.parse(match[0]);
+          const tracks = parsed.tracks || [];
+          const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
+          if (valid.length > 0) return valid;
+        }
+        lastError = `${model}: failed to parse response`;
+        continue;
+      }
+    } catch (err: any) {
+      const msg = err.message || String(err);
+      console.warn(`Model ${model} failed:`, msg.slice(0, 200));
+
+      // If it's a clear auth/key error, throw immediately
+      if (msg.includes('API_KEY_INVALID') || msg.includes('invalid')) {
+        throw new Error('Invalid API key. Check your key in Settings.');
+      }
+      if (msg.includes('PERMISSION_DENIED') || msg.includes('403')) {
+        throw new Error('API key not authorized. Make sure the Generative Language API is enabled in your Google Cloud project.');
+      }
+      if (msg.includes('RESOURCE_EXHAUSTED') || msg.includes('429') || msg.includes('quota')) {
+        throw new Error('Rate limited. Wait 60 seconds and try again.');
+      }
+
+      lastError = `${model}: ${msg.slice(0, 100)}`;
+      continue;
     }
-    throw new Error('Failed to parse AI response');
   }
+
+  throw new Error(`Could not generate recommendations. ${lastError}`);
 }
