@@ -3,7 +3,7 @@ import { useParams, Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ThumbsUp, ThumbsDown, Info, ListMusic, Sparkles, Play, Compass, Trash2, ExternalLink, AlertTriangle, Shuffle, Search, X, Loader2 } from "lucide-react";
 import CollectionPlayer from "@/components/CollectionPlayer";
-import { genres, getTracksByGenre, getLikedTracks, getDiscoveryQueue, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery, allTracks } from "@/data";
+import { genres, getTracksByGenre, getLikedTracks, getDislikedTracks, getDiscoveryQueue, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery, allTracks } from "@/data";
 import type { Track } from "@/data";
 import { getAIRecommendations, getGeminiApiKey } from "@/services/gemini";
 
@@ -214,10 +214,12 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
     try {
       const genreTracks = getTracksByGenre(genreKey);
       const liked = getLikedTracks(genreKey);
-      const existingList = genreTracks.map(t => ({ title: t.title, artist: t.artist }));
-      const likedList = liked.map(t => ({ title: t.title, artist: t.artist }));
+      const disliked = getDislikedTracks(genreKey);
+      const existingList = genreTracks.map(t => ({ title: t.title, artist: t.artist, attributes: t.attributes }));
+      const likedList = liked.map(t => ({ title: t.title, artist: t.artist, attributes: t.attributes }));
+      const dislikedList = disliked.map(t => ({ title: t.title, artist: t.artist, attributes: t.attributes }));
 
-      const recommendations = await getAIRecommendations(genreKey, likedList, existingList, 5);
+      const recommendations = await getAIRecommendations(genreKey, likedList, existingList, dislikedList, 5);
 
       if (recommendations.length === 0) {
         setAiError('No new recommendations found. Try again later.');

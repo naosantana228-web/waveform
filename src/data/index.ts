@@ -77,6 +77,12 @@ export function getAllLikedTracks(): Track[] {
   return allTracks.filter((t) => allIds.includes(t.id));
 }
 
+export function getDislikedTracks(genre: string): Track[] {
+  const state = getState();
+  const ids = state.disliked[genre] || [];
+  return allTracks.filter((t) => ids.includes(t.id));
+}
+
 export function getDiscoveryQueue(genre: string): Track[] {
   const state = getState();
   const seen = [

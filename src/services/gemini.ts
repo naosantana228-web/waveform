@@ -3,7 +3,6 @@
 // User provides their API key from console.groq.com/keys
 
 const STORAGE_KEY_API = 'waveform_groq_key';
-// Keep backward compat with old gemini key storage
 const STORAGE_KEY_API_LEGACY = 'waveform_gemini_key';
 
 export function getGeminiApiKey(): string | null {
@@ -12,7 +11,6 @@ export function getGeminiApiKey(): string | null {
 
 export function setGeminiApiKey(key: string) {
   localStorage.setItem(STORAGE_KEY_API, key);
-  // Clean up legacy key
   localStorage.removeItem(STORAGE_KEY_API_LEGACY);
 }
 
@@ -41,10 +39,17 @@ export interface RecommendedTrack {
   attributes: { energy: number; groove: number; vocals: number; darkness: number; bpm: number };
 }
 
+interface TrackInfo {
+  title: string;
+  artist: string;
+  attributes?: string;
+}
+
 export async function getAIRecommendations(
   genre: string,
-  likedTracks: { title: string; artist: string }[],
-  existingTracks: { title: string; artist: string }[],
+  likedTracks: TrackInfo[],
+  existingTracks: TrackInfo[],
+  dislikedTracks: TrackInfo[],
   limit: number = 5
 ): Promise<RecommendedTrack[]> {
   const apiKey = getGeminiApiKey();
@@ -53,32 +58,103 @@ export async function getAIRecommendations(
   }
 
   const genreDesc = genreDescriptions[genre] || genre;
-  const existingList = existingTracks.slice(0, 50).map(t => `${t.artist} - ${t.title}`).join(", ");
-  const likedList = likedTracks.slice(0, 15).map(t => `${t.artist} - ${t.title}`).join(", ");
 
-  const userPrompt = likedTracks.length > 0
-    ? `Based on these liked tracks in the "${genreDesc}" genre: ${likedList}
+  // Build rich context from liked tracks (up to 30)
+  const likedContext = likedTracks.slice(0, 30).map(t => {
+    let entry = `${t.artist} - ${t.title}`;
+    if (t.attributes) {
+      try {
+        const attrs = JSON.parse(t.attributes);
+        entry += ` [energy:${attrs.energy}/10, groove:${attrs.groove}/10, vocals:${attrs.vocals}/10, darkness:${attrs.darkness}/10, bpm:${attrs.bpm}]`;
+      } catch {}
+    }
+    return entry;
+  }).join("\n");
 
-Recommend ${limit} NEW and DIFFERENT tracks that match this taste but EXPAND the selection. Dig deeper — suggest tracks from lesser-known artists, B-sides, deep cuts, and underground releases. Prioritize variety and discovery.
+  // Build disliked context (up to 15) - tells AI what to AVOID
+  const dislikedContext = dislikedTracks.slice(0, 15).map(t => {
+    let entry = `${t.artist} - ${t.title}`;
+    if (t.attributes) {
+      try {
+        const attrs = JSON.parse(t.attributes);
+        entry += ` [energy:${attrs.energy}/10, groove:${attrs.groove}/10, vocals:${attrs.vocals}/10, darkness:${attrs.darkness}/10, bpm:${attrs.bpm}]`;
+      } catch {}
+    }
+    return entry;
+  }).join("\n");
 
-IMPORTANT: Do NOT recommend ANY of these (already in library): ${existingList}
+  // Analyze the user's taste profile from liked tracks
+  let tasteProfile = '';
+  if (likedTracks.length >= 5) {
+    const attrs = likedTracks.slice(0, 30)
+      .map(t => { try { return JSON.parse(t.attributes || '{}'); } catch { return null; } })
+      .filter(Boolean);
+    if (attrs.length > 3) {
+      const avg = (key: string) => Math.round(attrs.reduce((sum: number, a: any) => sum + (a[key] || 5), 0) / attrs.length * 10) / 10;
+      tasteProfile = `\n\nUSER'S TASTE PROFILE (average from ${attrs.length} liked tracks):
+- Energy: ${avg('energy')}/10
+- Groove: ${avg('groove')}/10
+- Vocals: ${avg('vocals')}/10
+- Darkness: ${avg('darkness')}/10
+- Average BPM: ${avg('bpm')}
+Match these attribute ranges closely. The user prefers tracks within ±1.5 of these averages.`;
+    }
+  }
 
-For EACH track you MUST include the exact YouTube video ID (the 11-character code from youtube.com/watch?v=XXXXXXXXXXX). Only recommend tracks that you are confident have a YouTube video available.
+  // Analyze most common artists to understand preferences
+  const artistCounts: Record<string, number> = {};
+  likedTracks.forEach(t => {
+    const artist = t.artist.split(' ft.')[0].split(' feat.')[0].split(' &')[0].trim();
+    artistCounts[artist] = (artistCounts[artist] || 0) + 1;
+  });
+  const topArtists = Object.entries(artistCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([name, count]) => `${name} (${count} tracks)`)
+    .join(', ');
 
-For each track provide a JSON object with: title, artist, year (integer), label, youtubeId (the 11-character YouTube video ID), artistBio (1-2 sentences), artistFacts (array of 3 strings), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
+  const existingList = existingTracks.slice(0, 80).map(t => `${t.artist} - ${t.title}`).join(", ");
 
-Respond ONLY with a JSON object: { "tracks": [...] }`
-    : `Recommend ${limit} essential but UNDERGROUND tracks in the "${genreDesc}" genre. Avoid mainstream choices.
+  const userPrompt = `## Genre: ${genreDesc}
 
-IMPORTANT: Do NOT recommend ANY of these (already in library): ${existingList}
+## User's Liked Tracks (${likedTracks.length} total, showing top ${Math.min(30, likedTracks.length)}):
+${likedContext || 'None yet'}
 
-For EACH track you MUST include the exact YouTube video ID (the 11-character code from youtube.com/watch?v=XXXXXXXXXXX). Only recommend tracks that you are confident have a YouTube video available.
+## User's Most Played Artists: ${topArtists || 'None yet'}
+${tasteProfile}
 
-For each track provide a JSON object with: title, artist, year (integer), label, youtubeId (the 11-character YouTube video ID), artistBio (1-2 sentences), artistFacts (array of 3 strings), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
+${dislikedContext ? `## Tracks the user DISLIKED (AVOID similar style/artists):
+${dislikedContext}
+
+Analyze WHY the user might have disliked these — maybe too mainstream, wrong tempo, wrong mood, or wrong sub-genre. Avoid recommending anything similar.` : ''}
+
+## Already in library (DO NOT recommend these): 
+${existingList}
+
+---
+
+Recommend exactly ${limit} tracks that:
+1. MATCH the user's taste profile and preferred attributes closely
+2. Are from artists SIMILAR to their top artists but NOT the same artists they already have
+3. AVOID the style/mood/tempo of disliked tracks
+4. Are real tracks with VERIFIED YouTube videos (you must be confident the YouTube ID is correct)
+5. Prioritize deep cuts, B-sides, and lesser-known releases over obvious hits
+6. Each track should be from a DIFFERENT artist for variety
+
+For EACH track provide a JSON object with: title, artist, year (integer), label, youtubeId (the exact 11-character YouTube video ID from youtube.com/watch?v=XXXXXXXXXXX), artistBio (1-2 sentences), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer — these MUST be close to the user's taste profile).
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const systemPrompt = "You are a crate-digging music expert and record collector with deep knowledge of independent labels and underground music. You NEVER repeat tracks already in the user's library. You always include accurate YouTube video IDs for every recommendation. Always respond with valid JSON only, no markdown formatting. For the infantil genre, all songs MUST be in Spanish.";
+  const systemPrompt = `You are an expert music curator and crate-digger with encyclopedic knowledge of underground music, independent labels, and deep cuts across all genres. Your recommendations are highly personalized based on the user's listening patterns.
+
+CRITICAL RULES:
+1. NEVER recommend tracks already in the user's library
+2. NEVER recommend tracks from artists the user disliked
+3. YouTube IDs must be REAL and VERIFIED — only include tracks you are 100% certain have a YouTube video. The ID is the 11-character code after "watch?v=" in a YouTube URL.
+4. Match the user's attribute preferences (energy, groove, vocals, darkness, bpm) as closely as possible
+5. Always respond with valid JSON only, no markdown formatting, no code blocks
+6. For the infantil genre, all songs MUST be in Spanish
+7. Prioritize quality over obscurity — the track should be genuinely good AND match their taste`;
 
   // Call Groq API (OpenAI-compatible)
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -93,7 +169,7 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.9,
+      temperature: 0.7, // Lower temperature for more accurate/focused recommendations
       max_tokens: 4096,
       response_format: { type: 'json_object' },
     }),
@@ -122,11 +198,9 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
     const tracks = parsed.tracks || [];
     const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
     if (valid.length > 0) return valid;
-    // If no valid YouTube IDs, return tracks anyway (user can skip broken ones)
     if (tracks.length > 0) return tracks;
     throw new Error('No recommendations generated. Try again.');
   } catch (parseErr: any) {
-    // Try to extract JSON from the response
     const match = text.match(/\{[\s\S]*\}/);
     if (match) {
       const parsed = JSON.parse(match[0]);
