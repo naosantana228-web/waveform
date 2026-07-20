@@ -2,7 +2,17 @@
 // Uses Google AI Studio free tier (Gemini 3.5 Flash)
 // User must provide their own API key via the Settings page
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent';
+// Try multiple models in order - some may not be available depending on the API key
+const GEMINI_MODELS = [
+  'gemini-2.5-flash-lite',
+  'gemini-2.5-flash',
+  'gemini-3.5-flash',
+  'gemini-3.1-flash-lite',
+  'gemini-1.5-flash',
+  'gemini-pro',
+];
+
+const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 const STORAGE_KEY_API = 'waveform_gemini_key';
 
@@ -70,54 +80,75 @@ For each track provide a JSON object with: title, artist, year (integer), label,
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{
-        parts: [{
-          text: prompt
-        }]
-      }],
-      systemInstruction: {
-        parts: [{
-          text: "You are a crate-digging music expert and record collector with deep knowledge of independent labels and underground music. You NEVER repeat tracks already in the user's library. Always respond with valid JSON only, no markdown formatting. For the infantil genre, all songs MUST be in Spanish."
-        }]
-      },
-      generationConfig: {
-        responseMimeType: "application/json",
-        temperature: 0.9,
-      }
-    }),
+  const requestBody = JSON.stringify({
+    contents: [{
+      parts: [{
+        text: prompt
+      }]
+    }],
+    systemInstruction: {
+      parts: [{
+        text: "You are a crate-digging music expert and record collector with deep knowledge of independent labels and underground music. You NEVER repeat tracks already in the user's library. Always respond with valid JSON only, no markdown formatting. For the infantil genre, all songs MUST be in Spanish."
+      }]
+    },
+    generationConfig: {
+      responseMimeType: "application/json",
+      temperature: 0.9,
+    }
   });
 
-  if (!response.ok) {
-    const err = await response.text();
-    console.error('Gemini API error:', response.status, err);
-    if (response.status === 429) {
-      throw new Error('Rate limited. Free tier allows ~15 requests/minute. Wait a moment and try again.');
-    }
-    if (response.status === 400 && err.includes('API_KEY_INVALID')) {
-      throw new Error('Invalid API key. Check your key in Settings.');
-    }
-    if (response.status === 403) {
-      throw new Error('API key not authorized. Make sure your key is valid and the Generative Language API is enabled in your Google Cloud project.');
-    }
-    if (response.status === 404) {
-      throw new Error('Model not found. The API may have been updated.');
-    }
-    // Try to extract a useful message
+  // Try each model until one works
+  let lastError = '';
+  let responseData: any = null;
+
+  for (const model of GEMINI_MODELS) {
+    const url = `${BASE_URL}/${model}:generateContent?key=${apiKey}`;
+    console.log(`Trying model: ${model}...`);
+    
     try {
-      const errJson = JSON.parse(err);
-      const msg = errJson?.error?.message || `API error ${response.status}`;
-      throw new Error(msg);
-    } catch (parseErr) {
-      throw new Error(`Gemini API error: ${response.status} - ${err.slice(0, 200)}`);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: requestBody,
+      });
+
+      if (response.ok) {
+        responseData = await response.json();
+        console.log(`Success with model: ${model}`);
+        break;
+      }
+
+      const err = await response.text();
+      console.warn(`Model ${model} failed (${response.status}):`, err.slice(0, 100));
+
+      if (response.status === 400 && err.includes('API_KEY_INVALID')) {
+        throw new Error('Invalid API key. Check your key in Settings.');
+      }
+      if (response.status === 403) {
+        throw new Error('API key not authorized. Make sure your key is valid and the Generative Language API is enabled in your Google Cloud project.');
+      }
+      if (response.status === 429) {
+        throw new Error('Rate limited. Free tier allows ~15 requests/minute. Wait a moment and try again.');
+      }
+
+      // 404 = model not found, try next
+      lastError = `${model}: ${response.status}`;
+      continue;
+    } catch (fetchErr: any) {
+      // Re-throw auth/rate errors
+      if (fetchErr.message.includes('API key') || fetchErr.message.includes('Rate limited') || fetchErr.message.includes('not authorized')) {
+        throw fetchErr;
+      }
+      lastError = `${model}: ${fetchErr.message}`;
+      continue;
     }
   }
 
-  const data = await response.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!responseData) {
+    throw new Error(`No working model found. Last error: ${lastError}. Make sure your API key is from Google AI Studio (aistudio.google.com/apikey).`);
+  }
+
+  const text = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!text) throw new Error('Empty response from Gemini');
 
   try {
