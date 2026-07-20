@@ -2,7 +2,7 @@
 // Uses Google AI Studio free tier (Gemini 3.5 Flash)
 // User must provide their own API key via the Settings page
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 const STORAGE_KEY_API = 'waveform_gemini_key';
 
@@ -93,13 +93,27 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
 
   if (!response.ok) {
     const err = await response.text();
+    console.error('Gemini API error:', response.status, err);
     if (response.status === 429) {
       throw new Error('Rate limited. Free tier allows ~15 requests/minute. Wait a moment and try again.');
     }
     if (response.status === 400 && err.includes('API_KEY_INVALID')) {
       throw new Error('Invalid API key. Check your key in Settings.');
     }
-    throw new Error(`Gemini API error: ${response.status}`);
+    if (response.status === 403) {
+      throw new Error('API key not authorized. Make sure your key is valid and the Generative Language API is enabled in your Google Cloud project.');
+    }
+    if (response.status === 404) {
+      throw new Error('Model not found. The API may have been updated.');
+    }
+    // Try to extract a useful message
+    try {
+      const errJson = JSON.parse(err);
+      const msg = errJson?.error?.message || `API error ${response.status}`;
+      throw new Error(msg);
+    } catch (parseErr) {
+      throw new Error(`Gemini API error: ${response.status} - ${err.slice(0, 200)}`);
+    }
   }
 
   const data = await response.json();
