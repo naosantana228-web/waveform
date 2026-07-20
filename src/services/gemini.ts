@@ -2,7 +2,7 @@
 // Uses Google AI Studio free tier (Gemini 3.5 Flash)
 // User must provide their own API key via the Settings page
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent';
 
 const STORAGE_KEY_API = 'waveform_gemini_key';
 
