@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { X, SkipBack, SkipForward, Play, Pause, Shuffle, Repeat, List, Trash2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Pause, SkipForward, SkipBack, Shuffle, Repeat, X, ListMusic, Volume2, Trash2 } from "lucide-react";
 import type { Track } from "@/data";
 
 declare global {
@@ -11,188 +12,236 @@ declare global {
 
 interface Props {
   tracks: Track[];
-  startIndex?: number;
-  shuffled?: boolean;
+  genreColor: string;
   onClose: () => void;
   onRemove?: (trackId: number) => void;
 }
 
-export default function CollectionPlayer({ tracks, startIndex = 0, shuffled = true, onClose, onRemove }: Props) {
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove }: Props) {
   const [queue, setQueue] = useState<Track[]>([]);
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isShuffled, setIsShuffled] = useState(true);
+  const [isRepeat, setIsRepeat] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showQueue, setShowQueue] = useState(false);
-  const [repeat, setRepeat] = useState(false);
-  const playerRef = useRef<any>(null);
+  const [playerReady, setPlayerReady] = useState(false);
+  const playerInstanceRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const handleNextRef = useRef<() => void>(() => {});
 
+  // Initialize queue (shuffled by default)
   useEffect(() => {
-    let q = [...tracks];
-    if (shuffled) {
-      for (let i = q.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [q[i], q[j]] = [q[j], q[i]];
-      }
-    }
-    setQueue(q);
-    setCurrentIdx(shuffled ? 0 : startIndex);
-  }, [tracks, startIndex, shuffled]);
+    const playable = tracks.filter(t => t.youtubeId);
+    if (playable.length === 0) return;
+    setQueue(shuffleArray(playable));
+    setCurrentIndex(0);
+    setIsPlaying(true);
+  }, [tracks]);
 
-  useEffect(() => {
-    if (queue.length === 0) return;
-
-    const loadAPI = () => {
-      if (window.YT && window.YT.Player) {
-        initPlayer();
-        return;
-      }
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(tag);
-      window.onYouTubeIframeAPIReady = initPlayer;
-    };
-
-    const initPlayer = () => {
-      if (playerRef.current) {
-        playerRef.current.loadVideoById(queue[currentIdx].youtubeId);
-        return;
-      }
-      playerRef.current = new window.YT.Player("yt-player", {
-        height: "100%",
-        width: "100%",
-        videoId: queue[currentIdx].youtubeId,
-        playerVars: { autoplay: 1, rel: 0, modestbranding: 1 },
-        events: {
-          onStateChange: (e: any) => {
-            if (e.data === 0) handleNext();
-            if (e.data === 1) setIsPlaying(true);
-            if (e.data === 2) setIsPlaying(false);
-          },
-        },
-      });
-    };
-
-    loadAPI();
-  }, [queue]);
-
-  useEffect(() => {
-    if (playerRef.current && playerRef.current.loadVideoById && queue[currentIdx]) {
-      playerRef.current.loadVideoById(queue[currentIdx].youtubeId);
-    }
-  }, [currentIdx]);
+  const currentTrack = queue[currentIndex];
 
   const handleNext = useCallback(() => {
-    setCurrentIdx((prev) => {
-      if (prev >= queue.length - 1) return repeat ? 0 : prev;
-      return prev + 1;
-    });
-  }, [queue.length, repeat]);
-
-  const handlePrev = () => {
-    setCurrentIdx((prev) => (prev <= 0 ? 0 : prev - 1));
-  };
-
-  const togglePlay = () => {
-    if (!playerRef.current) return;
-    if (isPlaying) {
-      playerRef.current.pauseVideo();
+    if (queue.length === 0) return;
+    if (currentIndex + 1 >= queue.length) {
+      if (isRepeat) {
+        if (isShuffled) setQueue(shuffleArray(queue));
+        setCurrentIndex(0);
+      }
     } else {
-      playerRef.current.playVideo();
+      setCurrentIndex(prev => prev + 1);
     }
-  };
+  }, [queue, currentIndex, isRepeat, isShuffled]);
 
-  const handleRemove = () => {
-    if (!currentTrack || !onRemove) return;
-    const removedId = currentTrack.id;
-    // Remove from queue and advance
-    const newQueue = queue.filter((_, i) => i !== currentIdx);
-    if (newQueue.length === 0) {
-      onRemove(removedId);
-      onClose();
+  useEffect(() => { handleNextRef.current = handleNext; }, [handleNext]);
+
+  const handlePrev = useCallback(() => {
+    if (queue.length === 0) return;
+    setCurrentIndex(prev => prev === 0 ? queue.length - 1 : prev - 1);
+  }, [queue]);
+
+  const toggleShuffle = useCallback(() => {
+    if (!isShuffled) {
+      const current = queue[currentIndex];
+      const rest = queue.filter((_, i) => i !== currentIndex);
+      setQueue([current, ...shuffleArray(rest)]);
+      setCurrentIndex(0);
+    } else {
+      const playable = tracks.filter(t => t.youtubeId);
+      const current = queue[currentIndex];
+      const newIndex = playable.findIndex(t => t.id === current.id);
+      setQueue(playable);
+      setCurrentIndex(newIndex >= 0 ? newIndex : 0);
+    }
+    setIsShuffled(!isShuffled);
+  }, [isShuffled, queue, currentIndex, tracks]);
+
+  // Load YouTube IFrame API
+  useEffect(() => {
+    if (window.YT && window.YT.Player) { setPlayerReady(true); return; }
+    const existing = document.getElementById('youtube-iframe-api');
+    if (existing) {
+      const check = setInterval(() => { if (window.YT && window.YT.Player) { setPlayerReady(true); clearInterval(check); } }, 100);
+      return () => clearInterval(check);
+    }
+    const script = document.createElement('script');
+    script.id = 'youtube-iframe-api';
+    script.src = 'https://www.youtube.com/iframe_api';
+    script.async = true;
+    document.head.appendChild(script);
+    window.onYouTubeIframeAPIReady = () => setPlayerReady(true);
+  }, []);
+
+  // Create/update YouTube player
+  useEffect(() => {
+    if (!playerReady || !currentTrack?.youtubeId) return;
+    if (playerInstanceRef.current) {
+      playerInstanceRef.current.loadVideoById(currentTrack.youtubeId);
       return;
     }
-    const newIdx = currentIdx >= newQueue.length ? 0 : currentIdx;
-    setQueue(newQueue);
-    setCurrentIdx(newIdx);
-    onRemove(removedId);
-  };
+    playerInstanceRef.current = new window.YT.Player('yt-player-container', {
+      videoId: currentTrack.youtubeId,
+      playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+      events: {
+        onReady: (event: any) => { if (isPlaying) event.target.playVideo(); },
+        onStateChange: (event: any) => { if (event.data === 0) handleNextRef.current(); },
+      },
+    });
+  }, [playerReady, currentTrack?.youtubeId]);
 
-  const currentTrack = queue[currentIdx];
-  if (!currentTrack) return null;
+  // Cleanup
+  useEffect(() => {
+    return () => { try { playerInstanceRef.current?.destroy(); } catch {} playerInstanceRef.current = null; };
+  }, []);
+
+  // Play/pause
+  useEffect(() => {
+    if (!playerInstanceRef.current) return;
+    try { isPlaying ? playerInstanceRef.current.playVideo() : playerInstanceRef.current.pauseVideo(); } catch {}
+  }, [isPlaying]);
+
+  if (!currentTrack || queue.length === 0) return null;
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-50 bg-background flex flex-col">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-        <span className="text-sm text-text-muted">
-          Now Playing {currentIdx + 1}/{queue.length}
-        </span>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      className="fixed inset-0 z-[100] flex flex-col bg-[oklch(0.08_0.005_260)] backdrop-blur-xl"
+    >
+      {/* Top Bar */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
+        <div className="flex items-center gap-3">
+          <Volume2 className="w-4 h-4" style={{ color: genreColor }} />
+          <span className="text-sm font-medium">Now Playing</span>
+          <span className="text-xs text-[oklch(0.6_0.01_260)]">{currentIndex + 1} / {queue.length}</span>
+        </div>
         <div className="flex items-center gap-2">
-          <button onClick={() => setShowQueue(!showQueue)} className="p-2 rounded-lg hover:bg-surface cursor-pointer">
-            <List className="w-4 h-4" />
+          <button onClick={() => setShowQueue(!showQueue)} className={`p-2 rounded-full transition-colors ${showQueue ? 'bg-white/10' : 'hover:bg-white/5'}`}>
+            <ListMusic className="w-5 h-5" />
           </button>
-          <button onClick={onClose} className="p-2 rounded-lg hover:bg-surface cursor-pointer">
-            <X className="w-4 h-4" />
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+            <X className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        {/* Video */}
-        <div className="flex-1 flex flex-col items-center justify-center p-4">
-          <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden bg-black">
-            <div id="yt-player" className="w-full h-full" />
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        {/* Player Section */}
+        <div className={`flex-1 flex flex-col items-center justify-center p-6 ${showQueue ? 'hidden lg:flex' : ''}`}>
+          <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-2xl mb-8 bg-black/50" ref={containerRef}>
+            <div id="yt-player-container" className="w-full h-full" />
           </div>
-          <div className="mt-4 text-center">
-            <h2 className="font-display font-bold text-xl">{currentTrack.title}</h2>
-            <p className="text-text-muted">{currentTrack.artist}</p>
-          </div>
-        </div>
 
-        {/* Queue panel */}
-        {showQueue && (
-          <div className="w-full md:w-80 border-t md:border-t-0 md:border-l border-border overflow-y-auto p-3">
-            <h3 className="font-semibold text-sm mb-2 text-text-muted">Queue</h3>
-            {queue.map((track, i) => (
+          {/* Track Info */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-1">{currentTrack.title}</h2>
+            <p className="text-[oklch(0.6_0.01_260)] text-lg">{currentTrack.artist}</p>
+          </div>
+
+          {/* Playback Controls */}
+          <div className="flex items-center gap-6">
+            <button onClick={toggleShuffle} className={`p-3 rounded-full transition-all ${isShuffled ? '' : 'opacity-40 hover:opacity-70'}`} style={isShuffled ? { color: genreColor } : {}}>
+              <Shuffle className="w-5 h-5" />
+            </button>
+            <button onClick={handlePrev} className="p-3 rounded-full hover:bg-white/10 transition-colors">
+              <SkipBack className="w-6 h-6" />
+            </button>
+            <button onClick={() => setIsPlaying(!isPlaying)} className="w-16 h-16 rounded-full flex items-center justify-center transition-all hover:scale-105" style={{ backgroundColor: genreColor, color: '#0d0d0d' }}>
+              {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-1" />}
+            </button>
+            <button onClick={handleNext} className="p-3 rounded-full hover:bg-white/10 transition-colors">
+              <SkipForward className="w-6 h-6" />
+            </button>
+            <button onClick={() => setIsRepeat(!isRepeat)} className={`p-3 rounded-full transition-all ${isRepeat ? '' : 'opacity-40 hover:opacity-70'}`} style={isRepeat ? { color: genreColor } : {}}>
+              <Repeat className="w-5 h-5" />
+            </button>
+            {onRemove && (
               <button
-                key={track.id}
-                onClick={() => setCurrentIdx(i)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm mb-1 cursor-pointer transition-colors ${
-                  i === currentIdx ? "bg-accent-techno/20 text-accent-techno" : "hover:bg-surface"
-                }`}
+                onClick={() => {
+                  if (!currentTrack) return;
+                  const removedId = currentTrack.id;
+                  const newQueue = queue.filter(t => t.id !== removedId);
+                  if (newQueue.length === 0) { onClose(); } else {
+                    const newIdx = currentIndex >= newQueue.length ? 0 : currentIndex;
+                    setQueue(newQueue);
+                    setCurrentIndex(newIdx);
+                  }
+                  onRemove(removedId);
+                }}
+                className="p-3 rounded-full hover:bg-red-500/20 transition-colors text-[oklch(0.6_0.01_260)] hover:text-red-400"
               >
-                <span className="font-medium">{track.title}</span>
-                <span className="text-text-muted ml-1">— {track.artist}</span>
+                <Trash2 className="w-5 h-5" />
               </button>
-            ))}
+            )}
           </div>
-        )}
-      </div>
 
-      {/* Controls */}
-      <div className="flex items-center justify-center gap-4 py-4 border-t border-border">
-        <button onClick={() => setRepeat(!repeat)} className={`p-2 rounded-lg cursor-pointer ${repeat ? "text-accent-techno" : "text-text-muted hover:text-text"}`}>
-          <Repeat className="w-4 h-4" />
-        </button>
-        <button onClick={handlePrev} className="p-2 rounded-lg hover:bg-surface cursor-pointer">
-          <SkipBack className="w-5 h-5" />
-        </button>
-        <button onClick={togglePlay} className="p-3 rounded-full bg-accent-techno text-background cursor-pointer">
-          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-        </button>
-        <button onClick={handleNext} className="p-2 rounded-lg hover:bg-surface cursor-pointer">
-          <SkipForward className="w-5 h-5" />
-        </button>
-        {onRemove && (
-          <button onClick={handleRemove} className="p-2 rounded-lg text-red-400 hover:bg-red-400/10 cursor-pointer" title="Remove from collection">
-            <Trash2 className="w-4 h-4" />
-          </button>
-        )}
-        <button className="p-2 rounded-lg text-accent-techno cursor-default">
-          <Shuffle className="w-4 h-4" />
-        </button>
+          {/* Progress indicator */}
+          <div className="w-full max-w-md mt-6">
+            <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+              <motion.div className="h-full rounded-full" style={{ backgroundColor: genreColor }} animate={{ width: `${((currentIndex + 1) / queue.length) * 100}%` }} transition={{ duration: 0.3 }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Queue Panel */}
+        <AnimatePresence>
+          {showQueue && (
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="w-full lg:w-96 border-l border-white/5 overflow-y-auto bg-[oklch(0.08_0.005_260)]/50">
+              <div className="p-4 border-b border-white/5 sticky top-0 bg-[oklch(0.08_0.005_260)]/80 backdrop-blur-sm z-10">
+                <h3 className="font-semibold text-sm">Queue</h3>
+                <p className="text-xs text-[oklch(0.6_0.01_260)]">{queue.length} tracks · {isShuffled ? 'Shuffled' : 'In order'}</p>
+              </div>
+              <div className="p-2">
+                {queue.map((track, index) => (
+                  <button
+                    key={`${track.id}-${index}`}
+                    onClick={() => { setCurrentIndex(index); setIsPlaying(true); setShowQueue(false); }}
+                    className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${index === currentIndex ? 'bg-white/10' : 'hover:bg-white/5'}`}
+                  >
+                    <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 text-xs font-medium" style={index === currentIndex ? { backgroundColor: `${genreColor}30`, color: genreColor } : { backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                      {index === currentIndex ? <Volume2 className="w-4 h-4" /> : index + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className={`text-sm truncate ${index === currentIndex ? 'font-medium' : ''}`} style={index === currentIndex ? { color: genreColor } : {}}>{track.title}</p>
+                      <p className="text-xs text-[oklch(0.6_0.01_260)] truncate">{track.artist}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 }

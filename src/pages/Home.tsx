@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { Music, Headphones, Radio, Disc3, Mic, Baby } from "lucide-react";
+import { motion } from "framer-motion";
+import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic } from "lucide-react";
 import { genres, getTracksByGenre } from "@/data";
 
-const icons = {
+const genreIcons: Record<string, any> = {
   techno: Headphones,
   afrobeats: Music,
   reggae: Radio,
@@ -11,63 +12,132 @@ const icons = {
   infantil: Baby,
 };
 
+const genreColors: Record<string, string> = {
+  techno: '#00d4aa',
+  afrobeats: '#ff6b6b',
+  reggae: '#ffa726',
+  reggaeton: '#e040fb',
+  hiphop: '#ffb300',
+  infantil: '#ff69b4',
+};
+
+const genreGlows: Record<string, string> = {
+  techno: 'genre-glow-techno',
+  afrobeats: 'genre-glow-afrobeats',
+  reggae: 'genre-glow-reggae',
+  reggaeton: 'genre-glow-reggaeton',
+  hiphop: 'genre-glow-hiphop',
+  infantil: 'genre-glow-infantil',
+};
+
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-accent-techno/20 flex items-center justify-center">
-            <Music className="w-4 h-4 text-accent-techno" />
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663364052012/USZRj6GFcBYAcRBgUCrhq2/hero-dark-waves-oGpTSz7bzq3VAzJDTBSLxY.webp"
+          alt=""
+          className="w-full h-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.08_0.005_260)]/60 via-[oklch(0.08_0.005_260)]/80 to-[oklch(0.08_0.005_260)]" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Header */}
+        <header className="flex items-center justify-between px-6 py-5">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#00d4aa]/20 flex items-center justify-center">
+              <Music className="w-4 h-4 text-[#00d4aa]" />
+            </div>
+            <span className="text-lg font-semibold tracking-tight">Waveform</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <Link href="/playlist" className="flex items-center gap-2 px-4 py-2 rounded-full glass-card hover:bg-white/5 transition-colors">
+              <ListMusic className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
+              <span className="text-sm text-[oklch(0.6_0.01_260)]">My Playlist</span>
+            </Link>
+          </motion.div>
+        </header>
+
+        {/* Hero */}
+        <main className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-center mb-16 max-w-2xl"
+          >
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">
+              Discover Your
+              <br />
+              <span className="bg-gradient-to-r from-[#00d4aa] via-[#ff6b6b] via-[#ffa726] via-[#e040fb] to-[#ffb300] bg-clip-text text-transparent">
+                Sound
+              </span>
+            </h1>
+            <p className="text-lg text-[oklch(0.6_0.01_260)] max-w-md mx-auto leading-relaxed">
+              Browse your collection, discover new tracks, and explore six curated genres.
+            </p>
+          </motion.div>
+
+          {/* Genre Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-5xl">
+            {genres.map((genre, index) => {
+              const Icon = genreIcons[genre.key] || Music;
+              const color = genreColors[genre.key] || '#00d4aa';
+              const glowClass = genreGlows[genre.key] || '';
+              const count = getTracksByGenre(genre.key).length;
+
+              return (
+                <motion.div
+                  key={genre.key}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                >
+                  <Link href={`/genre/${genre.key}`}>
+                    <div className={`glass-card rounded-2xl p-6 hover:bg-white/5 transition-all duration-300 group ${glowClass} cursor-pointer`}>
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+                        style={{ backgroundColor: `${color}20` }}
+                      >
+                        <Icon className="w-6 h-6" style={{ color }} />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-1">{genre.name}</h3>
+                      <p className="text-sm text-[oklch(0.6_0.01_260)] mb-3 line-clamp-2">{genre.subtitle}</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+                        <span className="text-xs text-[oklch(0.6_0.01_260)]">{count} tracks</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
-          <span className="font-display font-semibold text-lg">Waveform</span>
-        </div>
-        <Link href="/playlist">
-          <button className="px-4 py-2 rounded-lg glass glass-hover text-sm font-medium cursor-pointer">
-            My Playlist
-          </button>
-        </Link>
-      </header>
+        </main>
 
-      {/* Hero */}
-      <section className="text-center py-20 px-4">
-        <h1 className="font-display text-5xl md:text-7xl font-bold mb-4">
-          Discover Your{" "}
-          <span className="bg-gradient-to-r from-accent-techno via-accent-afrobeats to-accent-reggaeton bg-clip-text text-transparent">
-            Sound
-          </span>
-        </h1>
-        <p className="text-text-muted text-lg max-w-xl mx-auto">
-          Browse your collection, discover new tracks, and explore six curated genres.
-        </p>
-      </section>
-
-      {/* Genre Cards */}
-      <section className="max-w-5xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {genres.map((genre) => {
-            const Icon = icons[genre.key as keyof typeof icons];
-            const count = getTracksByGenre(genre.key).length;
-            return (
-              <Link key={genre.key} href={`/genre/${genre.key}`}>
-                <div className="glass glass-hover rounded-xl p-5 cursor-pointer transition-all duration-200 hover:scale-[1.02] h-full">
-                  <div className={`w-10 h-10 rounded-lg bg-${genre.color}/20 flex items-center justify-center mb-3`}>
-                    <Icon className={`w-5 h-5 text-${genre.color}`} />
-                  </div>
-                  <h3 className="font-display font-semibold text-sm mb-1">{genre.name}</h3>
-                  <p className="text-text-muted text-xs mb-3 line-clamp-2">{genre.subtitle}</p>
-                  <span className="text-xs text-text-muted">{count} tracks</span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="text-center py-8 text-text-muted text-sm">
-        Like tracks to build your collection. Discover mode learns your taste.
-      </footer>
+        {/* Footer hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="text-center pb-8"
+        >
+          <p className="text-xs text-[oklch(0.6_0.01_260)]/60">
+            Like tracks to build your collection. Discover mode learns your taste.
+          </p>
+        </motion.div>
+      </div>
     </div>
   );
 }

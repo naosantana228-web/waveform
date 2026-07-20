@@ -1,42 +1,53 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --color-background: oklch(0.13 0.01 260);
-  --color-surface: oklch(0.18 0.01 260);
-  --color-surface-hover: oklch(0.22 0.01 260);
-  --color-border: oklch(0.28 0.01 260);
-  --color-text: oklch(0.95 0 0);
-  --color-text-muted: oklch(0.65 0.01 260);
-  --color-accent-techno: oklch(0.75 0.18 160);
-  --color-accent-afrobeats: oklch(0.72 0.18 30);
-  --color-accent-reggae: oklch(0.72 0.18 50);
-  --color-accent-reggaeton: oklch(0.72 0.15 320);
-  --color-accent-hiphop: oklch(0.72 0.15 70);
-  --color-accent-infantil: oklch(0.75 0.18 330);
+  --font-sans: 'Outfit', sans-serif;
+  --color-background: oklch(0.08 0.005 260);
+  --color-foreground: oklch(0.95 0.005 260);
+  --color-muted-foreground: oklch(0.6 0.01 260);
+  --color-border: oklch(0.22 0.008 260);
+  --color-primary: oklch(0.75 0.15 175);
+  --color-primary-foreground: oklch(0.1 0.005 175);
 }
 
 body {
   background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-sans);
+  color: var(--color-foreground);
+  font-family: 'Outfit', sans-serif;
   margin: 0;
   min-height: 100vh;
 }
 
-.font-display {
-  font-family: var(--font-display);
-}
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-.glass {
-  background: oklch(0.18 0.01 260 / 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid oklch(0.3 0.01 260 / 0.5);
-}
+  .genre-glow-techno {
+    box-shadow: 0 0 60px rgba(0, 212, 170, 0.15), 0 0 120px rgba(0, 212, 170, 0.05);
+  }
 
-.glass-hover:hover {
-  background: oklch(0.22 0.01 260 / 0.8);
+  .genre-glow-afrobeats {
+    box-shadow: 0 0 60px rgba(255, 107, 107, 0.15), 0 0 120px rgba(255, 107, 107, 0.05);
+  }
+
+  .genre-glow-reggae {
+    box-shadow: 0 0 60px rgba(255, 167, 38, 0.15), 0 0 120px rgba(255, 167, 38, 0.05);
+  }
+
+  .genre-glow-reggaeton {
+    box-shadow: 0 0 60px rgba(224, 64, 251, 0.15), 0 0 120px rgba(224, 64, 251, 0.05);
+  }
+
+  .genre-glow-hiphop {
+    box-shadow: 0 0 60px rgba(255, 179, 0, 0.15), 0 0 120px rgba(255, 179, 0, 0.05);
+  }
+
+  .genre-glow-infantil {
+    box-shadow: 0 0 60px rgba(255, 105, 180, 0.15), 0 0 120px rgba(255, 105, 180, 0.05);
+  }
 }
 
 ::-webkit-scrollbar {
