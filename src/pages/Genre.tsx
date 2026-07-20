@@ -5,7 +5,7 @@ import { ArrowLeft, ThumbsUp, ThumbsDown, Info, ListMusic, Sparkles, Play, Compa
 import CollectionPlayer from "@/components/CollectionPlayer";
 import { genres, getTracksByGenre, getLikedTracks, getDiscoveryQueue, likeTrack, dislikeTrack, markBroken, unlikeTrack, resetDiscovery, allTracks } from "@/data";
 import type { Track } from "@/data";
-import { getAIRecommendations, searchYouTubeId, getGeminiApiKey } from "@/services/gemini";
+import { getAIRecommendations, getGeminiApiKey } from "@/services/gemini";
 
 const genreColors: Record<string, string> = {
   techno: '#00d4aa',
@@ -224,29 +224,21 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
         return;
       }
 
-      // Search YouTube for each recommendation
-      const newTracks: Track[] = [];
+      // Use YouTube IDs directly from Gemini response (single API call)
       const maxId = Math.max(...allTracks.map(t => t.id), 10000);
-
-      for (let i = 0; i < recommendations.length; i++) {
-        const rec = recommendations[i];
-        const youtubeId = await searchYouTubeId(rec.artist, rec.title);
-        if (!youtubeId) continue;
-
-        newTracks.push({
-          id: maxId + i + 1,
-          title: rec.title,
-          artist: rec.artist,
-          genre: genreKey,
-          youtubeId,
-          attributes: JSON.stringify(rec.attributes),
-          artistBio: rec.artistBio,
-          artistFacts: JSON.stringify(rec.artistFacts),
-          label: rec.label,
-          year: rec.year,
-          isAiRecommended: 1,
-        });
-      }
+      const newTracks: Track[] = recommendations.map((rec, i) => ({
+        id: maxId + i + 1,
+        title: rec.title,
+        artist: rec.artist,
+        genre: genreKey,
+        youtubeId: rec.youtubeId,
+        attributes: JSON.stringify(rec.attributes),
+        artistBio: rec.artistBio,
+        artistFacts: JSON.stringify(rec.artistFacts),
+        label: rec.label,
+        year: rec.year,
+        isAiRecommended: 1,
+      }));
 
       if (newTracks.length > 0) {
         // Add to queue for discovery
@@ -254,7 +246,7 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
         setCurrentIndex(0);
         setCompleted(false);
       } else {
-        setAiError('Could not find YouTube videos for the recommendations. Try again.');
+        setAiError('No valid recommendations found. Try again.');
       }
     } catch (e: any) {
       setAiError(e.message || 'Failed to get recommendations.');
