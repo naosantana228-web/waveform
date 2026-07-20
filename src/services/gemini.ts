@@ -165,22 +165,75 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
   }
 }
 
-// Search YouTube for a track (using YouTube's oEmbed - no API key needed)
+// Search YouTube for a track using multiple fallback methods
+const INVIDIOUS_INSTANCES = [
+  'https://inv.nadeko.net',
+  'https://invidious.nerdvpn.de',
+  'https://inv.tux.pizza',
+  'https://invidious.privacyredirect.com',
+  'https://yewtu.be',
+];
+
 export async function searchYouTubeId(artist: string, title: string): Promise<string | null> {
-  try {
-    // Use YouTube's search page via a CORS proxy approach
-    // Since we're client-side only, we'll use the invidious API (public, no key needed)
-    const query = encodeURIComponent(`${artist} ${title} official audio`);
-    const response = await fetch(`https://inv.nadeko.net/api/v1/search?q=${query}&type=video`, {
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!response.ok) return null;
-    const results = await response.json();
-    if (results && results.length > 0 && results[0].videoId) {
-      return results[0].videoId;
+  const query = encodeURIComponent(`${artist} ${title}`);
+
+  // Method 1: Try YouTube Data API v3 (uses the same Google API key)
+  const apiKey = getGeminiApiKey();
+  if (apiKey) {
+    try {
+      const ytUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=1&key=${apiKey}`;
+      const response = await fetch(ytUrl, { signal: AbortSignal.timeout(8000) });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.items && data.items.length > 0) {
+          return data.items[0].id.videoId;
+        }
+      }
+    } catch {
+      // Fall through to Invidious
     }
-    return null;
-  } catch {
-    return null;
   }
+
+  // Method 2: Try multiple Invidious instances
+  for (const instance of INVIDIOUS_INSTANCES) {
+    try {
+      const response = await fetch(`${instance}/api/v1/search?q=${query}&type=video`, {
+        signal: AbortSignal.timeout(5000),
+      });
+      if (!response.ok) continue;
+      const results = await response.json();
+      if (results && results.length > 0 && results[0].videoId) {
+        return results[0].videoId;
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  // Method 3: Ask Gemini to provide the YouTube ID directly
+  if (apiKey) {
+    try {
+      const url = `${BASE_URL}/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: `What is the YouTube video ID for "${title}" by ${artist}? Respond with ONLY the 11-character video ID, nothing else. If you don't know, respond with "UNKNOWN".` }] }],
+          generationConfig: { temperature: 0 }
+        }),
+        signal: AbortSignal.timeout(10000),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const videoId = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+        if (videoId && videoId.length === 11 && videoId !== 'UNKNOWN') {
+          return videoId;
+        }
+      }
+    } catch {
+      // Give up
+    }
+  }
+
+  return null;
 }
