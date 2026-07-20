@@ -280,6 +280,7 @@ export default function Genre() {
           tracks={likedList}
           shuffled={true}
           onClose={() => setShowPlayer(false)}
+          onRemove={(trackId) => handleRemove(trackId)}
         />
       )}
     </div>

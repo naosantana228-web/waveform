@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Music, Headphones, Radio, Disc3, Mic } from "lucide-react";
+import { Music, Headphones, Radio, Disc3, Mic, Baby } from "lucide-react";
 import { genres, getTracksByGenre } from "@/data";
 
 const icons = {
@@ -8,6 +8,7 @@ const icons = {
   reggae: Radio,
   reggaeton: Disc3,
   hiphop: Mic,
+  infantil: Baby,
 };
 
 export default function Home() {
@@ -37,13 +38,13 @@ export default function Home() {
           </span>
         </h1>
         <p className="text-text-muted text-lg max-w-xl mx-auto">
-          Browse your collection, discover new tracks, and explore five curated genres.
+          Browse your collection, discover new tracks, and explore six curated genres.
         </p>
       </section>
 
       {/* Genre Cards */}
       <section className="max-w-5xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {genres.map((genre) => {
             const Icon = icons[genre.key as keyof typeof icons];
             const count = getTracksByGenre(genre.key).length;

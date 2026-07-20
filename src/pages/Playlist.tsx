@@ -120,6 +120,10 @@ export default function Playlist() {
           tracks={likedTracks}
           shuffled={true}
           onClose={() => setShowPlayer(false)}
+          onRemove={(trackId) => {
+            const track = likedTracks.find(t => t.id === trackId);
+            if (track) handleRemove(track);
+          }}
         />
       )}
     </div>

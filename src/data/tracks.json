@@ -9229,5 +9229,917 @@
     "label": "Update Label",
     "year": 2026,
     "isAiRecommended": 1
+  },
+  {
+    "id": 2130006,
+    "externalId": "kids-cantajuego-soy-una-taza",
+    "title": "Soy una Taza",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "cgEnBkmcpuQ",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130007,
+    "externalId": "kids-toy-cantando-la-vaca-lola",
+    "title": "La Vaca Lola",
+    "artist": "Toy Cantando",
+    "genre": "infantil",
+    "youtubeId": "eUkM-QYR7_E",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130008,
+    "externalId": "kids-cantajuego-el-baile-del-cuerpo",
+    "title": "El Baile del Cuerpo",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "z6DoPp-LkTA",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130009,
+    "externalId": "kids-cantajuego-chu-chu-ua",
+    "title": "Chu Chu Ua",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "8_RWPLfo8Xg",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130010,
+    "externalId": "kids-pinkfong-baby-shark",
+    "title": "Baby Shark",
+    "artist": "Pinkfong",
+    "genre": "infantil",
+    "youtubeId": "75NQK-Sm1YY",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130011,
+    "externalId": "kids-canciones-infantiles-un-elefante-se-balanceaba",
+    "title": "Un Elefante se Balanceaba",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "fN1Cyr0ZK9M",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130012,
+    "externalId": "kids-canciones-infantiles-sol-solecito",
+    "title": "Sol Solecito",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "uT8b0DK8fIY",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130013,
+    "externalId": "kids-canciones-infantiles-pin-pon-es-un-mu-eco",
+    "title": "Pin Pon es un Muñeco",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "RX0VtkQOddw",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130014,
+    "externalId": "kids-canciones-infantiles-los-pollitos-dicen",
+    "title": "Los Pollitos Dicen",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "nf5tvAWmvIo",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130015,
+    "externalId": "kids-canciones-infantiles-cuc--cantaba-la-rana",
+    "title": "Cucú Cantaba la Rana",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "pdSGbZPq1Gg",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130016,
+    "externalId": "kids-cantajuego-a-ram-sam-sam",
+    "title": "A Ram Sam Sam",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "Mv8N9X59I1s",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130017,
+    "externalId": "kids-canciones-infantiles-el-patio-de-mi-casa",
+    "title": "El Patio de Mi Casa",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "R3fwzYUn27Y",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130018,
+    "externalId": "kids-cantajuego-cabeza--hombros--rodillas-y-pies",
+    "title": "Cabeza, Hombros, Rodillas y Pies",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "71hiB8Z-03k",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130019,
+    "externalId": "kids-canciones-infantiles-cinco-lobitos",
+    "title": "Cinco Lobitos",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "spKb4TUs-jw",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130020,
+    "externalId": "kids-cantajuego-sal-de-ah--chivita",
+    "title": "Sal de Ahí Chivita",
+    "artist": "CantaJuego",
+    "genre": "infantil",
+    "youtubeId": "ZSDIYLWd9ZU",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130021,
+    "externalId": "kids-d-o-tiempo-de-sol-el-baile-del-movimiento",
+    "title": "El Baile del Movimiento",
+    "artist": "Dúo Tiempo de Sol",
+    "genre": "infantil",
+    "youtubeId": "nxNvVbIycPg",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130022,
+    "externalId": "kids-d-o-tiempo-de-sol-el-baile-de-los-animales",
+    "title": "El Baile de los Animales",
+    "artist": "Dúo Tiempo de Sol",
+    "genre": "infantil",
+    "youtubeId": "pgzXRKtg6ik",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130023,
+    "externalId": "kids-canciones-infantiles-a-mi-burro",
+    "title": "A Mi Burro",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "gKkrMgGzN7E",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130024,
+    "externalId": "kids-canciones-infantiles-susanita-tiene-un-rat-n",
+    "title": "Susanita Tiene un Ratón",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "yCjJyiqpAuU",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130025,
+    "externalId": "kids-canciones-infantiles-debajo-un-bot-n",
+    "title": "Debajo un Botón",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "bYLEqgowAHQ",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130026,
+    "externalId": "kids-canciones-infantiles-la-gallina-turuleca",
+    "title": "La Gallina Turuleca",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "XQaKFU3Fh_M",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130027,
+    "externalId": "kids-canciones-infantiles-tengo-una-mu-eca-vestida-de-azul",
+    "title": "Tengo una Muñeca Vestida de Azul",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "mbpuTH5FZvo",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130028,
+    "externalId": "kids-canciones-infantiles-el-auto-de-pap-",
+    "title": "El Auto de Papá",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "enVHR3HTxas",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130029,
+    "externalId": "kids-canciones-infantiles-la-ara-a-peque-ita",
+    "title": "La Araña Pequeñita",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "XvKotqrAPFA",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130030,
+    "externalId": "kids-little-baby-bum-las-ruedas-del-autob-s",
+    "title": "Las Ruedas del Autobús",
+    "artist": "Little Baby Bum",
+    "genre": "infantil",
+    "youtubeId": "e_04ZrNroTo",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130031,
+    "externalId": "kids-looloo-kids-johny-johny-s--pap-",
+    "title": "Johny Johny Sí Papá",
+    "artist": "LooLoo Kids",
+    "genre": "infantil",
+    "youtubeId": "F4tHL8reNCs",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130032,
+    "externalId": "kids-canciones-infantiles-estrellita-d-nde-est-s",
+    "title": "Estrellita Dónde Estás",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "qDUfm2_beKE",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130033,
+    "externalId": "kids-canciones-infantiles-arroz-con-leche",
+    "title": "Arroz con Leche",
+    "artist": "Canciones Infantiles",
+    "genre": "infantil",
+    "youtubeId": "4STiEqI4Vtk",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistFacts": [
+      "Canción clásica del repertorio infantil en español",
+      "Ideal para cantar con gestos y movimientos",
+      "Favorita en fiestas infantiles y guarderías"
+    ],
+    "label": null,
+    "year": null,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130034,
+    "externalId": "frozen_rVjI9YRc4pE",
+    "title": "Libre Soy",
+    "artist": "Carmen Sarahí (Frozen)",
+    "genre": "infantil",
+    "youtubeId": "rVjI9YRc4pE",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130035,
+    "externalId": "frozen_V2J-zzifWzU",
+    "title": "¿Y Si Hacemos Un Muñeco?",
+    "artist": "Romina Marroquín Payró (Frozen)",
+    "genre": "infantil",
+    "youtubeId": "V2J-zzifWzU",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130036,
+    "externalId": "frozen_3e5P6CiwjaA",
+    "title": "Por Primera Vez en Años",
+    "artist": "Carmen López & Gisela (Frozen)",
+    "genre": "infantil",
+    "youtubeId": "3e5P6CiwjaA",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130037,
+    "externalId": "frozen_nD5He6e_iYc",
+    "title": "Hazme un Muñeco de Nieve",
+    "artist": "Naima Barrosa (Frozen)",
+    "genre": "infantil",
+    "youtubeId": "nD5He6e_iYc",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130038,
+    "externalId": "frozen_TszQIGHLqJM",
+    "title": "Helado Corazón",
+    "artist": "Elenco de Frozen",
+    "genre": "infantil",
+    "youtubeId": "TszQIGHLqJM",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130039,
+    "externalId": "frozen_VxBtzRiWBsY",
+    "title": "Mucho Más Allá",
+    "artist": "Carmen Sarahí & AURORA (Frozen 2)",
+    "genre": "infantil",
+    "youtubeId": "VxBtzRiWBsY",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130040,
+    "externalId": "frozen_jcllZ4jSIGI",
+    "title": "Muéstrate",
+    "artist": "Carmen Sarahí & Leslie Gil (Frozen 2)",
+    "genre": "infantil",
+    "youtubeId": "jcllZ4jSIGI",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130041,
+    "externalId": "frozen_cIBgPKaKnWA",
+    "title": "Cuando Sea Mayor",
+    "artist": "David Filio - Olaf (Frozen 2)",
+    "genre": "infantil",
+    "youtubeId": "cIBgPKaKnWA",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130042,
+    "externalId": "frozen_cLTS2rmNIpU",
+    "title": "Perdido en el Bosque",
+    "artist": "Erik Cruz (Frozen 2)",
+    "genre": "infantil",
+    "youtubeId": "cLTS2rmNIpU",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 2130043,
+    "externalId": "frozen_7IzWx5e6v-w",
+    "title": "Libre Soy (con letra)",
+    "artist": "Frozen - Karaoke",
+    "genre": "infantil",
+    "youtubeId": "7IzWx5e6v-w",
+    "attributes": {
+      "bpm": 120,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 6,
+      "vocals": 9
+    },
+    "artistBio": "Song from the Disney movie Frozen/Frozen 2 (Spanish version).",
+    "artistFacts": [
+      "From Disney's Frozen franchise",
+      "Spanish Latin American dub",
+      "One of Disney's most popular animated films"
+    ],
+    "label": "Walt Disney Records",
+    "year": 2013,
+    "isAiRecommended": 0
   }
 ]

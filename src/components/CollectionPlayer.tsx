@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { X, SkipBack, SkipForward, Play, Pause, Shuffle, Repeat, List } from "lucide-react";
+import { X, SkipBack, SkipForward, Play, Pause, Shuffle, Repeat, List, Trash2 } from "lucide-react";
 import type { Track } from "@/data";
 
 declare global {
@@ -14,9 +14,10 @@ interface Props {
   startIndex?: number;
   shuffled?: boolean;
   onClose: () => void;
+  onRemove?: (trackId: number) => void;
 }
 
-export default function CollectionPlayer({ tracks, startIndex = 0, shuffled = true, onClose }: Props) {
+export default function CollectionPlayer({ tracks, startIndex = 0, shuffled = true, onClose, onRemove }: Props) {
   const [queue, setQueue] = useState<Track[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -100,6 +101,22 @@ export default function CollectionPlayer({ tracks, startIndex = 0, shuffled = tr
     }
   };
 
+  const handleRemove = () => {
+    if (!currentTrack || !onRemove) return;
+    const removedId = currentTrack.id;
+    // Remove from queue and advance
+    const newQueue = queue.filter((_, i) => i !== currentIdx);
+    if (newQueue.length === 0) {
+      onRemove(removedId);
+      onClose();
+      return;
+    }
+    const newIdx = currentIdx >= newQueue.length ? 0 : currentIdx;
+    setQueue(newQueue);
+    setCurrentIdx(newIdx);
+    onRemove(removedId);
+  };
+
   const currentTrack = queue[currentIdx];
   if (!currentTrack) return null;
 
@@ -167,6 +184,11 @@ export default function CollectionPlayer({ tracks, startIndex = 0, shuffled = tr
         <button onClick={handleNext} className="p-2 rounded-lg hover:bg-surface cursor-pointer">
           <SkipForward className="w-5 h-5" />
         </button>
+        {onRemove && (
+          <button onClick={handleRemove} className="p-2 rounded-lg text-red-400 hover:bg-red-400/10 cursor-pointer" title="Remove from collection">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        )}
         <button className="p-2 rounded-lg text-accent-techno cursor-default">
           <Shuffle className="w-4 h-4" />
         </button>

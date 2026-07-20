@@ -22,6 +22,7 @@ export const genres = [
   { key: "reggae", name: "Roots Reggae", subtitle: "Pure roots reggae — spiritual, conscious", color: "accent-reggae" },
   { key: "reggaeton", name: "Reggaetón Moderno", subtitle: "Modern reggaetón — Bad Bunny, Feid, Mora", color: "accent-reggaeton" },
   { key: "hiphop", name: "Hip-Hop & R&B Blends", subtitle: "Hip-Hop/R&B crossover — smooth and soulful", color: "accent-hiphop" },
+  { key: "infantil", name: "Canciones Infantiles", subtitle: "Canciones divertidas para cantar y bailar — Frozen, CantaJuego", color: "accent-infantil" },
 ] as const;
 
 export function getTracksByGenre(genre: string): Track[] {
@@ -30,7 +31,7 @@ export function getTracksByGenre(genre: string): Track[] {
 
 // localStorage helpers
 const STORAGE_KEY = "waveform_state";
-const INITIALIZED_KEY = "waveform_initialized";
+const INITIALIZED_KEY = "waveform_initialized_v2";
 
 interface AppState {
   liked: Record<string, number[]>; // genre -> track ids
