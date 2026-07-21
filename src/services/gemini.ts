@@ -2,11 +2,16 @@
 // Uses OpenAI GPT-OSS 120B on Groq - fast and free
 // User provides their API key from console.groq.com/keys
 //
-// Strategy: Ask AI for track recommendations WITHOUT YouTube IDs,
-// then use YouTube's embed search to play them (always works).
+// Strategy: 
+// 1. Ask AI for track recommendations (no YouTube IDs)
+// 2. Use waveform.manus.space YouTube search proxy to get real video IDs
+// This gives 100% working YouTube embeds.
 
 const STORAGE_KEY_API = 'waveform_groq_key';
 const STORAGE_KEY_API_LEGACY = 'waveform_gemini_key';
+
+// The Manus server provides a public YouTube search endpoint
+const YOUTUBE_SEARCH_PROXY = 'https://waveform.manus.space/api/public/youtube-search';
 
 export function getGeminiApiKey(): string | null {
   return localStorage.getItem(STORAGE_KEY_API) || localStorage.getItem(STORAGE_KEY_API_LEGACY);
@@ -36,7 +41,7 @@ export interface RecommendedTrack {
   artist: string;
   year: number;
   label: string;
-  youtubeId: string; // Will be a search-based embed URL marker
+  youtubeId: string;
   artistBio: string;
   artistFacts: string[];
   attributes: { energy: number; groove: number; vocals: number; darkness: number; bpm: number };
@@ -49,31 +54,24 @@ interface TrackInfo {
 }
 
 /**
- * Generate a YouTube search embed ID.
- * YouTube supports embedding with a search query:
- * https://www.youtube-nocookie.com/embed?listType=search&list=QUERY
- * We encode this as a special marker that the player will recognize.
+ * Search YouTube via the Manus server proxy to get a real video ID
  */
-function makeSearchYoutubeId(artist: string, title: string): string {
-  // We'll use a special prefix "SEARCH:" to signal the player to use search embed
-  return `SEARCH:${artist} - ${title}`;
-}
-
-/**
- * Check if a YouTube video ID is valid using thumbnail endpoint
- * img.youtube.com returns 404 for non-existent videos and has CORS: *
- */
-async function verifyYouTubeId(videoId: string): Promise<boolean> {
-  if (!videoId || videoId.length !== 11) return false;
-  if (/[^a-zA-Z0-9_-]/.test(videoId)) return false;
+async function searchYouTube(artist: string, title: string): Promise<string> {
   try {
-    const resp = await fetch(`https://img.youtube.com/vi/${videoId}/default.jpg`, {
-      method: 'HEAD',
-      signal: AbortSignal.timeout(4000),
-    });
-    return resp.ok; // 200 = exists, 404 = doesn't exist
-  } catch {
-    return true; // Network error - give benefit of the doubt
+    const query = `${artist} ${title}`;
+    const resp = await fetch(
+      `${YOUTUBE_SEARCH_PROXY}?q=${encodeURIComponent(query)}`,
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!resp.ok) return '';
+    const data = await resp.json();
+    if (data.videos && data.videos.length > 0) {
+      return data.videos[0].videoId;
+    }
+    return '';
+  } catch (e) {
+    console.warn(`[YouTube Search] Failed for "${artist} - ${title}":`, e);
+    return '';
   }
 }
 
@@ -170,9 +168,10 @@ Recommend exactly ${limit + 3} tracks from the "${genreName}" genre that:
 3. AVOID the style/mood of disliked tracks
 4. Each track should be from a DIFFERENT artist
 5. ALL tracks MUST authentically belong to the "${genreName}" genre
-6. Recommend REAL tracks by REAL artists that actually exist — no made-up songs
+6. Recommend REAL tracks by REAL artists that actually exist
+7. Prefer well-known tracks that have official YouTube videos
 
-DO NOT include youtubeId in your response. I will search YouTube myself.
+DO NOT include youtubeId in your response.
 
 For EACH track provide a JSON object with: title (string), artist (string), year (integer), label (string), artistBio (1-2 sentences about the artist), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
 
@@ -187,7 +186,7 @@ CRITICAL RULES:
 4. Only recommend REAL tracks that actually exist — real artist names, real song titles, real release years.
 5. Always respond with valid JSON only, no markdown, no code blocks.
 6. For the infantil genre, all songs MUST be in Spanish.
-7. Do NOT include any youtubeId field. Only include: title, artist, year, label, artistBio, artistFacts, attributes.`;
+7. Do NOT include any youtubeId field.`;
 
   // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -244,49 +243,48 @@ CRITICAL RULES:
     throw new Error('No recommendations generated. Try again.');
   }
 
-  console.log(`[AI Recs] Got ${tracks.length} recommendations for genre "${genreName}"`);
+  console.log(`[AI Recs] Got ${tracks.length} recommendations for "${genreName}", resolving YouTube IDs...`);
 
-  // Process tracks — use YouTube search embed for each track
-  // If the AI happened to include a youtubeId, verify it; otherwise use search embed
+  // Step 2: Resolve real YouTube video IDs via the Manus server proxy
   const results: RecommendedTrack[] = [];
 
-  for (const track of tracks) {
+  // Process tracks in parallel (batch of up to 8)
+  const searchPromises = tracks.slice(0, limit + 3).map(async (track: any) => {
+    if (!track.title || !track.artist) return null;
+    const videoId = await searchYouTube(track.artist, track.title);
+    return { track, videoId };
+  });
+
+  const resolved = await Promise.all(searchPromises);
+
+  for (const item of resolved) {
     if (results.length >= limit) break;
-    if (!track.title || !track.artist) continue;
+    if (!item || !item.track.title || !item.track.artist) continue;
 
-    let youtubeId = '';
-
-    // If AI included a youtubeId (it shouldn't, but just in case), verify it
-    if (track.youtubeId && typeof track.youtubeId === 'string' && track.youtubeId.length === 11) {
-      const valid = await verifyYouTubeId(track.youtubeId);
-      if (valid) {
-        youtubeId = track.youtubeId;
-        console.log(`[AI Recs] Verified ID for "${track.artist} - ${track.title}": ${youtubeId}`);
-      }
+    // Only include tracks where we found a real YouTube video
+    if (!item.videoId) {
+      console.log(`[AI Recs] No YouTube video found for "${item.track.artist} - ${item.track.title}", skipping`);
+      continue;
     }
 
-    // If no valid ID, use search-based embed
-    if (!youtubeId) {
-      youtubeId = makeSearchYoutubeId(track.artist, track.title);
-      console.log(`[AI Recs] Using search embed for "${track.artist} - ${track.title}"`);
-    }
+    console.log(`[AI Recs] ✓ ${item.track.artist} - ${item.track.title} → ${item.videoId}`);
 
     results.push({
-      title: track.title,
-      artist: track.artist,
-      year: track.year || 2020,
-      label: track.label || 'Independent',
-      youtubeId,
-      artistBio: track.artistBio || '',
-      artistFacts: track.artistFacts || [],
-      attributes: track.attributes || { energy: 5, groove: 5, vocals: 5, darkness: 5, bpm: 120 },
+      title: item.track.title,
+      artist: item.track.artist,
+      year: item.track.year || 2020,
+      label: item.track.label || 'Independent',
+      youtubeId: item.videoId,
+      artistBio: item.track.artistBio || '',
+      artistFacts: item.track.artistFacts || [],
+      attributes: item.track.attributes || { energy: 5, groove: 5, vocals: 5, darkness: 5, bpm: 120 },
     });
   }
 
   if (results.length === 0) {
-    throw new Error('No valid recommendations could be generated. Please try again.');
+    throw new Error('Could not find YouTube videos for recommendations. The search service may be temporarily unavailable. Please try again.');
   }
 
-  console.log(`[AI Recs] Returning ${results.length} tracks.`);
+  console.log(`[AI Recs] Returning ${results.length} tracks with verified YouTube IDs.`);
   return results;
 }

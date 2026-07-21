@@ -100,28 +100,13 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
     window.onYouTubeIframeAPIReady = () => setPlayerReady(true);
   }, []);
 
-  // Determine if current track uses search-based embed or direct video ID
-  const isSearchEmbed = currentTrack?.youtubeId?.startsWith('SEARCH:');
-  const searchQuery = isSearchEmbed ? currentTrack.youtubeId.slice(7) : '';
-
   // Create/update YouTube player
   useEffect(() => {
     if (!playerReady || !currentTrack?.youtubeId) return;
 
     const ytId = currentTrack.youtubeId;
-    const isSearch = ytId.startsWith('SEARCH:');
 
-    if (isSearch) {
-      // For search-based tracks, destroy the YT player and use iframe instead
-      if (playerInstanceRef.current) {
-        try { playerInstanceRef.current.destroy(); } catch {}
-        playerInstanceRef.current = null;
-      }
-      // The iframe will be rendered in JSX below
-      return;
-    }
-
-    // Direct video ID - use YT Player API
+    // Use YT Player API for direct video IDs
     if (playerInstanceRef.current) {
       playerInstanceRef.current.loadVideoById(ytId);
       return;
@@ -179,18 +164,7 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
         {/* Player Section */}
         <div className={`flex-1 flex flex-col items-center justify-center p-6 ${showQueue ? 'hidden lg:flex' : ''}`}>
           <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-2xl mb-8 bg-black/50" ref={containerRef}>
-            {isSearchEmbed ? (
-              <iframe
-                key={currentTrack?.id}
-                src={`https://www.youtube-nocookie.com/embed?listType=search&list=${encodeURIComponent(searchQuery)}&autoplay=1&rel=0&modestbranding=1`}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`${currentTrack?.artist} - ${currentTrack?.title}`}
-              />
-            ) : (
-              <div id="yt-player-container" className="w-full h-full" />
-            )}
+            <div id="yt-player-container" className="w-full h-full" />
           </div>
 
           {/* Track Info */}
