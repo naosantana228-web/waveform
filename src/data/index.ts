@@ -1,4 +1,5 @@
 import tracksJson from "./tracks.json";
+import { scheduleSync } from "@/services/gistSync";
 
 export interface Track {
   id: number;
@@ -49,6 +50,8 @@ function getState(): AppState {
 
 function saveState(state: AppState) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  // Auto-sync to GitHub Gist (debounced)
+  scheduleSync();
 }
 
 // Pre-populate all tracks as liked on first visit
