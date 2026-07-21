@@ -45,6 +45,57 @@ interface TrackInfo {
   attributes?: string;
 }
 
+/**
+ * Verify a YouTube video exists using the noembed.com service (no API key needed, CORS-friendly)
+ */
+async function verifyYouTubeId(videoId: string): Promise<boolean> {
+  if (!videoId || videoId.length !== 11) return false;
+  try {
+    const resp = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`, {
+      signal: AbortSignal.timeout(4000),
+    });
+    if (!resp.ok) return false;
+    const data = await resp.json();
+    // noembed returns { error: "..." } if video doesn't exist
+    return !data.error && !!data.title;
+  } catch {
+    // If verification fails (timeout/network), give benefit of the doubt
+    return true;
+  }
+}
+
+/**
+ * Search for a YouTube video by artist + title using Invidious API (no key needed)
+ * Returns the video ID if found, null otherwise
+ */
+async function searchYouTubeVideo(artist: string, title: string): Promise<string | null> {
+  const instances = [
+    'https://inv.nadeko.net',
+    'https://invidious.fdn.fr',
+    'https://vid.puffyan.us',
+    'https://invidious.nerdvpn.de',
+  ];
+  
+  const query = `${artist} ${title} official`;
+  
+  for (const instance of instances) {
+    try {
+      const resp = await fetch(
+        `${instance}/api/v1/search?q=${encodeURIComponent(query)}&type=video&sort_by=relevance`,
+        { signal: AbortSignal.timeout(5000) }
+      );
+      if (!resp.ok) continue;
+      const results = await resp.json();
+      if (results && results.length > 0 && results[0].videoId) {
+        return results[0].videoId;
+      }
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
 export async function getAIRecommendations(
   genre: string,
   likedTracks: TrackInfo[],
@@ -115,6 +166,9 @@ Match these attribute ranges closely. The user prefers tracks within ±1.5 of th
 
   const existingList = existingTracks.slice(0, 80).map(t => `${t.artist} - ${t.title}`).join(", ");
 
+  // Request MORE tracks than needed (8 instead of 5) to account for verification failures
+  const requestLimit = limit + 3;
+
   const userPrompt = `## Genre: ${genreDesc}
 
 ## User's Liked Tracks (${likedTracks.length} total, showing top ${Math.min(30, likedTracks.length)}):
@@ -133,30 +187,32 @@ ${existingList}
 
 ---
 
-Recommend exactly ${limit} tracks that:
+Recommend exactly ${requestLimit} tracks that:
 1. MATCH the user's taste profile and preferred attributes closely
 2. Are from artists SIMILAR to their top artists but NOT the same artists they already have
 3. AVOID the style/mood/tempo of disliked tracks
-4. Are real tracks with VERIFIED YouTube videos (you must be confident the YouTube ID is correct)
-5. Prioritize deep cuts, B-sides, and lesser-known releases over obvious hits
+4. Are WELL-KNOWN tracks that definitely have official YouTube videos (official uploads, VEVO, or official artist channels)
+5. Prioritize deep cuts and lesser-known releases, but they MUST have YouTube videos
 6. Each track should be from a DIFFERENT artist for variety
 
-For EACH track provide a JSON object with: title, artist, year (integer), label, youtubeId (the exact 11-character YouTube video ID from youtube.com/watch?v=XXXXXXXXXXX), artistBio (1-2 sentences), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer — these MUST be close to the user's taste profile).
+IMPORTANT ABOUT YOUTUBE IDs: Only recommend tracks that you are ABSOLUTELY CERTAIN have an official YouTube video. Prefer tracks from major labels, official artist channels, or VEVO. Do NOT guess or fabricate YouTube IDs — if you're not sure a video exists, recommend a different track instead.
+
+For EACH track provide a JSON object with: title, artist, year (integer), label, youtubeId (the exact 11-character YouTube video ID — MUST be a real video you are certain exists), artistBio (1-2 sentences), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const systemPrompt = `You are an expert music curator and crate-digger with encyclopedic knowledge of underground music, independent labels, and deep cuts across all genres. Your recommendations are highly personalized based on the user's listening patterns.
+  const systemPrompt = `You are an expert music curator with encyclopedic knowledge of underground music and independent labels. Your recommendations are highly personalized.
 
 CRITICAL RULES:
 1. NEVER recommend tracks already in the user's library
 2. NEVER recommend tracks from artists the user disliked
-3. YouTube IDs must be REAL and VERIFIED — only include tracks you are 100% certain have a YouTube video. The ID is the 11-character code after "watch?v=" in a YouTube URL.
-4. Match the user's attribute preferences (energy, groove, vocals, darkness, bpm) as closely as possible
-5. Always respond with valid JSON only, no markdown formatting, no code blocks
+3. YouTube IDs MUST be REAL — only include tracks you are 100% certain have an official YouTube video. If unsure about a YouTube ID, recommend a different track that you ARE sure about.
+4. Match the user's attribute preferences closely
+5. Always respond with valid JSON only, no markdown, no code blocks
 6. For the infantil genre, all songs MUST be in Spanish
-7. Prioritize quality over obscurity — the track should be genuinely good AND match their taste`;
+7. Prefer tracks with official music videos or official audio uploads on YouTube`;
 
-  // Call Groq API (OpenAI-compatible)
+  // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -169,7 +225,7 @@ CRITICAL RULES:
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.7, // Lower temperature for more accurate/focused recommendations
+      temperature: 0.7,
       max_tokens: 4096,
       response_format: { type: 'json_object' },
     }),
@@ -193,20 +249,67 @@ CRITICAL RULES:
     throw new Error('Empty response from AI. Try again.');
   }
 
+  let tracks: any[];
   try {
     const parsed = JSON.parse(text);
-    const tracks = parsed.tracks || [];
-    const valid = tracks.filter((t: any) => t.youtubeId && t.youtubeId.length === 11);
-    if (valid.length > 0) return valid;
-    if (tracks.length > 0) return tracks;
-    throw new Error('No recommendations generated. Try again.');
-  } catch (parseErr: any) {
+    tracks = parsed.tracks || [];
+  } catch {
     const match = text.match(/\{[\s\S]*\}/);
     if (match) {
       const parsed = JSON.parse(match[0]);
-      const tracks = parsed.tracks || [];
-      if (tracks.length > 0) return tracks;
+      tracks = parsed.tracks || [];
+    } else {
+      throw new Error('Failed to parse AI response. Try again.');
     }
-    throw new Error('Failed to parse AI response. Try again.');
   }
+
+  if (tracks.length === 0) {
+    throw new Error('No recommendations generated. Try again.');
+  }
+
+  // Step 2: Verify YouTube IDs and search for replacements if invalid
+  console.log(`[AI Recs] Verifying ${tracks.length} YouTube IDs...`);
+  
+  const verifiedTracks: RecommendedTrack[] = [];
+  
+  for (const track of tracks) {
+    if (verifiedTracks.length >= limit) break;
+    
+    // First, verify the AI-provided YouTube ID
+    let validId = track.youtubeId;
+    const isValid = await verifyYouTubeId(validId);
+    
+    if (!isValid) {
+      console.log(`[AI Recs] Invalid ID for "${track.artist} - ${track.title}", searching...`);
+      // Search for the real YouTube video
+      const searchedId = await searchYouTubeVideo(track.artist, track.title);
+      if (searchedId) {
+        validId = searchedId;
+        console.log(`[AI Recs] Found: ${searchedId}`);
+      } else {
+        console.log(`[AI Recs] Could not find video, skipping.`);
+        continue; // Skip this track entirely
+      }
+    } else {
+      console.log(`[AI Recs] Verified: "${track.artist} - ${track.title}"`);
+    }
+    
+    verifiedTracks.push({
+      title: track.title,
+      artist: track.artist,
+      year: track.year || 2020,
+      label: track.label || 'Independent',
+      youtubeId: validId,
+      artistBio: track.artistBio || '',
+      artistFacts: track.artistFacts || [],
+      attributes: track.attributes || { energy: 5, groove: 5, vocals: 5, darkness: 5, bpm: 120 },
+    });
+  }
+
+  if (verifiedTracks.length === 0) {
+    throw new Error('Could not verify any YouTube videos. Try again — the AI will suggest different tracks.');
+  }
+
+  console.log(`[AI Recs] Returning ${verifiedTracks.length} verified tracks.`);
+  return verifiedTracks;
 }
