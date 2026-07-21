@@ -1,5 +1,5 @@
 // AI Recommendations Service using Groq (free tier)
-// Groq uses Llama 3.3 70B - fast and free (30 req/min)
+// Groq uses OpenAI GPT-OSS 120B - fast and free
 // User provides their API key from console.groq.com/keys
 
 const STORAGE_KEY_API = 'waveform_groq_key';
@@ -46,48 +46,57 @@ interface TrackInfo {
 }
 
 /**
- * Verify a YouTube video exists using the noembed.com service (no API key needed, CORS-friendly)
+ * Verify a YouTube video exists using YouTube's oEmbed endpoint (most reliable, CORS-friendly)
+ * Returns true if video exists, false if definitely doesn't exist, true on network errors (benefit of the doubt)
  */
 async function verifyYouTubeId(videoId: string): Promise<boolean> {
   if (!videoId || videoId.length !== 11) return false;
   try {
-    const resp = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`, {
-      signal: AbortSignal.timeout(4000),
-    });
-    if (!resp.ok) return false;
-    const data = await resp.json();
-    // noembed returns { error: "..." } if video doesn't exist
-    return !data.error && !!data.title;
+    const resp = await fetch(
+      `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`,
+      { signal: AbortSignal.timeout(5000) }
+    );
+    // 200 = video exists, 401/403 = embedding disabled but video exists, 404 = doesn't exist
+    if (resp.status === 200 || resp.status === 401 || resp.status === 403) return true;
+    if (resp.status === 404) return false;
+    // Any other status - give benefit of the doubt
+    return true;
   } catch {
-    // If verification fails (timeout/network), give benefit of the doubt
+    // Network error / timeout - give benefit of the doubt
     return true;
   }
 }
 
 /**
- * Search for a YouTube video by artist + title using Invidious API (no key needed)
- * Returns the video ID if found, null otherwise
+ * Search for a YouTube video by artist + title using YouTube's oEmbed
+ * This is a lightweight check - we can't actually search, but we can verify
  */
-async function searchYouTubeVideo(artist: string, title: string): Promise<string | null> {
-  const instances = [
-    'https://inv.nadeko.net',
-    'https://invidious.fdn.fr',
-    'https://vid.puffyan.us',
-    'https://invidious.nerdvpn.de',
+async function searchYouTubeAlternative(artist: string, title: string): Promise<string | null> {
+  // Try Piped API instances (more reliable than Invidious in 2026)
+  const pipedInstances = [
+    'https://pipedapi.kavin.rocks',
+    'https://api.piped.projectsegfau.lt',
+    'https://pipedapi.in.projectsegfau.lt',
   ];
-  
-  const query = `${artist} ${title} official`;
-  
-  for (const instance of instances) {
+
+  const query = `${artist} ${title}`;
+
+  for (const instance of pipedInstances) {
     try {
       const resp = await fetch(
-        `${instance}/api/v1/search?q=${encodeURIComponent(query)}&type=video&sort_by=relevance`,
+        `${instance}/search?q=${encodeURIComponent(query)}&filter=videos`,
         { signal: AbortSignal.timeout(5000) }
       );
       if (!resp.ok) continue;
-      const results = await resp.json();
-      if (results && results.length > 0 && results[0].videoId) {
-        return results[0].videoId;
+      const data = await resp.json();
+      const items = data.items || [];
+      if (items.length > 0 && items[0].url) {
+        // Extract video ID from /watch?v=XXXXXXXXXXX
+        const match = items[0].url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+        if (match) return match[1];
+        // Or from /shorts/XXXXXXXXXXX
+        const shortsMatch = items[0].url.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
+        if (shortsMatch) return shortsMatch[1];
       }
     } catch {
       continue;
@@ -109,6 +118,7 @@ export async function getAIRecommendations(
   }
 
   const genreDesc = genreDescriptions[genre] || genre;
+  const genreName = genreDesc.split(' - ')[0];
 
   // Build rich context from liked tracks (up to 30)
   const likedContext = likedTracks.slice(0, 30).map(t => {
@@ -166,8 +176,8 @@ Match these attribute ranges closely. The user prefers tracks within ±1.5 of th
 
   const existingList = existingTracks.slice(0, 80).map(t => `${t.artist} - ${t.title}`).join(", ");
 
-  // Request MORE tracks than needed (8 instead of 5) to account for verification failures
-  const requestLimit = limit + 3;
+  // Request MORE tracks than needed (10 instead of 5) to account for verification failures
+  const requestLimit = limit + 5;
 
   const userPrompt = `## Genre: ${genreDesc}
 
@@ -187,33 +197,36 @@ ${existingList}
 
 ---
 
-Recommend exactly ${requestLimit} tracks that:
+Recommend exactly ${requestLimit} tracks from the "${genreName}" genre that:
 1. MATCH the user's taste profile and preferred attributes closely
 2. Are from artists SIMILAR to their top artists but NOT the same artists they already have
 3. AVOID the style/mood/tempo of disliked tracks
 4. Are WELL-KNOWN tracks that definitely have official YouTube videos (official uploads, VEVO, or official artist channels)
 5. Prioritize deep cuts and lesser-known releases, but they MUST have YouTube videos
 6. Each track should be from a DIFFERENT artist for variety
+7. ALL tracks MUST be from the "${genreName}" genre — do NOT include tracks from other genres
 
-IMPORTANT ABOUT YOUTUBE IDs: Only recommend tracks that you are ABSOLUTELY CERTAIN have an official YouTube video. Prefer tracks from major labels, official artist channels, or VEVO. Do NOT guess or fabricate YouTube IDs — if you're not sure a video exists, recommend a different track instead.
+CRITICAL: Do NOT recommend generic pop hits, meme songs, or tracks unrelated to ${genreName}. Every single track must authentically belong to this genre.
 
 For EACH track provide a JSON object with: title, artist, year (integer), label, youtubeId (the exact 11-character YouTube video ID — MUST be a real video you are certain exists), artistBio (1-2 sentences), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const systemPrompt = `You are an expert music curator specializing in the ${genreDesc.split(' - ')[0]} genre. You have encyclopedic knowledge of this specific genre and its underground scene.
+  const systemPrompt = `You are an expert music curator specializing EXCLUSIVELY in the "${genreName}" genre. You have deep knowledge of this specific genre, its sub-genres, key labels, and underground scene.
+
+YOUR ONLY JOB: Recommend tracks from the "${genreName}" genre. Nothing else.
 
 CRITICAL RULES:
-1. EVERY track you recommend MUST be from the ${genreDesc.split(' - ')[0]} genre. Do NOT recommend tracks from other genres.
-2. NEVER recommend generic/meme tracks like "Never Gonna Give You Up", "Bohemian Rhapsody", etc.
-3. NEVER recommend tracks already in the user's library
-4. NEVER recommend tracks from artists the user disliked
-5. YouTube IDs MUST be REAL — only include tracks you are 100% certain have an official YouTube video. If unsure about a YouTube ID, recommend a different track that you ARE sure about.
-6. Match the user's attribute preferences closely
-7. Always respond with valid JSON only, no markdown, no code blocks
-8. For the infantil genre, all songs MUST be in Spanish
-9. Prefer tracks with official music videos or official audio uploads on YouTube
-10. Each recommendation must genuinely belong to the genre described. If you cannot find enough tracks for this genre, return fewer tracks rather than filling with unrelated music.`;
+1. EVERY track MUST be from the "${genreName}" genre. Do NOT recommend tracks from other genres under any circumstances.
+2. NEVER recommend generic pop hits, meme songs (like "Never Gonna Give You Up"), or mainstream tracks unrelated to this genre.
+3. NEVER recommend tracks already in the user's library.
+4. NEVER recommend tracks from artists the user disliked.
+5. YouTube IDs MUST be real 11-character IDs from actual YouTube videos. Only include tracks you are confident have official YouTube uploads.
+6. Match the user's attribute preferences closely.
+7. Always respond with valid JSON only, no markdown, no code blocks, no explanation text.
+8. For the infantil genre, all songs MUST be in Spanish.
+9. Each recommendation must genuinely belong to the "${genreName}" genre.
+10. If you cannot think of enough genre-appropriate tracks, return fewer tracks rather than padding with unrelated music.`;
 
   // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -228,7 +241,7 @@ CRITICAL RULES:
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.7,
+      temperature: 0.8,
       max_tokens: 4096,
       response_format: { type: 'json_object' },
     }),
@@ -270,31 +283,51 @@ CRITICAL RULES:
     throw new Error('No recommendations generated. Try again.');
   }
 
-  // Step 2: Verify YouTube IDs and search for replacements if invalid
-  console.log(`[AI Recs] Verifying ${tracks.length} YouTube IDs...`);
+  // Step 2: Verify YouTube IDs — but be lenient
+  // If verification services are down, accept tracks anyway
+  console.log(`[AI Recs] Processing ${tracks.length} tracks, verifying YouTube IDs...`);
   
   const verifiedTracks: RecommendedTrack[] = [];
+  let verificationWorking = true;
   
+  // First, test if verification is working at all with a known good ID
+  try {
+    const testResult = await verifyYouTubeId('dQw4w9WgXcQ'); // Rick Astley - known to exist
+    verificationWorking = testResult; // If this returns false, verification is broken
+  } catch {
+    verificationWorking = false;
+  }
+
   for (const track of tracks) {
     if (verifiedTracks.length >= limit) break;
     
-    // First, verify the AI-provided YouTube ID
-    let validId = track.youtubeId;
-    const isValid = await verifyYouTubeId(validId);
+    // Validate basic track data
+    if (!track.title || !track.artist) continue;
     
-    if (!isValid) {
-      console.log(`[AI Recs] Invalid ID for "${track.artist} - ${track.title}", searching...`);
-      // Search for the real YouTube video
-      const searchedId = await searchYouTubeVideo(track.artist, track.title);
-      if (searchedId) {
-        validId = searchedId;
-        console.log(`[AI Recs] Found: ${searchedId}`);
+    let finalYoutubeId = track.youtubeId || '';
+    
+    // Only verify if the service is working
+    if (verificationWorking && finalYoutubeId && finalYoutubeId.length === 11) {
+      const isValid = await verifyYouTubeId(finalYoutubeId);
+      
+      if (!isValid) {
+        console.log(`[AI Recs] Invalid ID for "${track.artist} - ${track.title}", searching alternative...`);
+        // Try to find the real video
+        const searchedId = await searchYouTubeAlternative(track.artist, track.title);
+        if (searchedId) {
+          finalYoutubeId = searchedId;
+          console.log(`[AI Recs] Found alternative: ${searchedId}`);
+        } else {
+          // Accept the track anyway with the AI-provided ID
+          // It might work — the user can skip if it doesn't
+          console.log(`[AI Recs] Keeping AI-provided ID (may not work): ${finalYoutubeId}`);
+        }
       } else {
-        console.log(`[AI Recs] Could not find video, skipping.`);
-        continue; // Skip this track entirely
+        console.log(`[AI Recs] Verified: "${track.artist} - ${track.title}"`);
       }
-    } else {
-      console.log(`[AI Recs] Verified: "${track.artist} - ${track.title}"`);
+    } else if (!verificationWorking) {
+      // Verification service is down — accept all tracks as-is
+      console.log(`[AI Recs] Verification unavailable, accepting: "${track.artist} - ${track.title}"`);
     }
     
     verifiedTracks.push({
@@ -302,7 +335,7 @@ CRITICAL RULES:
       artist: track.artist,
       year: track.year || 2020,
       label: track.label || 'Independent',
-      youtubeId: validId,
+      youtubeId: finalYoutubeId,
       artistBio: track.artistBio || '',
       artistFacts: track.artistFacts || [],
       attributes: track.attributes || { energy: 5, groove: 5, vocals: 5, darkness: 5, bpm: 120 },
@@ -310,9 +343,9 @@ CRITICAL RULES:
   }
 
   if (verifiedTracks.length === 0) {
-    throw new Error('Could not verify any YouTube videos. Try again — the AI will suggest different tracks.');
+    throw new Error('No valid recommendations could be generated. Please try again.');
   }
 
-  console.log(`[AI Recs] Returning ${verifiedTracks.length} verified tracks.`);
+  console.log(`[AI Recs] Returning ${verifiedTracks.length} tracks (verification ${verificationWorking ? 'active' : 'bypassed'}).`);
   return verifiedTracks;
 }
