@@ -1,6 +1,9 @@
 // AI Recommendations Service using Groq (free tier)
-// Groq uses OpenAI GPT-OSS 120B - fast and free
+// Uses OpenAI GPT-OSS 120B on Groq - fast and free
 // User provides their API key from console.groq.com/keys
+//
+// Strategy: Ask AI for track recommendations WITHOUT YouTube IDs,
+// then use YouTube's embed search to play them (always works).
 
 const STORAGE_KEY_API = 'waveform_groq_key';
 const STORAGE_KEY_API_LEGACY = 'waveform_gemini_key';
@@ -33,7 +36,7 @@ export interface RecommendedTrack {
   artist: string;
   year: number;
   label: string;
-  youtubeId: string;
+  youtubeId: string; // Will be a search-based embed URL marker
   artistBio: string;
   artistFacts: string[];
   attributes: { energy: number; groove: number; vocals: number; darkness: number; bpm: number };
@@ -46,63 +49,32 @@ interface TrackInfo {
 }
 
 /**
- * Verify a YouTube video exists using YouTube's oEmbed endpoint (most reliable, CORS-friendly)
- * Returns true if video exists, false if definitely doesn't exist, true on network errors (benefit of the doubt)
+ * Generate a YouTube search embed ID.
+ * YouTube supports embedding with a search query:
+ * https://www.youtube-nocookie.com/embed?listType=search&list=QUERY
+ * We encode this as a special marker that the player will recognize.
  */
-async function verifyYouTubeId(videoId: string): Promise<boolean> {
-  if (!videoId || videoId.length !== 11) return false;
-  try {
-    const resp = await fetch(
-      `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`,
-      { signal: AbortSignal.timeout(5000) }
-    );
-    // 200 = video exists, 401/403 = embedding disabled but video exists, 404 = doesn't exist
-    if (resp.status === 200 || resp.status === 401 || resp.status === 403) return true;
-    if (resp.status === 404) return false;
-    // Any other status - give benefit of the doubt
-    return true;
-  } catch {
-    // Network error / timeout - give benefit of the doubt
-    return true;
-  }
+function makeSearchYoutubeId(artist: string, title: string): string {
+  // We'll use a special prefix "SEARCH:" to signal the player to use search embed
+  return `SEARCH:${artist} - ${title}`;
 }
 
 /**
- * Search for a YouTube video by artist + title using YouTube's oEmbed
- * This is a lightweight check - we can't actually search, but we can verify
+ * Check if a YouTube video ID is valid using thumbnail endpoint
+ * img.youtube.com returns 404 for non-existent videos and has CORS: *
  */
-async function searchYouTubeAlternative(artist: string, title: string): Promise<string | null> {
-  // Try Piped API instances (more reliable than Invidious in 2026)
-  const pipedInstances = [
-    'https://pipedapi.kavin.rocks',
-    'https://api.piped.projectsegfau.lt',
-    'https://pipedapi.in.projectsegfau.lt',
-  ];
-
-  const query = `${artist} ${title}`;
-
-  for (const instance of pipedInstances) {
-    try {
-      const resp = await fetch(
-        `${instance}/search?q=${encodeURIComponent(query)}&filter=videos`,
-        { signal: AbortSignal.timeout(5000) }
-      );
-      if (!resp.ok) continue;
-      const data = await resp.json();
-      const items = data.items || [];
-      if (items.length > 0 && items[0].url) {
-        // Extract video ID from /watch?v=XXXXXXXXXXX
-        const match = items[0].url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-        if (match) return match[1];
-        // Or from /shorts/XXXXXXXXXXX
-        const shortsMatch = items[0].url.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
-        if (shortsMatch) return shortsMatch[1];
-      }
-    } catch {
-      continue;
-    }
+async function verifyYouTubeId(videoId: string): Promise<boolean> {
+  if (!videoId || videoId.length !== 11) return false;
+  if (/[^a-zA-Z0-9_-]/.test(videoId)) return false;
+  try {
+    const resp = await fetch(`https://img.youtube.com/vi/${videoId}/default.jpg`, {
+      method: 'HEAD',
+      signal: AbortSignal.timeout(4000),
+    });
+    return resp.ok; // 200 = exists, 404 = doesn't exist
+  } catch {
+    return true; // Network error - give benefit of the doubt
   }
-  return null;
 }
 
 export async function getAIRecommendations(
@@ -132,7 +104,7 @@ export async function getAIRecommendations(
     return entry;
   }).join("\n");
 
-  // Build disliked context (up to 15) - tells AI what to AVOID
+  // Build disliked context (up to 15)
   const dislikedContext = dislikedTracks.slice(0, 15).map(t => {
     let entry = `${t.artist} - ${t.title}`;
     if (t.attributes) {
@@ -144,7 +116,7 @@ export async function getAIRecommendations(
     return entry;
   }).join("\n");
 
-  // Analyze the user's taste profile from liked tracks
+  // Analyze the user's taste profile
   let tasteProfile = '';
   if (likedTracks.length >= 5) {
     const attrs = likedTracks.slice(0, 30)
@@ -158,11 +130,11 @@ export async function getAIRecommendations(
 - Vocals: ${avg('vocals')}/10
 - Darkness: ${avg('darkness')}/10
 - Average BPM: ${avg('bpm')}
-Match these attribute ranges closely. The user prefers tracks within ±1.5 of these averages.`;
+Match these attribute ranges closely.`;
     }
   }
 
-  // Analyze most common artists to understand preferences
+  // Top artists
   const artistCounts: Record<string, number> = {};
   likedTracks.forEach(t => {
     const artist = t.artist.split(' ft.')[0].split(' feat.')[0].split(' &')[0].trim();
@@ -176,9 +148,6 @@ Match these attribute ranges closely. The user prefers tracks within ±1.5 of th
 
   const existingList = existingTracks.slice(0, 80).map(t => `${t.artist} - ${t.title}`).join(", ");
 
-  // Request MORE tracks than needed (10 instead of 5) to account for verification failures
-  const requestLimit = limit + 5;
-
   const userPrompt = `## Genre: ${genreDesc}
 
 ## User's Liked Tracks (${likedTracks.length} total, showing top ${Math.min(30, likedTracks.length)}):
@@ -188,45 +157,37 @@ ${likedContext || 'None yet'}
 ${tasteProfile}
 
 ${dislikedContext ? `## Tracks the user DISLIKED (AVOID similar style/artists):
-${dislikedContext}
-
-Analyze WHY the user might have disliked these — maybe too mainstream, wrong tempo, wrong mood, or wrong sub-genre. Avoid recommending anything similar.` : ''}
+${dislikedContext}` : ''}
 
 ## Already in library (DO NOT recommend these): 
 ${existingList}
 
 ---
 
-Recommend exactly ${requestLimit} tracks from the "${genreName}" genre that:
-1. MATCH the user's taste profile and preferred attributes closely
+Recommend exactly ${limit + 3} tracks from the "${genreName}" genre that:
+1. MATCH the user's taste profile and preferred attributes
 2. Are from artists SIMILAR to their top artists but NOT the same artists they already have
-3. AVOID the style/mood/tempo of disliked tracks
-4. Are WELL-KNOWN tracks that definitely have official YouTube videos (official uploads, VEVO, or official artist channels)
-5. Prioritize deep cuts and lesser-known releases, but they MUST have YouTube videos
-6. Each track should be from a DIFFERENT artist for variety
-7. ALL tracks MUST be from the "${genreName}" genre — do NOT include tracks from other genres
+3. AVOID the style/mood of disliked tracks
+4. Each track should be from a DIFFERENT artist
+5. ALL tracks MUST authentically belong to the "${genreName}" genre
+6. Recommend REAL tracks by REAL artists that actually exist — no made-up songs
 
-CRITICAL: Do NOT recommend generic pop hits, meme songs, or tracks unrelated to ${genreName}. Every single track must authentically belong to this genre.
+DO NOT include youtubeId in your response. I will search YouTube myself.
 
-For EACH track provide a JSON object with: title, artist, year (integer), label, youtubeId (the exact 11-character YouTube video ID — MUST be a real video you are certain exists), artistBio (1-2 sentences), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
+For EACH track provide a JSON object with: title (string), artist (string), year (integer), label (string), artistBio (1-2 sentences about the artist), artistFacts (array of 3 interesting facts), attributes (object with energy 1-10, groove 1-10, vocals 1-10, darkness 1-10, bpm integer).
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const systemPrompt = `You are an expert music curator specializing EXCLUSIVELY in the "${genreName}" genre. You have deep knowledge of this specific genre, its sub-genres, key labels, and underground scene.
-
-YOUR ONLY JOB: Recommend tracks from the "${genreName}" genre. Nothing else.
+  const systemPrompt = `You are an expert music curator specializing EXCLUSIVELY in the "${genreName}" genre.
 
 CRITICAL RULES:
-1. EVERY track MUST be from the "${genreName}" genre. Do NOT recommend tracks from other genres under any circumstances.
-2. NEVER recommend generic pop hits, meme songs (like "Never Gonna Give You Up"), or mainstream tracks unrelated to this genre.
+1. EVERY track MUST be from the "${genreName}" genre. No exceptions.
+2. NEVER recommend generic pop hits or meme songs. Only authentic ${genreName} tracks.
 3. NEVER recommend tracks already in the user's library.
-4. NEVER recommend tracks from artists the user disliked.
-5. YouTube IDs MUST be real 11-character IDs from actual YouTube videos. Only include tracks you are confident have official YouTube uploads.
-6. Match the user's attribute preferences closely.
-7. Always respond with valid JSON only, no markdown, no code blocks, no explanation text.
-8. For the infantil genre, all songs MUST be in Spanish.
-9. Each recommendation must genuinely belong to the "${genreName}" genre.
-10. If you cannot think of enough genre-appropriate tracks, return fewer tracks rather than padding with unrelated music.`;
+4. Only recommend REAL tracks that actually exist — real artist names, real song titles, real release years.
+5. Always respond with valid JSON only, no markdown, no code blocks.
+6. For the infantil genre, all songs MUST be in Spanish.
+7. Do NOT include any youtubeId field. Only include: title, artist, year, label, artistBio, artistFacts, attributes.`;
 
   // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -283,69 +244,49 @@ CRITICAL RULES:
     throw new Error('No recommendations generated. Try again.');
   }
 
-  // Step 2: Verify YouTube IDs — but be lenient
-  // If verification services are down, accept tracks anyway
-  console.log(`[AI Recs] Processing ${tracks.length} tracks, verifying YouTube IDs...`);
-  
-  const verifiedTracks: RecommendedTrack[] = [];
-  let verificationWorking = true;
-  
-  // First, test if verification is working at all with a known good ID
-  try {
-    const testResult = await verifyYouTubeId('dQw4w9WgXcQ'); // Rick Astley - known to exist
-    verificationWorking = testResult; // If this returns false, verification is broken
-  } catch {
-    verificationWorking = false;
-  }
+  console.log(`[AI Recs] Got ${tracks.length} recommendations for genre "${genreName}"`);
+
+  // Process tracks — use YouTube search embed for each track
+  // If the AI happened to include a youtubeId, verify it; otherwise use search embed
+  const results: RecommendedTrack[] = [];
 
   for (const track of tracks) {
-    if (verifiedTracks.length >= limit) break;
-    
-    // Validate basic track data
+    if (results.length >= limit) break;
     if (!track.title || !track.artist) continue;
-    
-    let finalYoutubeId = track.youtubeId || '';
-    
-    // Only verify if the service is working
-    if (verificationWorking && finalYoutubeId && finalYoutubeId.length === 11) {
-      const isValid = await verifyYouTubeId(finalYoutubeId);
-      
-      if (!isValid) {
-        console.log(`[AI Recs] Invalid ID for "${track.artist} - ${track.title}", searching alternative...`);
-        // Try to find the real video
-        const searchedId = await searchYouTubeAlternative(track.artist, track.title);
-        if (searchedId) {
-          finalYoutubeId = searchedId;
-          console.log(`[AI Recs] Found alternative: ${searchedId}`);
-        } else {
-          // Accept the track anyway with the AI-provided ID
-          // It might work — the user can skip if it doesn't
-          console.log(`[AI Recs] Keeping AI-provided ID (may not work): ${finalYoutubeId}`);
-        }
-      } else {
-        console.log(`[AI Recs] Verified: "${track.artist} - ${track.title}"`);
+
+    let youtubeId = '';
+
+    // If AI included a youtubeId (it shouldn't, but just in case), verify it
+    if (track.youtubeId && typeof track.youtubeId === 'string' && track.youtubeId.length === 11) {
+      const valid = await verifyYouTubeId(track.youtubeId);
+      if (valid) {
+        youtubeId = track.youtubeId;
+        console.log(`[AI Recs] Verified ID for "${track.artist} - ${track.title}": ${youtubeId}`);
       }
-    } else if (!verificationWorking) {
-      // Verification service is down — accept all tracks as-is
-      console.log(`[AI Recs] Verification unavailable, accepting: "${track.artist} - ${track.title}"`);
     }
-    
-    verifiedTracks.push({
+
+    // If no valid ID, use search-based embed
+    if (!youtubeId) {
+      youtubeId = makeSearchYoutubeId(track.artist, track.title);
+      console.log(`[AI Recs] Using search embed for "${track.artist} - ${track.title}"`);
+    }
+
+    results.push({
       title: track.title,
       artist: track.artist,
       year: track.year || 2020,
       label: track.label || 'Independent',
-      youtubeId: finalYoutubeId,
+      youtubeId,
       artistBio: track.artistBio || '',
       artistFacts: track.artistFacts || [],
       attributes: track.attributes || { energy: 5, groove: 5, vocals: 5, darkness: 5, bpm: 120 },
     });
   }
 
-  if (verifiedTracks.length === 0) {
+  if (results.length === 0) {
     throw new Error('No valid recommendations could be generated. Please try again.');
   }
 
-  console.log(`[AI Recs] Returning ${verifiedTracks.length} tracks (verification ${verificationWorking ? 'active' : 'bypassed'}).`);
-  return verifiedTracks;
+  console.log(`[AI Recs] Returning ${results.length} tracks.`);
+  return results;
 }

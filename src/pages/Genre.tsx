@@ -46,7 +46,7 @@ function TrackListItem({ track, genreColor, onRemove }: {
       <div className="p-4 flex items-center gap-4 group">
         {track.youtubeId ? (
           <a
-            href={`https://www.youtube.com/watch?v=${track.youtubeId}`}
+            href={track.youtubeId.startsWith('SEARCH:') ? `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeId.slice(7))}` : `https://www.youtube.com/watch?v=${track.youtubeId}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform hover:scale-105"
@@ -78,7 +78,7 @@ function TrackListItem({ track, genreColor, onRemove }: {
             <Info className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
           </button>
           {track.youtubeId && (
-            <a href={`https://www.youtube.com/watch?v=${track.youtubeId}`} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/10 transition-colors">
+            <a href={track.youtubeId.startsWith('SEARCH:') ? `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeId.slice(7))}` : `https://www.youtube.com/watch?v=${track.youtubeId}`} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/10 transition-colors">
               <ExternalLink className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
             </a>
           )}
@@ -100,7 +100,7 @@ function TrackListItem({ track, genreColor, onRemove }: {
               {track.youtubeId && (
                 <div className="aspect-video w-full rounded-lg overflow-hidden mb-3 bg-black/50">
                   <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${track.youtubeId}?rel=0&modestbranding=1`}
+                    src={track.youtubeId.startsWith('SEARCH:') ? `https://www.youtube-nocookie.com/embed?listType=search&list=${encodeURIComponent(track.youtubeId.slice(7))}&rel=0&modestbranding=1` : `https://www.youtube-nocookie.com/embed/${track.youtubeId}?rel=0&modestbranding=1`}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -339,13 +339,23 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
         {/* YouTube Embed */}
         {currentTrack.youtubeId ? (
           <div className="aspect-video w-full bg-black/50">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${currentTrack.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`${currentTrack.artist} - ${currentTrack.title}`}
-            />
+            {currentTrack.youtubeId.startsWith('SEARCH:') ? (
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed?listType=search&list=${encodeURIComponent(currentTrack.youtubeId.slice(7))}&autoplay=0&rel=0&modestbranding=1`}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={`${currentTrack.artist} - ${currentTrack.title}`}
+              />
+            ) : (
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${currentTrack.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={`${currentTrack.artist} - ${currentTrack.title}`}
+              />
+            )}
           </div>
         ) : (
           <div className="aspect-video w-full bg-black/50 flex flex-col items-center justify-center gap-3">
