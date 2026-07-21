@@ -201,16 +201,19 @@ For EACH track provide a JSON object with: title, artist, year (integer), label,
 
 Respond ONLY with a JSON object: { "tracks": [...] }`;
 
-  const systemPrompt = `You are an expert music curator with encyclopedic knowledge of underground music and independent labels. Your recommendations are highly personalized.
+  const systemPrompt = `You are an expert music curator specializing in the ${genreDesc.split(' - ')[0]} genre. You have encyclopedic knowledge of this specific genre and its underground scene.
 
 CRITICAL RULES:
-1. NEVER recommend tracks already in the user's library
-2. NEVER recommend tracks from artists the user disliked
-3. YouTube IDs MUST be REAL — only include tracks you are 100% certain have an official YouTube video. If unsure about a YouTube ID, recommend a different track that you ARE sure about.
-4. Match the user's attribute preferences closely
-5. Always respond with valid JSON only, no markdown, no code blocks
-6. For the infantil genre, all songs MUST be in Spanish
-7. Prefer tracks with official music videos or official audio uploads on YouTube`;
+1. EVERY track you recommend MUST be from the ${genreDesc.split(' - ')[0]} genre. Do NOT recommend tracks from other genres.
+2. NEVER recommend generic/meme tracks like "Never Gonna Give You Up", "Bohemian Rhapsody", etc.
+3. NEVER recommend tracks already in the user's library
+4. NEVER recommend tracks from artists the user disliked
+5. YouTube IDs MUST be REAL — only include tracks you are 100% certain have an official YouTube video. If unsure about a YouTube ID, recommend a different track that you ARE sure about.
+6. Match the user's attribute preferences closely
+7. Always respond with valid JSON only, no markdown, no code blocks
+8. For the infantil genre, all songs MUST be in Spanish
+9. Prefer tracks with official music videos or official audio uploads on YouTube
+10. Each recommendation must genuinely belong to the genre described. If you cannot find enough tracks for this genre, return fewer tracks rather than filling with unrelated music.`;
 
   // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -220,7 +223,7 @@ CRITICAL RULES:
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-120b',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
