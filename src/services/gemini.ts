@@ -3,15 +3,13 @@
 // User provides their API key from console.groq.com/keys
 //
 // Strategy: 
-// 1. Ask AI for track recommendations (no YouTube IDs)
-// 2. Use waveform.manus.space YouTube search proxy to get real video IDs
-// This gives 100% working YouTube embeds.
+// 1. Ask AI for track recommendations (no YouTube IDs - they hallucinate)
+// 2. Use YouTube Data API v3 (user's own key) to find real video IDs
+// Fully self-contained, no external server dependency.
 
 const STORAGE_KEY_API = 'waveform_groq_key';
 const STORAGE_KEY_API_LEGACY = 'waveform_gemini_key';
-
-// The Manus server provides a public YouTube search endpoint
-const YOUTUBE_SEARCH_PROXY = 'https://waveform.manus.space/api/public/youtube-search';
+const STORAGE_KEY_YT = 'waveform_youtube_key';
 
 export function getGeminiApiKey(): string | null {
   return localStorage.getItem(STORAGE_KEY_API) || localStorage.getItem(STORAGE_KEY_API_LEGACY);
@@ -25,6 +23,18 @@ export function setGeminiApiKey(key: string) {
 export function removeGeminiApiKey() {
   localStorage.removeItem(STORAGE_KEY_API);
   localStorage.removeItem(STORAGE_KEY_API_LEGACY);
+}
+
+export function getYouTubeApiKey(): string | null {
+  return localStorage.getItem(STORAGE_KEY_YT);
+}
+
+export function setYouTubeApiKey(key: string) {
+  localStorage.setItem(STORAGE_KEY_YT, key);
+}
+
+export function removeYouTubeApiKey() {
+  localStorage.removeItem(STORAGE_KEY_YT);
 }
 
 const genreDescriptions: Record<string, string> = {
@@ -54,19 +64,30 @@ interface TrackInfo {
 }
 
 /**
- * Search YouTube via the Manus server proxy to get a real video ID
+ * Search YouTube using the official Data API v3 (client-side, user's own key)
+ * Endpoint: https://www.googleapis.com/youtube/v3/search
+ * Free tier: 10,000 units/day, search costs 100 units = 100 searches/day
  */
 async function searchYouTube(artist: string, title: string): Promise<string> {
+  const apiKey = getYouTubeApiKey();
+  if (!apiKey) return '';
+
   try {
-    const query = `${artist} ${title}`;
-    const resp = await fetch(
-      `${YOUTUBE_SEARCH_PROXY}?q=${encodeURIComponent(query)}`,
-      { signal: AbortSignal.timeout(8000) }
-    );
-    if (!resp.ok) return '';
+    const query = `${artist} - ${title} official`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=id&q=${encodeURIComponent(query)}&type=video&maxResults=1&key=${encodeURIComponent(apiKey)}`;
+    
+    const resp = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    
+    if (!resp.ok) {
+      if (resp.status === 403) {
+        console.warn('[YouTube API] Quota exceeded or API not enabled');
+      }
+      return '';
+    }
+    
     const data = await resp.json();
-    if (data.videos && data.videos.length > 0) {
-      return data.videos[0].videoId;
+    if (data.items && data.items.length > 0) {
+      return data.items[0].id.videoId;
     }
     return '';
   } catch (e) {
@@ -84,7 +105,12 @@ export async function getAIRecommendations(
 ): Promise<RecommendedTrack[]> {
   const apiKey = getGeminiApiKey();
   if (!apiKey) {
-    throw new Error('No API key configured. Go to Settings to add your free Groq API key (console.groq.com/keys).');
+    throw new Error('No Groq API key configured. Go to Settings to add your free Groq API key (console.groq.com/keys).');
+  }
+
+  const ytKey = getYouTubeApiKey();
+  if (!ytKey) {
+    throw new Error('No YouTube API key configured. Go to Settings to add your YouTube Data API key (console.cloud.google.com → enable YouTube Data API v3 → create API key).');
   }
 
   const genreDesc = genreDescriptions[genre] || genre;
@@ -196,7 +222,7 @@ CRITICAL RULES:
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'openai/gpt-oss-120b',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
@@ -210,12 +236,12 @@ CRITICAL RULES:
   if (!response.ok) {
     const err = await response.text();
     if (response.status === 401) {
-      throw new Error('Invalid API key. Get a free key at console.groq.com/keys');
+      throw new Error('Invalid Groq API key. Get a free key at console.groq.com/keys');
     }
     if (response.status === 429) {
       throw new Error('Rate limited. Wait a moment and try again (Groq free tier: 30 req/min).');
     }
-    throw new Error(`API error (${response.status}): ${err.slice(0, 150)}`);
+    throw new Error(`Groq API error (${response.status}): ${err.slice(0, 150)}`);
   }
 
   const data = await response.json();
@@ -245,10 +271,10 @@ CRITICAL RULES:
 
   console.log(`[AI Recs] Got ${tracks.length} recommendations for "${genreName}", resolving YouTube IDs...`);
 
-  // Step 2: Resolve real YouTube video IDs via the Manus server proxy
+  // Step 2: Resolve real YouTube video IDs via YouTube Data API v3
   const results: RecommendedTrack[] = [];
 
-  // Process tracks in parallel (batch of up to 8)
+  // Process tracks in parallel (all at once)
   const searchPromises = tracks.slice(0, limit + 3).map(async (track: any) => {
     if (!track.title || !track.artist) return null;
     const videoId = await searchYouTube(track.artist, track.title);
@@ -282,7 +308,7 @@ CRITICAL RULES:
   }
 
   if (results.length === 0) {
-    throw new Error('Could not find YouTube videos for recommendations. The search service may be temporarily unavailable. Please try again.');
+    throw new Error('Could not find YouTube videos for any recommendations. Check that your YouTube API key is valid and has YouTube Data API v3 enabled.');
   }
 
   console.log(`[AI Recs] Returning ${results.length} tracks with verified YouTube IDs.`);

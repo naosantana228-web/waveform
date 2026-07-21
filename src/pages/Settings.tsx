@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Key, Sparkles, Trash2, Check, Cloud, CloudOff, RefreshCw, Upload, Download, Loader2 } from "lucide-react";
-import { getGeminiApiKey, setGeminiApiKey, removeGeminiApiKey } from "@/services/gemini";
+import { getGeminiApiKey, setGeminiApiKey, removeGeminiApiKey, getYouTubeApiKey, setYouTubeApiKey, removeYouTubeApiKey } from "@/services/gemini";
 import { getGitHubToken, setGitHubToken, removeGitHubToken, verifyToken, pushToGist, pullFromGist } from "@/services/gistSync";
 import { resetAll } from "@/data";
 
 export default function Settings() {
   const [apiKey, setApiKeyState] = useState(getGeminiApiKey() || '');
   const [saved, setSaved] = useState(false);
+  const [ytKey, setYtKeyState] = useState(getYouTubeApiKey() || '');
+  const [ytSaved, setYtSaved] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // GitHub Gist sync state
@@ -31,6 +33,20 @@ export default function Settings() {
     removeGeminiApiKey();
     setApiKeyState('');
     setSaved(false);
+  };
+
+  const handleYtSave = () => {
+    if (ytKey.trim()) {
+      setYouTubeApiKey(ytKey.trim());
+      setYtSaved(true);
+      setTimeout(() => setYtSaved(false), 2000);
+    }
+  };
+
+  const handleYtRemove = () => {
+    removeYouTubeApiKey();
+    setYtKeyState('');
+    setYtSaved(false);
   };
 
   const handleResetAll = () => {
@@ -264,6 +280,74 @@ export default function Settings() {
             </ol>
             <p className="text-xs text-[oklch(0.6_0.01_260)] mt-2">
               Free tier: 30 requests/minute, 14,400/day — more than enough for music discovery.
+            </p>
+          </div>
+        </motion.section>
+
+        {/* YouTube API Key Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="glass-card rounded-2xl p-6"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+              <Key className="w-5 h-5 text-red-400" />
+            </div>
+            <div>
+              <h2 className="font-semibold">YouTube Video Search</h2>
+              <p className="text-xs text-[oklch(0.6_0.01_260)]">Required for AI recommendations to play</p>
+            </div>
+          </div>
+
+          <p className="text-sm text-[oklch(0.6_0.01_260)] mb-4">
+            AI recommendations need a YouTube API key to find real video IDs.
+            Without this, recommendations won't have playable videos.
+          </p>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Key className="w-4 h-4 text-[oklch(0.6_0.01_260)]" />
+              <input
+                type="password"
+                value={ytKey}
+                onChange={(e) => { setYtKeyState(e.target.value); setYtSaved(false); }}
+                placeholder="Paste your YouTube API key here (AIza...)..."
+                className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-400 transition-colors"
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleYtSave}
+                disabled={!ytKey.trim() || ytSaved}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-red-500 text-white hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {ytSaved ? <><Check className="w-4 h-4" /> Saved!</> : 'Save Key'}
+              </button>
+              {getYouTubeApiKey() && (
+                <button
+                  onClick={handleYtRemove}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-red-500/30 text-red-400 hover:bg-red-500/10 transition-colors"
+                >
+                  <Trash2 className="w-3 h-3" /> Remove
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 rounded-lg bg-white/5 border border-white/5">
+            <p className="text-xs text-[oklch(0.6_0.01_260)] mb-2 font-medium">How to get a YouTube API key (free):</p>
+            <ol className="text-xs text-[oklch(0.6_0.01_260)] space-y-1 list-decimal list-inside">
+              <li>Go to <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer" className="text-red-400 underline">Google Cloud Console</a></li>
+              <li>Create a project (or select existing)</li>
+              <li>Enable <strong>"YouTube Data API v3"</strong> in the API Library</li>
+              <li>Go to Credentials → Create Credentials → API Key</li>
+              <li>Copy and paste it above</li>
+            </ol>
+            <p className="text-xs text-[oklch(0.6_0.01_260)] mt-2">
+              Free tier: 10,000 units/day (100 searches/day) — plenty for personal use.
             </p>
           </div>
         </motion.section>

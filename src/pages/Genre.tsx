@@ -206,7 +206,7 @@ function DiscoveryMode({ genreKey, genreColor }: { genreKey: string; genreColor:
   const handleGetAIRecommendations = useCallback(async () => {
     const apiKey = getGeminiApiKey();
     if (!apiKey) {
-      setAiError('No API key. Go to Settings (gear icon on homepage) to add your free Gemini API key.');
+      setAiError('No Groq API key. Go to Settings (gear icon) to add your free Groq API key.');
       return;
     }
     setIsLoadingAI(true);
