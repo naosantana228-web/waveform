@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Genre from "./pages/Genre";
 import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
+import CustomSearch from "./pages/CustomSearch";
 
 // Use hash-based routing for GitHub Pages compatibility
 import { useHashLocation } from "wouter/use-hash-location";
@@ -12,6 +13,7 @@ export default function App() {
     <Router hook={useHashLocation}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/genre/custom" component={CustomSearch} />
         <Route path="/genre/:genre" component={Genre} />
         <Route path="/playlist" component={Playlist} />
         <Route path="/settings" component={Settings} />

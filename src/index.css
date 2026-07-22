@@ -48,6 +48,22 @@ body {
   .genre-glow-infantil {
     box-shadow: 0 0 60px rgba(255, 105, 180, 0.15), 0 0 120px rgba(255, 105, 180, 0.05);
   }
+
+  .genre-glow-popdance {
+    box-shadow: 0 0 60px rgba(124, 58, 237, 0.15), 0 0 120px rgba(124, 58, 237, 0.05);
+  }
+
+  .genre-glow-relax {
+    box-shadow: 0 0 60px rgba(6, 182, 212, 0.15), 0 0 120px rgba(6, 182, 212, 0.05);
+  }
+
+  .genre-glow-salon {
+    box-shadow: 0 0 60px rgba(244, 114, 182, 0.15), 0 0 120px rgba(244, 114, 182, 0.05);
+  }
+
+  .genre-glow-custom {
+    box-shadow: 0 0 60px rgba(163, 230, 53, 0.15), 0 0 120px rgba(163, 230, 53, 0.05);
+  }
 }
 
 ::-webkit-scrollbar {

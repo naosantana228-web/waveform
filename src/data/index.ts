@@ -24,6 +24,10 @@ export const genres = [
   { key: "reggaeton", name: "Reggaetón Moderno", subtitle: "Modern reggaetón — Bad Bunny, Feid, Mora", color: "accent-reggaeton" },
   { key: "hiphop", name: "Hip-Hop & R&B Blends", subtitle: "Hip-Hop/R&B crossover — smooth and soulful", color: "accent-hiphop" },
   { key: "infantil", name: "Canciones Infantiles", subtitle: "Canciones divertidas para cantar y bailar — Frozen, CantaJuego", color: "accent-infantil" },
+  { key: "popdance", name: "Pop & Dance", subtitle: "Dua Lipa, Harry Styles, Benny Benassi — upbeat pop-dance hits", color: "accent-popdance" },
+  { key: "relax", name: "Relajación & Lectura", subtitle: "Ambient, piano, neo-classical — para leer y relajarse", color: "accent-relax" },
+  { key: "salon", name: "Salón de Uñas", subtitle: "Pop hits perfectos para el salón — Taylor, Sabrina, Doja Cat", color: "accent-salon" },
+  { key: "custom", name: "Búsqueda Propia", subtitle: "Busca canciones en YouTube y crea tu propia colección", color: "accent-custom" },
 ] as const;
 
 export function getTracksByGenre(genre: string): Track[] {
@@ -71,13 +75,17 @@ export function initializeState() {
 export function getLikedTracks(genre: string): Track[] {
   const state = getState();
   const ids = state.liked[genre] || [];
-  return allTracks.filter((t) => ids.includes(t.id));
+  const fromJson = allTracks.filter((t) => ids.includes(t.id));
+  const customs = getCustomTracks().filter(t => t.genre === genre && ids.includes(t.id));
+  return [...fromJson, ...customs];
 }
 
 export function getAllLikedTracks(): Track[] {
   const state = getState();
   const allIds = Object.values(state.liked).flat();
-  return allTracks.filter((t) => allIds.includes(t.id));
+  const fromJson = allTracks.filter((t) => allIds.includes(t.id));
+  const customs = getCustomTracks().filter(t => allIds.includes(t.id));
+  return [...fromJson, ...customs];
 }
 
 export function getDislikedTracks(genre: string): Track[] {
@@ -145,4 +153,35 @@ export function resetAll() {
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(INITIALIZED_KEY);
   initializeState();
+}
+
+// Custom tracks (user-added via YouTube search)
+const CUSTOM_TRACKS_KEY = "waveform_custom_tracks";
+
+export function getCustomTracks(): Track[] {
+  try {
+    const raw = localStorage.getItem(CUSTOM_TRACKS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return [];
+}
+
+export function addCustomTrack(track: Omit<Track, 'id'>): Track {
+  const customs = getCustomTracks();
+  const id = 9000000 + customs.length + 1 + Math.floor(Math.random() * 1000);
+  const newTrack: Track = { ...track, id } as Track;
+  customs.push(newTrack);
+  localStorage.setItem(CUSTOM_TRACKS_KEY, JSON.stringify(customs));
+  // Auto-like the custom track
+  likeTrack(track.genre, id);
+  return newTrack;
+}
+
+export function removeCustomTrack(trackId: number) {
+  const customs = getCustomTracks().filter(t => t.id !== trackId);
+  localStorage.setItem(CUSTOM_TRACKS_KEY, JSON.stringify(customs));
+}
+
+export function getAllTracksIncludingCustom(): Track[] {
+  return [...allTracks, ...getCustomTracks()];
 }

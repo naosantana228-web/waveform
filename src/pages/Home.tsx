@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic, Settings } from "lucide-react";
+import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic, Settings, Sparkles, BookOpen, Palette, Search } from "lucide-react";
 import { genres, getTracksByGenre } from "@/data";
 
 const genreIcons: Record<string, any> = {
@@ -10,6 +10,10 @@ const genreIcons: Record<string, any> = {
   reggaeton: Disc3,
   hiphop: Mic,
   infantil: Baby,
+  popdance: Sparkles,
+  relax: BookOpen,
+  salon: Palette,
+  custom: Search,
 };
 
 const genreColors: Record<string, string> = {
@@ -19,6 +23,10 @@ const genreColors: Record<string, string> = {
   reggaeton: '#e040fb',
   hiphop: '#ffb300',
   infantil: '#ff69b4',
+  popdance: '#7c3aed',
+  relax: '#06b6d4',
+  salon: '#f472b6',
+  custom: '#a3e635',
 };
 
 const genreGlows: Record<string, string> = {
@@ -28,6 +36,10 @@ const genreGlows: Record<string, string> = {
   reggaeton: 'genre-glow-reggaeton',
   hiphop: 'genre-glow-hiphop',
   infantil: 'genre-glow-infantil',
+  popdance: 'genre-glow-popdance',
+  relax: 'genre-glow-relax',
+  salon: 'genre-glow-salon',
+  custom: 'genre-glow-custom',
 };
 
 export default function Home() {

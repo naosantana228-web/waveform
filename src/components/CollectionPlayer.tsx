@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, SkipForward, SkipBack, Shuffle, Repeat, X, ListMusic, Volume2, Trash2 } from "lucide-react";
+import { Play, Pause, SkipForward, SkipBack, Shuffle, Repeat, X, ListMusic, Volume2, Trash2, Car } from "lucide-react";
 import type { Track } from "@/data";
+import DrivingMode from "./DrivingMode";
 
 declare global {
   interface Window {
@@ -33,6 +34,7 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
   const [isRepeat, setIsRepeat] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showQueue, setShowQueue] = useState(false);
+  const [drivingMode, setDrivingMode] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const playerInstanceRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,10 +105,7 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
   // Create/update YouTube player
   useEffect(() => {
     if (!playerReady || !currentTrack?.youtubeId) return;
-
     const ytId = currentTrack.youtubeId;
-
-    // Use YT Player API for direct video IDs
     if (playerInstanceRef.current) {
       playerInstanceRef.current.loadVideoById(ytId);
       return;
@@ -143,13 +142,21 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
       className="fixed inset-0 z-[100] flex flex-col bg-[oklch(0.08_0.005_260)] backdrop-blur-xl"
     >
       {/* Top Bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/5">
         <div className="flex items-center gap-3">
           <Volume2 className="w-4 h-4" style={{ color: genreColor }} />
           <span className="text-sm font-medium">Now Playing</span>
           <span className="text-xs text-[oklch(0.6_0.01_260)]">{currentIndex + 1} / {queue.length}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Driving Mode Button - always visible */}
+          <button
+            onClick={() => setDrivingMode(true)}
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            title="Driving Mode"
+          >
+            <Car className="w-5 h-5" style={{ color: genreColor }} />
+          </button>
           <button onClick={() => setShowQueue(!showQueue)} className={`p-2 rounded-full transition-colors ${showQueue ? 'bg-white/10' : 'hover:bg-white/5'}`}>
             <ListMusic className="w-5 h-5" />
           </button>
@@ -162,32 +169,32 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Player Section */}
-        <div className={`flex-1 flex flex-col items-center justify-center p-6 ${showQueue ? 'hidden lg:flex' : ''}`}>
-          <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-2xl mb-8 bg-black/50" ref={containerRef}>
+        <div className={`flex-1 flex flex-col items-center justify-center p-4 sm:p-6 ${showQueue ? 'hidden lg:flex' : ''}`}>
+          <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-2xl mb-6 sm:mb-8 bg-black/50" ref={containerRef}>
             <div id="yt-player-container" className="w-full h-full" />
           </div>
 
           {/* Track Info */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-1">{currentTrack.title}</h2>
-            <p className="text-[oklch(0.6_0.01_260)] text-lg">{currentTrack.artist}</p>
+          <div className="text-center mb-6 sm:mb-8 px-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-1 line-clamp-1">{currentTrack.title}</h2>
+            <p className="text-[oklch(0.6_0.01_260)] text-base sm:text-lg">{currentTrack.artist}</p>
           </div>
 
           {/* Playback Controls */}
-          <div className="flex items-center gap-6">
-            <button onClick={toggleShuffle} className={`p-3 rounded-full transition-all ${isShuffled ? '' : 'opacity-40 hover:opacity-70'}`} style={isShuffled ? { color: genreColor } : {}}>
+          <div className="flex items-center justify-center gap-3 sm:gap-6 flex-wrap">
+            <button onClick={toggleShuffle} className={`p-2 sm:p-3 rounded-full transition-all ${isShuffled ? '' : 'opacity-40 hover:opacity-70'}`} style={isShuffled ? { color: genreColor } : {}}>
               <Shuffle className="w-5 h-5" />
             </button>
-            <button onClick={handlePrev} className="p-3 rounded-full hover:bg-white/10 transition-colors">
+            <button onClick={handlePrev} className="p-2 sm:p-3 rounded-full hover:bg-white/10 transition-colors">
               <SkipBack className="w-6 h-6" />
             </button>
-            <button onClick={() => setIsPlaying(!isPlaying)} className="w-16 h-16 rounded-full flex items-center justify-center transition-all hover:scale-105" style={{ backgroundColor: genreColor, color: '#0d0d0d' }}>
-              {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-1" />}
+            <button onClick={() => setIsPlaying(!isPlaying)} className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all hover:scale-105" style={{ backgroundColor: genreColor, color: '#0d0d0d' }}>
+              {isPlaying ? <Pause className="w-6 h-6 sm:w-7 sm:h-7" /> : <Play className="w-6 h-6 sm:w-7 sm:h-7 ml-1" />}
             </button>
-            <button onClick={handleNext} className="p-3 rounded-full hover:bg-white/10 transition-colors">
+            <button onClick={handleNext} className="p-2 sm:p-3 rounded-full hover:bg-white/10 transition-colors">
               <SkipForward className="w-6 h-6" />
             </button>
-            <button onClick={() => setIsRepeat(!isRepeat)} className={`p-3 rounded-full transition-all ${isRepeat ? '' : 'opacity-40 hover:opacity-70'}`} style={isRepeat ? { color: genreColor } : {}}>
+            <button onClick={() => setIsRepeat(!isRepeat)} className={`p-2 sm:p-3 rounded-full transition-all ${isRepeat ? '' : 'opacity-40 hover:opacity-70'}`} style={isRepeat ? { color: genreColor } : {}}>
               <Repeat className="w-5 h-5" />
             </button>
             {onRemove && (
@@ -203,7 +210,7 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
                   }
                   onRemove(removedId);
                 }}
-                className="p-3 rounded-full hover:bg-red-500/20 transition-colors text-[oklch(0.6_0.01_260)] hover:text-red-400"
+                className="p-2 sm:p-3 rounded-full hover:bg-red-500/20 transition-colors text-[oklch(0.6_0.01_260)] hover:text-red-400"
               >
                 <Trash2 className="w-5 h-5" />
               </button>
@@ -211,7 +218,7 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
           </div>
 
           {/* Progress indicator */}
-          <div className="w-full max-w-md mt-6">
+          <div className="w-full max-w-md mt-4 sm:mt-6 px-4">
             <div className="h-1 rounded-full bg-white/5 overflow-hidden">
               <motion.div className="h-full rounded-full" style={{ backgroundColor: genreColor }} animate={{ width: `${((currentIndex + 1) / queue.length) * 100}%` }} transition={{ duration: 0.3 }} />
             </div>
@@ -247,6 +254,21 @@ export default function CollectionPlayer({ tracks, genreColor, onClose, onRemove
           )}
         </AnimatePresence>
       </div>
+
+      {/* Driving Mode Overlay */}
+      <AnimatePresence>
+        {drivingMode && (
+          <DrivingMode
+            isPlaying={isPlaying}
+            currentTrack={currentTrack ? { title: currentTrack.title, artist: currentTrack.artist } : null}
+            genreColor={genreColor}
+            onPlayPause={() => setIsPlaying(!isPlaying)}
+            onNext={handleNext}
+            onPrev={handlePrev}
+            onClose={() => setDrivingMode(false)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

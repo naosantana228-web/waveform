@@ -14,8 +14,11 @@ const genreColors: Record<string, string> = {
   reggaeton: '#e040fb',
   hiphop: '#ffb300',
   infantil: '#ff69b4',
+  popdance: '#7c3aed',
+  relax: '#06b6d4',
+  salon: '#f472b6',
+  custom: '#a3e635',
 };
-
 const genreBgImages: Record<string, string> = {
   techno: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663364052012/USZRj6GFcBYAcRBgUCrhq2/genre-techno-bg-EMNEBANm5cVqPUot2cNtgF.webp',
   afrobeats: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663364052012/USZRj6GFcBYAcRBgUCrhq2/genre-afrobeats-bg-nmBknr9ioZNHMHmDYC53mj.webp',

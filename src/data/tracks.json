@@ -285,7 +285,7 @@
     "youtubeId": "QkJH2lK7usw",
     "attributes": "{\"energy\":5,\"groove\":7,\"vocals\":9,\"darkness\":6,\"bpm\":105}",
     "artistBio": "Omah Lay is a Nigerian Afro-fusion singer and songwriter from Port Harcourt, known for his introspective lyrics and emotionally charged vocal delivery that blends Afrobeats with R&B sensibilities.",
-    "artistFacts": "[\"His real name is Stanley Omah Didia, and he comes from a musical family — his grandfather was a percussionist for Highlife legend Celestine Ukwu\",\"He won the Next Rated award at the 2020 Headies, Nigeria's most prestigious music awards\",\"'I AM' is from his 2026 album 'Clarity of Mind', which explores themes of self-discovery and emotional depth\"]",
+    "artistFacts": "[\"His real name is Stanley Omah Didia, and he comes from a musical family \u2014 his grandfather was a percussionist for Highlife legend Celestine Ukwu\",\"He won the Next Rated award at the 2020 Headies, Nigeria's most prestigious music awards\",\"'I AM' is from his 2026 album 'Clarity of Mind', which explores themes of self-discovery and emotional depth\"]",
     "label": "KeyQaad",
     "year": 2026,
     "isAiRecommended": 1
@@ -570,7 +570,7 @@
     "youtubeId": "wy_McFTz6Js",
     "attributes": "{\"energy\":4,\"groove\":6,\"vocals\":7,\"darkness\":6,\"bpm\":100}",
     "artistBio": "Cruel Santino (formerly Santi) is a Nigerian singer, producer and visual artist known for pioneering a moody, genre-blurring Afro-fusion sound that mixes Afrobeats with alternative R&B and dancehall.",
-    "artistFacts": "[\"'Raining Outside' features on his acclaimed 2019 debut album 'Mandy & The Jungle'.\",\"He is a leading figure of the Nigerian alté movement, an alternative scene pushing beyond mainstream Afrobeats.\",\"Beyond music he directs his own cinematic music videos and has explored anime-inspired storytelling in his projects.\"]",
+    "artistFacts": "[\"'Raining Outside' features on his acclaimed 2019 debut album 'Mandy & The Jungle'.\",\"He is a leading figure of the Nigerian alt\u00e9 movement, an alternative scene pushing beyond mainstream Afrobeats.\",\"Beyond music he directs his own cinematic music videos and has explored anime-inspired storytelling in his projects.\"]",
     "label": "Monster Boy",
     "year": 2019,
     "isAiRecommended": 1
@@ -761,7 +761,7 @@
     "youtubeId": "QQaFn8f6ihA",
     "attributes": "{\"energy\":4,\"groove\":6,\"vocals\":10,\"darkness\":6,\"bpm\":92}",
     "artistBio": "Temilade Openiyi, known as Tems, is a Nigerian singer-songwriter who channels raw emotion and restraint into soulful Afro-fusion, becoming one of Africa's most internationally recognized artists.",
-    "artistFacts": "[\"She won a Grammy for Best Melodic Rap Performance for her feature on Future's 'Wait For U'\",\"'What You Need' is from her EP 'Love Is A Kingdom' released on RCA Records/Since 93'\",\"She co-wrote Beyoncé's hit 'MOVE' from the Renaissance album\"]",
+    "artistFacts": "[\"She won a Grammy for Best Melodic Rap Performance for her feature on Future's 'Wait For U'\",\"'What You Need' is from her EP 'Love Is A Kingdom' released on RCA Records/Since 93'\",\"She co-wrote Beyonc\u00e9's hit 'MOVE' from the Renaissance album\"]",
     "label": "RCA Records/Since 93'",
     "year": 2025,
     "isAiRecommended": 1
@@ -948,7 +948,7 @@
     "artistFacts": [
       "Worked with Timbaland on groundbreaking productions",
       "Her album \"One in a Million\" sold 8 million copies",
-      "Influenced artists like Beyoncé and Rihanna"
+      "Influenced artists like Beyonc\u00e9 and Rihanna"
     ],
     "label": "Blackground Records",
     "year": 1998,
@@ -983,12 +983,12 @@
   {
     "id": 2130005,
     "title": "Case of the Ex",
-    "artist": "Mýa",
+    "artist": "M\u00fda",
     "genre": "hiphop",
     "youtubeId": "sk0JG0t3YEk",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":9,\"darkness\":4,\"bpm\":100}",
-    "artistBio": "Mýa Marie Harrison, known mononymously as Mýa, is an American singer, songwriter, dancer, and actress. She emerged in the late 1990s with a blend of R&B, hip-hop, and pop influences, known for her smooth vocals and dance skills.",
-    "artistFacts": "[\"Mýa is a trained dancer, having studied ballet, jazz, and tap.\",\"She was featured on the Grammy-winning song 'Lady Marmalade' from the 'Moulin Rouge!' soundtrack.\",\"Her debut album was certified platinum by the RIAA.\"]",
+    "artistBio": "M\u00fda Marie Harrison, known mononymously as M\u00fda, is an American singer, songwriter, dancer, and actress. She emerged in the late 1990s with a blend of R&B, hip-hop, and pop influences, known for her smooth vocals and dance skills.",
+    "artistFacts": "[\"M\u00fda is a trained dancer, having studied ballet, jazz, and tap.\",\"She was featured on the Grammy-winning song 'Lady Marmalade' from the 'Moulin Rouge!' soundtrack.\",\"Her debut album was certified platinum by the RIAA.\"]",
     "label": "Interscope Records",
     "year": 2000,
     "isAiRecommended": 1
@@ -1320,7 +1320,7 @@
       "groove": 9,
       "vocals": 8
     },
-    "artistBio": "Destiny's Child was a powerhouse R&B group led by Beyoncé, blending hip-hop production with powerful harmonies.",
+    "artistBio": "Destiny's Child was a powerhouse R&B group led by Beyonc\u00e9, blending hip-hop production with powerful harmonies.",
     "artistFacts": [
       "Reached #3 on the Billboard Hot 100",
       "Features a club-ready hip-hop beat with R&B vocals",
@@ -1567,11 +1567,11 @@
       "groove": 8,
       "vocals": 9
     },
-    "artistBio": "Destiny's Child was a powerhouse R&B group led by Beyoncé, blending hip-hop production with powerful harmonies.",
+    "artistBio": "Destiny's Child was a powerhouse R&B group led by Beyonc\u00e9, blending hip-hop production with powerful harmonies.",
     "artistFacts": [
       "Won 2 Grammy Awards for this song",
       "One of the best-selling girl groups ever",
-      "Launched Beyoncé, Kelly Rowland, and Michelle Williams"
+      "Launched Beyonc\u00e9, Kelly Rowland, and Michelle Williams"
     ],
     "label": "Columbia Records",
     "year": 1999,
@@ -1955,11 +1955,11 @@
   {
     "id": 150006,
     "title": "All Over the World",
-    "artist": "Lila Iké ft. Protoje",
+    "artist": "Lila Ik\u00e9 ft. Protoje",
     "genre": "reggae",
     "youtubeId": "dPmuBVhKAWQ",
     "attributes": "{\"energy\":6,\"groove\":7,\"vocals\":9,\"darkness\":3,\"bpm\":78}",
-    "artistBio": "Lila Iké is a 25-year-old Jamaican singer from the In.Digg.Nation Collective whose gift for touching the soul with her powerful voice and conscious lyrics has made her a rising star in roots reggae.",
+    "artistBio": "Lila Ik\u00e9 is a 25-year-old Jamaican singer from the In.Digg.Nation Collective whose gift for touching the soul with her powerful voice and conscious lyrics has made her a rising star in roots reggae.",
     "artistFacts": "[\"Her album was nominated for a Grammy Award in 2025\",\"'All Over the World' topped the New York Reggae chart and was co-produced by Protoje\",\"She is part of Jamaica's reggae revival movement alongside Chronixx and Protoje\"]",
     "label": "In.Digg.Nation Collective/Ineffable Records",
     "year": 2025,
@@ -1973,7 +1973,7 @@
     "youtubeId": "-nA2-bHOKK0",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":8,\"darkness\":4,\"bpm\":82}",
     "artistBio": "Protoje is a Jamaican roots reggae and hip-hop artist who leads the modern reggae revival movement. His 2026 album 'The Art of Acceptance' on In.Digg.Nation Collective showcases his most experimental work yet.",
-    "artistFacts": "[\"His mother is Jamaican singer Lorna Bennett, known for the 1972 hit 'Breakfast in Bed'\",\"Founded the In.Digg.Nation Collective label which has launched artists like Lila Iké and Sevana\",\"His collaboration with Damian Marley on 'At We Feet' was the lead single for his 2026 album\"]",
+    "artistFacts": "[\"His mother is Jamaican singer Lorna Bennett, known for the 1972 hit 'Breakfast in Bed'\",\"Founded the In.Digg.Nation Collective label which has launched artists like Lila Ik\u00e9 and Sevana\",\"His collaboration with Damian Marley on 'At We Feet' was the lead single for his 2026 album\"]",
     "label": "In.Digg.Nation Collective / Easy Star Records",
     "year": 2026,
     "isAiRecommended": 1
@@ -2035,7 +2035,7 @@
     "youtubeId": "JTygV8pkxWE",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":8,\"darkness\":3,\"bpm\":82}",
     "artistBio": "Oje Ken Ollivierre, known as Protoje, is a Jamaican roots reggae artist and leader of the In.Digg.Nation Collective, championing the modern reggae revival with conscious lyrics and heavyweight riddims.",
-    "artistFacts": "[\"'BIG 45' is a bold fusion of roots reggae and sound system culture, produced by The Indiggnation & Winta James\",\"He founded the In.Digg.Nation Collective which includes artists like Lila Iké and Sevana\",\"He performed the track at California Roots Festival and Reggae Land in 2025\"]",
+    "artistFacts": "[\"'BIG 45' is a bold fusion of roots reggae and sound system culture, produced by The Indiggnation & Winta James\",\"He founded the In.Digg.Nation Collective which includes artists like Lila Ik\u00e9 and Sevana\",\"He performed the track at California Roots Festival and Reggae Land in 2025\"]",
     "label": "In.Digg.Nation Collective/Ineffable Records",
     "year": 2025,
     "isAiRecommended": 1
@@ -2308,11 +2308,11 @@
   {
     "id": 420006,
     "title": "I Spy",
-    "artist": "Lila Iké",
+    "artist": "Lila Ik\u00e9",
     "genre": "reggae",
     "youtubeId": "k4a0eg-M9us",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":9,\"darkness\":4,\"bpm\":76}",
-    "artistBio": "Lila Iké is a Jamaican roots reggae singer from Manchester Parish whose soulful voice and conscious lyrics have made her a standout in the modern reggae revival. Mentored by Protoje and signed to his In.Digg.Nation Collective, her EP The ExPerience earned critical acclaim for its authentic roots sound.",
+    "artistBio": "Lila Ik\u00e9 is a Jamaican roots reggae singer from Manchester Parish whose soulful voice and conscious lyrics have made her a standout in the modern reggae revival. Mentored by Protoje and signed to his In.Digg.Nation Collective, her EP The ExPerience earned critical acclaim for its authentic roots sound.",
     "artistFacts": "[\"She was mentored by Protoje who signed her to his In.Digg.Nation Collective label\",\"Her breakout single 'Second Chance' has over 8 million views on YouTube\",\"She collaborated with H.E.R. on the track 'He Loves Us Both' bridging reggae and R&B audiences\"]",
     "label": "In.Digg.Nation Collective/Six Course Records",
     "year": 2020,
@@ -2326,7 +2326,7 @@
     "youtubeId": "g5j2VXBZyZg",
     "attributes": "{\"energy\":5,\"groove\":7,\"vocals\":8,\"darkness\":2,\"bpm\":80}",
     "artistBio": "Samory I is one of Jamaica's most unique modern roots voices, delivering spiritual and conscious reggae with powerful vocal delivery and deep Rastafarian conviction.",
-    "artistFacts": "[\"His album 'Revelation' was released in May 2026 on Tunup Squad\",\"Collaborated with Zion I Kings, a production collective known for authentic roots reggae\",\"Named after Samory Touré, a West African military leader who resisted colonialism\"]",
+    "artistFacts": "[\"His album 'Revelation' was released in May 2026 on Tunup Squad\",\"Collaborated with Zion I Kings, a production collective known for authentic roots reggae\",\"Named after Samory Tour\u00e9, a West African military leader who resisted colonialism\"]",
     "label": "Zion I Kings Music",
     "year": 2026,
     "isAiRecommended": 1
@@ -2671,11 +2671,11 @@
   {
     "id": 1140006,
     "title": "Scatter",
-    "artist": "Lila Iké",
+    "artist": "Lila Ik\u00e9",
     "genre": "reggae",
     "youtubeId": "sbHRRLKQ9uc",
     "attributes": "{\"energy\":6,\"groove\":7,\"vocals\":9,\"darkness\":3,\"bpm\":90}",
-    "artistBio": "Lila Iké is a Jamaican singer and songwriter known for her soulful fusion of reggae and R&B, delivering radiant performances that blend roots consciousness with modern sensibility.",
+    "artistBio": "Lila Ik\u00e9 is a Jamaican singer and songwriter known for her soulful fusion of reggae and R&B, delivering radiant performances that blend roots consciousness with modern sensibility.",
     "artistFacts": "[\"Part of the Protoje-led In.Digg.Nation Collective alongside Sevana and Jaz Elise\",\"Her debut album 'Treasure Self Love' was released in August 2025 via Ineffable Records to critical acclaim\",\"Performed a celebrated COLORS show version of 'Scatter' that garnered nearly 200K views\"]",
     "label": "Wurl Ike Records / In.Digg.Nation Collective",
     "year": 2025,
@@ -2787,11 +2787,11 @@
   {
     "id": 600006,
     "title": "Solitude",
-    "artist": "Lila Iké",
+    "artist": "Lila Ik\u00e9",
     "genre": "reggae",
     "youtubeId": "BxrY8TWKJL0",
     "attributes": "{\"energy\":5,\"groove\":7,\"vocals\":9,\"darkness\":4,\"bpm\":75}",
-    "artistBio": "Lila Iké is a Jamaican reggae singer and songwriter from Manchester parish, known for her powerful voice and deeply spiritual, conscious lyrics that carry the tradition of roots reggae into a new generation.",
+    "artistBio": "Lila Ik\u00e9 is a Jamaican reggae singer and songwriter from Manchester parish, known for her powerful voice and deeply spiritual, conscious lyrics that carry the tradition of roots reggae into a new generation.",
     "artistFacts": "[\"She is signed to Protoje's In.Digg.Nation Collective label, which champions modern roots reggae\",\"Her debut EP 'The ExPerience' (2020) was critically acclaimed and featured on major international playlists\",\"She made history as one of the first female roots reggae artists to headline a solo U.S. tour in 2026\"]",
     "label": "In.Digg.Nation Collective / Six Course Records",
     "year": 2020,
@@ -2935,7 +2935,7 @@
     "youtubeId": "ixlBWLALMvM",
     "attributes": "{\"energy\":6,\"groove\":7,\"vocals\":9,\"darkness\":4,\"bpm\":82}",
     "artistBio": "Protoje is a Jamaican roots reggae artist and leader of the reggae revival movement, known for his conscious lyrics and modern production that honors traditional roots while pushing the genre forward. His seventh album 'The Art of Acceptance' (2026) features collaborations with Jesse Royal, Damian Marley, and Masicka.",
-    "artistFacts": "[\"He is the son of Jamaican singer Lorna Bennett, known for her 1972 hit 'Breakfast in Bed'\",\"He founded the In.Digg.Nation Collective, nurturing artists like Lila Iké and Sevana\",\"His 2026 album 'The Art of Acceptance' is his seventh studio album, produced by Winta James\"]",
+    "artistFacts": "[\"He is the son of Jamaican singer Lorna Bennett, known for her 1972 hit 'Breakfast in Bed'\",\"He founded the In.Digg.Nation Collective, nurturing artists like Lila Ik\u00e9 and Sevana\",\"His 2026 album 'The Art of Acceptance' is his seventh studio album, produced by Winta James\"]",
     "label": "In.Digg.Nation Collective",
     "year": 2026,
     "isAiRecommended": 1
@@ -2988,11 +2988,11 @@
   {
     "id": 360006,
     "title": "Too Late to Lie",
-    "artist": "Lila Iké",
+    "artist": "Lila Ik\u00e9",
     "genre": "reggae",
     "youtubeId": "gNxLHwVgVh4",
     "attributes": "{\"energy\":5,\"groove\":7,\"vocals\":9,\"darkness\":4,\"bpm\":80}",
-    "artistBio": "Lila Iké is a Jamaican roots reggae singer from Manchester parish whose debut album 'Treasure Self Love' (2025) earned a Grammy nomination. Her music carries conscious, spiritual messages rooted in authentic Jamaican culture.",
+    "artistBio": "Lila Ik\u00e9 is a Jamaican roots reggae singer from Manchester parish whose debut album 'Treasure Self Love' (2025) earned a Grammy nomination. Her music carries conscious, spiritual messages rooted in authentic Jamaican culture.",
     "artistFacts": "[\"Her debut album 'Treasure Self Love' was nominated for a Grammy in the Best Reggae Album category\",\"She is signed to Protoje's In.Digg.Nation Collective label\",\"She performed at the 2026 Grammy Awards ceremony\"]",
     "label": "Wurl Ike Records / In.Digg.Nation Collective",
     "year": 2025,
@@ -3074,7 +3074,7 @@
     "youtubeId": "5JqHbeq-v1E",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
     "artistBio": "Omar Courtz is a Puerto Rican reggaeton artist signed to Rimas Music, known for his melodic flow and modern perreo productions that blend dembow rhythms with trap influences.",
-    "artistFacts": "[\"His 2026 album 'Por Si Mañana No Estoy' features collaborations with top Latin urban artists\",\"He is signed to Rimas Music, the same label as Bad Bunny\",\"The track features Dei V, a rising Puerto Rican star known for his underwater-themed aesthetic and versatile flow\"]",
+    "artistFacts": "[\"His 2026 album 'Por Si Ma\u00f1ana No Estoy' features collaborations with top Latin urban artists\",\"He is signed to Rimas Music, the same label as Bad Bunny\",\"The track features Dei V, a rising Puerto Rican star known for his underwater-themed aesthetic and versatile flow\"]",
     "label": "Rimas Music",
     "year": 2026,
     "isAiRecommended": 1
@@ -3118,7 +3118,7 @@
       "groove": 9,
       "vocals": 7
     },
-    "artistBio": "El Malilla is a Mexican artist from Valle de Chalco spearheading the reggaetón mexa movement with old-school-inspired perreo tracks.",
+    "artistBio": "El Malilla is a Mexican artist from Valle de Chalco spearheading the reggaet\u00f3n mexa movement with old-school-inspired perreo tracks.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3145,7 +3145,7 @@
     "youtubeId": "BboJ9CzPhnM",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":8,\"darkness\":4,\"bpm\":95}",
     "artistBio": "Young Miko is a Puerto Rican rapper and singer who has become one of the most prominent female voices in Latin trap and reggaeton, known for her confident flow and genre-blending style.",
-    "artistFacts": "[\"Born María Victoria Ramírez de Arellano in 2001, she rose to fame through freestyle videos on social media\",\"Her second studio album 'Do Not Disturb' (2025) featured collaborations with Eladio Carrión and debuted at the top of Latin charts\",\"She performed at the Billboard Mujeres Latinas de la Música ceremony in April 2026\"]",
+    "artistFacts": "[\"Born Mar\u00eda Victoria Ram\u00edrez de Arellano in 2001, she rose to fame through freestyle videos on social media\",\"Her second studio album 'Do Not Disturb' (2025) featured collaborations with Eladio Carri\u00f3n and debuted at the top of Latin charts\",\"She performed at the Billboard Mujeres Latinas de la M\u00fasica ceremony in April 2026\"]",
     "label": "Interscope Records",
     "year": 2026,
     "isAiRecommended": 1
@@ -3157,7 +3157,7 @@
     "genre": "reggaeton",
     "youtubeId": "aYQVwAVleyI",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Feid is a Colombian reggaeton and Latin urban artist from Medellín who has become one of the genre's most innovative voices. His collaboration with legendary Yandel on 'Brickell' bridges classic and modern reggaeton.",
+    "artistBio": "Feid is a Colombian reggaeton and Latin urban artist from Medell\u00edn who has become one of the genre's most innovative voices. His collaboration with legendary Yandel on 'Brickell' bridges classic and modern reggaeton.",
     "artistFacts": "[\"He started as a songwriter for other artists including J Balvin and Maluma before his solo career took off\",\"His album 'MANIFESTING 20-05' debuted at number one on Billboard's Top Latin Albums\",\"He is known for his signature green hair and ferxxo persona\"]",
     "label": "Universal Music Latino",
     "year": 2024,
@@ -3165,13 +3165,13 @@
   },
   {
     "id": 1170008,
-    "title": "Caribeño",
+    "title": "Caribe\u00f1o",
     "artist": "Rauw Alejandro",
     "genre": "reggaeton",
     "youtubeId": "jP2yeXWgRzE",
     "attributes": "{\"energy\":7,\"groove\":9,\"vocals\":8,\"darkness\":2,\"bpm\":96}",
     "artistBio": "Rauw Alejandro is a Puerto Rican singer and songwriter who fuses reggaeton with R&B, pop, and Caribbean rhythms. He received the 2025 Hispanic Heritage Award for Vision.",
-    "artistFacts": "[\"His album 'Cosa Nuestra: Capítulo 0' was released in September 2025 with 14 tracks\",\"He trained as a professional dancer before becoming a musician\",\"He has collaborated with artists ranging from Rosalía to Bizarrap\"]",
+    "artistFacts": "[\"His album 'Cosa Nuestra: Cap\u00edtulo 0' was released in September 2025 with 14 tracks\",\"He trained as a professional dancer before becoming a musician\",\"He has collaborated with artists ranging from Rosal\u00eda to Bizarrap\"]",
     "label": "Sony Music Latin",
     "year": 2025,
     "isAiRecommended": 1
@@ -3207,7 +3207,7 @@
     "youtubeId": "qAzWL2M1sN8",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":5,\"bpm\":96}",
     "artistBio": "Myke Towers is a Puerto Rican rapper and singer who rose from the underground freestyle scene to become one of Latin music's most versatile artists, blending reggaeton with trap and R&B influences.",
-    "artistFacts": "[\"Myke Towers' real name is Michael David Torres and he grew up in Río Piedras, Puerto Rico\",\"He gained initial recognition through freestyle battles before transitioning to recorded music\",\"COMPETENCIA is from his album 'LA PANTERA NEGRA' and showcases his confident lyrical flow\"]",
+    "artistFacts": "[\"Myke Towers' real name is Michael David Torres and he grew up in R\u00edo Piedras, Puerto Rico\",\"He gained initial recognition through freestyle battles before transitioning to recorded music\",\"COMPETENCIA is from his album 'LA PANTERA NEGRA' and showcases his confident lyrical flow\"]",
     "label": "Warner Music Latina",
     "year": 2024,
     "isAiRecommended": 1
@@ -3220,7 +3220,7 @@
     "youtubeId": "irBWuOKzBTI",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":5,\"bpm\":100}",
     "artistBio": "Rauw Alejandro is a Puerto Rican singer and songwriter who blends reggaeton with R&B, pop, and electronic elements, known for his versatile vocal style and dance moves.",
-    "artistFacts": "[\"He trained as a professional dancer before pursuing music and was part of a dance reality show\",\"His 2025 project 'Cosa Nuestra' reunited him with legends Wisin and Ñengo Flow\",\"He launched his Falxxo Tour in 2026 across the United States\"]",
+    "artistFacts": "[\"He trained as a professional dancer before pursuing music and was part of a dance reality show\",\"His 2025 project 'Cosa Nuestra' reunited him with legends Wisin and \u00d1engo Flow\",\"He launched his Falxxo Tour in 2026 across the United States\"]",
     "label": "Sony Music Latin",
     "year": 2025,
     "isAiRecommended": 1
@@ -3253,7 +3253,7 @@
   },
   {
     "id": 29,
-    "title": "DÁKITI",
+    "title": "D\u00c1KITI",
     "artist": "Bad Bunny & Jhayco",
     "genre": "reggaeton",
     "youtubeId": "TmKh7lAwnBI",
@@ -3281,7 +3281,7 @@
     "genre": "reggaeton",
     "youtubeId": "SSWM9wWp1Rk",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":100}",
-    "artistBio": "Salomón Villada Hoyos, known as Feid or Ferxxo, is a Colombian singer, songwriter, and producer who has become one of the most influential figures in modern reggaeton and Latin urban music.",
+    "artistBio": "Salom\u00f3n Villada Hoyos, known as Feid or Ferxxo, is a Colombian singer, songwriter, and producer who has become one of the most influential figures in modern reggaeton and Latin urban music.",
     "artistFacts": "[\"'DALLAX' features Ty Dolla $ign and is from his 2025 album 'FERXXO VOL X: Sagrado'\",\"He won a Latin Grammy Award for his songwriting contributions to the genre\",\"He is known for his signature green aesthetic and his massive 'Ferxxocalipsis' tour\"]",
     "label": "UMG Recordings",
     "year": 2025,
@@ -3290,12 +3290,12 @@
   {
     "id": 1350007,
     "title": "Dando Vueltas",
-    "artist": "Kidd Voodoo & Pablo Alborán",
+    "artist": "Kidd Voodoo & Pablo Albor\u00e1n",
     "genre": "reggaeton",
     "youtubeId": "16IkIHl0lnE",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":8,\"darkness\":4,\"bpm\":92}",
     "artistBio": "Kidd Voodoo is a Chilean reggaeton artist redefining Latin urban music from the Southern Hemisphere, known for his melodic approach and emotional depth within the reggaeton framework.",
-    "artistFacts": "[\"Kidd Voodoo is considered the new benchmark of Chilean reggaeton\",\"His album 'Satirología' established him as a major force in Latin urban music\",\"Dando Vueltas features Spanish pop star Pablo Alborán in an unexpected cross-genre collaboration\"]",
+    "artistFacts": "[\"Kidd Voodoo is considered the new benchmark of Chilean reggaeton\",\"His album 'Satirolog\u00eda' established him as a major force in Latin urban music\",\"Dando Vueltas features Spanish pop star Pablo Albor\u00e1n in an unexpected cross-genre collaboration\"]",
     "label": "BZR Music",
     "year": 2026,
     "isAiRecommended": 1
@@ -3328,7 +3328,7 @@
   },
   {
     "id": 1410007,
-    "title": "DETRÁS DE TU ALMA",
+    "title": "DETR\u00c1S DE TU ALMA",
     "artist": "Mora",
     "genre": "reggaeton",
     "youtubeId": "7FN9cPPfHK8",
@@ -3365,7 +3365,7 @@
       "groove": 8,
       "vocals": 8
     },
-    "artistBio": "Rauw Alejandro is a Puerto Rican singer who pushes reggaetón into futuristic territory, blending it with R&B, electronic, and experimental sounds.",
+    "artistBio": "Rauw Alejandro is a Puerto Rican singer who pushes reggaet\u00f3n into futuristic territory, blending it with R&B, electronic, and experimental sounds.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3378,7 +3378,7 @@
     "genre": "reggaeton",
     "youtubeId": "2_f5Os7mKqM",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":90}",
-    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from Río Piedras who rose from underground trap mixtapes to become a global reggaeton and Latin urban star.",
+    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from R\u00edo Piedras who rose from underground trap mixtapes to become a global reggaeton and Latin urban star.",
     "artistFacts": "[\"'Diosa' appears on his breakthrough 2020 album 'Easy Money Baby'.\",\"He began his career battling and releasing freestyles before turning to melodic reggaeton.\",\"A remix of 'Diosa' featured Anuel AA and Natti Natasha.\"]",
     "label": "White World Music / Warner Latina",
     "year": 2020,
@@ -3392,7 +3392,7 @@
     "youtubeId": "ssVCtZBQyus",
     "attributes": "{\"energy\":7,\"groove\":9,\"vocals\":7,\"darkness\":6,\"bpm\":100}",
     "artistBio": "Mora is a Puerto Rican reggaeton artist, songwriter, and producer signed to Rimas Entertainment, known for his versatile flow and dark, atmospheric beats. C. Tangana is a Spanish artist who blends Latin urban music with flamenco and pop.",
-    "artistFacts": "[\"Mora's album 'Lo Mismo de Siempre' was released in 2025 on Rimas Entertainment\",\"C. Tangana's album 'El Madrileño' was one of the most acclaimed Spanish albums of the decade\",\"Mora has written songs for Bad Bunny and other major Latin artists\"]",
+    "artistFacts": "[\"Mora's album 'Lo Mismo de Siempre' was released in 2025 on Rimas Entertainment\",\"C. Tangana's album 'El Madrile\u00f1o' was one of the most acclaimed Spanish albums of the decade\",\"Mora has written songs for Bad Bunny and other major Latin artists\"]",
     "label": "Rimas Entertainment",
     "year": 2025,
     "isAiRecommended": 1
@@ -3417,7 +3417,7 @@
     "genre": "reggaeton",
     "youtubeId": "1B2PiJB-AlI",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":8,\"darkness\":4,\"bpm\":92}",
-    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from Río Piedras, known for his versatile flow that seamlessly transitions between reggaeton, trap, and melodic Latin pop.",
+    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from R\u00edo Piedras, known for his versatile flow that seamlessly transitions between reggaeton, trap, and melodic Latin pop.",
     "artistFacts": "[\"His real name is Michael Anthony Torres Monge and he studied electrical engineering before pursuing music full-time\",\"He gained recognition through freestyle battles in Puerto Rico's underground rap scene\",\"His 2025 album 'Island Boyz' showcased his Caribbean musical roots beyond reggaeton\"]",
     "label": "Warner Music Latina",
     "year": 2025,
@@ -3425,13 +3425,13 @@
   },
   {
     "id": 1680007,
-    "title": "Feliz Cumpleaños Ferxxo",
+    "title": "Feliz Cumplea\u00f1os Ferxxo",
     "artist": "Feid",
     "genre": "reggaeton",
     "youtubeId": "jRxDUsGmwuc",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":6,\"darkness\":4,\"bpm\":92}",
-    "artistBio": "Feid (Salomón Villada Hoyos) is a Colombian singer and songwriter who became one of reggaetón's biggest modern stars under his 'Ferxxo' alter ego.",
-    "artistFacts": "[\"Before fame as a performer he was a prolific songwriter, penning hits for J Balvin and others.\",\"His signature neon-green aesthetic and 'Ferxxo' branding have become a recognizable trademark.\",\"'Feliz Cumpleaños Ferxxo' marked a major turning point in his rise to global reggaetón stardom in 2022.\"]",
+    "artistBio": "Feid (Salom\u00f3n Villada Hoyos) is a Colombian singer and songwriter who became one of reggaet\u00f3n's biggest modern stars under his 'Ferxxo' alter ego.",
+    "artistFacts": "[\"Before fame as a performer he was a prolific songwriter, penning hits for J Balvin and others.\",\"His signature neon-green aesthetic and 'Ferxxo' branding have become a recognizable trademark.\",\"'Feliz Cumplea\u00f1os Ferxxo' marked a major turning point in his rise to global reggaet\u00f3n stardom in 2022.\"]",
     "label": "Universal Music Latino",
     "year": 2022,
     "isAiRecommended": 1
@@ -3475,7 +3475,7 @@
       "groove": 9,
       "vocals": 7
     },
-    "artistBio": "FloyyMenor and Cris MJ are Chilean artists at the forefront of the reggaetón chileno movement that exploded globally in 2024.",
+    "artistBio": "FloyyMenor and Cris MJ are Chilean artists at the forefront of the reggaet\u00f3n chileno movement that exploded globally in 2024.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3483,7 +3483,7 @@
   },
   {
     "id": 750008,
-    "title": "HÁBLAME CLARO",
+    "title": "H\u00c1BLAME CLARO",
     "artist": "Yandel & Feid",
     "genre": "reggaeton",
     "youtubeId": "wPGn8iqoyGY",
@@ -3496,25 +3496,25 @@
   },
   {
     "id": 960007,
-    "title": "Hola Qué Tal",
+    "title": "Hola Qu\u00e9 Tal",
     "artist": "Blessd ft. Myke Towers",
     "genre": "reggaeton",
     "youtubeId": "sQsFyYlOQFw",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":3,\"bpm\":96}",
-    "artistBio": "Colombian reggaeton artist from Medellín known for his energetic style and infectious hooks, part of the new wave of Colombian urban music.",
-    "artistFacts": "[\"Hola Qué Tal was produced by Ovy On The Drums, one of reggaeton's most sought-after producers\",\"The track is part of his 2026 album El Mejor De Todos Los Tiempos\",\"From Medellín, Colombia, representing the growing Colombian reggaeton scene\"]",
+    "artistBio": "Colombian reggaeton artist from Medell\u00edn known for his energetic style and infectious hooks, part of the new wave of Colombian urban music.",
+    "artistFacts": "[\"Hola Qu\u00e9 Tal was produced by Ovy On The Drums, one of reggaeton's most sought-after producers\",\"The track is part of his 2026 album El Mejor De Todos Los Tiempos\",\"From Medell\u00edn, Colombia, representing the growing Colombian reggaeton scene\"]",
     "label": "Universal Music Latino",
     "year": 2026,
     "isAiRecommended": 1
   },
   {
     "id": 990007,
-    "title": "HOLA QUÉ TAL",
+    "title": "HOLA QU\u00c9 TAL",
     "artist": "Blessd & Myke Towers",
     "genre": "reggaeton",
     "youtubeId": "xHfqeMkd9ko",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Blessd is a rising Colombian reggaeton artist from Medellín known as 'El Niño de Medellín', blending reggaeton with trap and urban Latin sounds. Myke Towers is a Puerto Rican rapper and singer who has become one of Latin music's most consistent hitmakers.",
+    "artistBio": "Blessd is a rising Colombian reggaeton artist from Medell\u00edn known as 'El Ni\u00f1o de Medell\u00edn', blending reggaeton with trap and urban Latin sounds. Myke Towers is a Puerto Rican rapper and singer who has become one of Latin music's most consistent hitmakers.",
     "artistFacts": "[\"Blessd's album 'El Mejor de Todos los Tiempos' debuted at #1 on Latin charts\",\"Myke Towers was originally part of the duo Los Nenes before going solo\",\"The track was produced by Ovy On The Drums, one of reggaeton's top producers\"]",
     "label": "Dimelo Jane/Warner Latina",
     "year": 2026,
@@ -3522,13 +3522,13 @@
   },
   {
     "id": 180007,
-    "title": "Hola Qué Tal",
+    "title": "Hola Qu\u00e9 Tal",
     "artist": "Blessd, Myke Towers",
     "genre": "reggaeton",
     "youtubeId": "sQsFyYlOQFw",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":3,\"bpm\":96}",
-    "artistBio": "Blessd is a Colombian reggaeton artist from Medellín known for his melodic flow and collaborations with top Latin urban artists.",
-    "artistFacts": "[\"Real name Stiven Mesa Londoño, from Medellín, Colombia\",\"His album 'El Mejor Hombre Del Mundo' dropped in 2026 featuring major collaborations\",\"Myke Towers is a Puerto Rican rapper known for versatile flows across reggaeton and trap\"]",
+    "artistBio": "Blessd is a Colombian reggaeton artist from Medell\u00edn known for his melodic flow and collaborations with top Latin urban artists.",
+    "artistFacts": "[\"Real name Stiven Mesa Londo\u00f1o, from Medell\u00edn, Colombia\",\"His album 'El Mejor Hombre Del Mundo' dropped in 2026 featuring major collaborations\",\"Myke Towers is a Puerto Rican rapper known for versatile flows across reggaeton and trap\"]",
     "label": "Cigol Music Group",
     "year": 2026,
     "isAiRecommended": 1
@@ -3541,7 +3541,7 @@
     "youtubeId": "anmXwnaqF6s",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":100}",
     "artistBio": "Feid is a Colombian singer-songwriter who has redefined modern reggaeton with his experimental approach blending Afrobeats, R&B, and Latin urban sounds. His 2025 album 'FERXXO VOL X: Sagrado' was praised as his magnum opus.",
-    "artistFacts": "[\"Self-produced the entire 'FERXXO VOL X: Sagrado' album as a surprise release in June 2025\",\"Real name is Salomón Villada Hoyos from Medellín, Colombia\",\"Has over 7 million YouTube subscribers and is one of Latin music's biggest streaming artists\"]",
+    "artistFacts": "[\"Self-produced the entire 'FERXXO VOL X: Sagrado' album as a surprise release in June 2025\",\"Real name is Salom\u00f3n Villada Hoyos from Medell\u00edn, Colombia\",\"Has over 7 million YouTube subscribers and is one of Latin music's biggest streaming artists\"]",
     "label": "Universal Music Latino",
     "year": 2025,
     "isAiRecommended": 1
@@ -3553,7 +3553,7 @@
     "genre": "reggaeton",
     "youtubeId": "NabFo16M_Zg",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from Río Piedras who rose from freestyle battles to become one of reggaeton's most versatile voices, known for his lyrical dexterity and melodic flow.",
+    "artistBio": "Myke Towers is a Puerto Rican rapper and singer from R\u00edo Piedras who rose from freestyle battles to become one of reggaeton's most versatile voices, known for his lyrical dexterity and melodic flow.",
     "artistFacts": "[\"He studied electrical engineering before pursuing music full-time\",\"His album 'LYKE MIIKE' debuted at number 1 on Billboard's Top Latin Albums chart\",\"He is known for his freestyle skills, having won multiple underground rap battles in Puerto Rico\"]",
     "label": "One World International/Warner Music Latina",
     "year": 2025,
@@ -3585,7 +3585,7 @@
       "groove": 8,
       "vocals": 8
     },
-    "artistBio": "Myke Towers is a Puerto Rican rapper and singer known for his melodic flow and versatility across reggaetón, trap, and R&B.",
+    "artistBio": "Myke Towers is a Puerto Rican rapper and singer known for his melodic flow and versatility across reggaet\u00f3n, trap, and R&B.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3599,20 +3599,20 @@
     "youtubeId": "BVdngsy95mY",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":3,\"bpm\":100}",
     "artistBio": "Myke Towers is a Puerto Rican rapper and singer who blends reggaeton with trap and Latin pop. His smooth delivery and catchy hooks have earned him massive streaming numbers and a devoted global fanbase.",
-    "artistFacts": "[\"His real name is Michael David Torres Monge, from Río Piedras, Puerto Rico\",\"LALA has accumulated over 700 million views on YouTube\",\"He started gaining recognition through freestyle battles in Puerto Rico's underground scene\"]",
+    "artistFacts": "[\"His real name is Michael David Torres Monge, from R\u00edo Piedras, Puerto Rico\",\"LALA has accumulated over 700 million views on YouTube\",\"He started gaining recognition through freestyle battles in Puerto Rico's underground scene\"]",
     "label": "Warner Music Latina",
     "year": 2024,
     "isAiRecommended": 1
   },
   {
     "id": 270007,
-    "title": "Lo Más Cabrón",
+    "title": "Lo M\u00e1s Cabr\u00f3n",
     "artist": "Feid",
     "genre": "reggaeton",
     "youtubeId": "BSmtC8VOMcQ",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":3,\"bpm\":96}",
     "artistBio": "Feid is a Colombian singer, songwriter, and producer who has become one of reggaeton's most influential voices. His signature blend of perreo, melodic hooks, and urban Latin production has made him a global star.",
-    "artistFacts": "[\"Feid started as a songwriter for other artists including J Balvin and Maluma before launching his solo career\",\"His alter ego FERXXO represents his more experimental and romantic side, featured across multiple album concepts\",\"Lo Más Cabrón is from his 2026 project EL GREEN PRINT: La Saga, continuing his streak of chart-topping reggaeton releases\"]",
+    "artistFacts": "[\"Feid started as a songwriter for other artists including J Balvin and Maluma before launching his solo career\",\"His alter ego FERXXO represents his more experimental and romantic side, featured across multiple album concepts\",\"Lo M\u00e1s Cabr\u00f3n is from his 2026 project EL GREEN PRINT: La Saga, continuing his streak of chart-topping reggaeton releases\"]",
     "label": "Universal Music Latino",
     "year": 2026,
     "isAiRecommended": 1
@@ -3630,7 +3630,7 @@
       "groove": 8,
       "vocals": 8
     },
-    "artistBio": "Darell is a Puerto Rican rapper known for his gritty voice and aggressive flow that can turn even sweet reggaetón into something raw.",
+    "artistBio": "Darell is a Puerto Rican rapper known for his gritty voice and aggressive flow that can turn even sweet reggaet\u00f3n into something raw.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3680,7 +3680,7 @@
     "youtubeId": "cvMuH8VK8mM",
     "attributes": "{\"energy\":5,\"groove\":7,\"vocals\":8,\"darkness\":5,\"bpm\":88}",
     "artistBio": "Myke Towers is a Puerto Rican rapper and singer known for his versatile flow across reggaeton, trap, and Latin pop. His 2025 album Island Boyz showcased his range across 23 tracks.",
-    "artistFacts": "[\"Myke Towers released three albums totaling 90 songs within an 11-month span in 2024-2025\",\"MAL DE AMORES features Mexican regional artist Junior H, blending reggaeton with música mexicana\",\"The Rudeboyz are a Colombian production duo who have crafted hits for Karol G and J Balvin\"]",
+    "artistFacts": "[\"Myke Towers released three albums totaling 90 songs within an 11-month span in 2024-2025\",\"MAL DE AMORES features Mexican regional artist Junior H, blending reggaeton with m\u00fasica mexicana\",\"The Rudeboyz are a Colombian production duo who have crafted hits for Karol G and J Balvin\"]",
     "label": "Warner Music Latina",
     "year": 2025,
     "isAiRecommended": 1
@@ -3688,7 +3688,7 @@
   {
     "id": 60077,
     "title": "MEDALLO",
-    "artist": "Blessd, Justin Quiles & Lenny Tavárez",
+    "artist": "Blessd, Justin Quiles & Lenny Tav\u00e1rez",
     "genre": "reggaeton",
     "youtubeId": "hMhR6T7EEfQ",
     "attributes": {
@@ -3698,7 +3698,7 @@
       "groove": 8,
       "vocals": 7
     },
-    "artistBio": "Blessd is a Colombian artist from Medellín representing the new generation of reggaetón colombiano with a street-authentic sound.",
+    "artistBio": "Blessd is a Colombian artist from Medell\u00edn representing the new generation of reggaet\u00f3n colombiano with a street-authentic sound.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3706,13 +3706,13 @@
   },
   {
     "id": 180008,
-    "title": "Mírame Baby",
+    "title": "M\u00edrame Baby",
     "artist": "Arcangel, Feid",
     "genre": "reggaeton",
     "youtubeId": "LGHLoOmvfVc",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":100}",
     "artistBio": "Arcangel is a legendary Puerto Rican-American reggaeton and Latin trap artist who has been a dominant force in Latin urban music for over two decades.",
-    "artistFacts": "[\"Born Austin Agustín Santos in New York City to Dominican parents\",\"His album 'La 8va Maravilla' in 2026 marked a major comeback\",\"Feid (Salomón Villada Hoyos) is a Colombian singer known for his romantic reggaeton style\"]",
+    "artistFacts": "[\"Born Austin Agust\u00edn Santos in New York City to Dominican parents\",\"His album 'La 8va Maravilla' in 2026 marked a major comeback\",\"Feid (Salom\u00f3n Villada Hoyos) is a Colombian singer known for his romantic reggaeton style\"]",
     "label": "Rimas Entertainment",
     "year": 2026,
     "isAiRecommended": 1
@@ -3724,7 +3724,7 @@
     "genre": "reggaeton",
     "youtubeId": "fq54F4f1u7g",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":5,\"bpm\":96}",
-    "artistBio": "Tainy is a Puerto Rican record producer and songwriter who has shaped the sound of modern reggaeton and Latin trap, producing hits for Bad Bunny, J Balvin, and Daddy Yankee. Feid (Salomón Villada Hoyos) is a Colombian singer and songwriter whose Ferxxo persona has made him one of Latin music's biggest stars.",
+    "artistBio": "Tainy is a Puerto Rican record producer and songwriter who has shaped the sound of modern reggaeton and Latin trap, producing hits for Bad Bunny, J Balvin, and Daddy Yankee. Feid (Salom\u00f3n Villada Hoyos) is a Colombian singer and songwriter whose Ferxxo persona has made him one of Latin music's biggest stars.",
     "artistFacts": "[\"Tainy has produced multiple number-one hits on the Billboard Hot Latin Songs chart including 'I Like It' by Cardi B\",\"Feid started his career as a songwriter for J Balvin and Nicky Jam before launching his solo career\",\"MONSTRUO's official music video has surpassed 6 million views since its release in late 2025\"]",
     "label": "Neon16/Interscope Records",
     "year": 2025,
@@ -3732,7 +3732,7 @@
   },
   {
     "id": 90002,
-    "title": "MOSCÚ",
+    "title": "MOSC\u00da",
     "artist": "Ozuna",
     "genre": "reggaeton",
     "youtubeId": "NBghhjuMNKM",
@@ -3750,8 +3750,8 @@
     "genre": "reggaeton",
     "youtubeId": "haytzSPoyfY",
     "attributes": "{\"energy\":7,\"groove\":9,\"vocals\":7,\"darkness\":3,\"bpm\":96}",
-    "artistBio": "Feid (Ferxxo) is a Colombian singer, songwriter, and producer from Medellín who has become one of reggaeton's most innovative voices with his smooth, melodic approach to urban Latin music.",
-    "artistFacts": "[\"Has released multiple singles in 2026 including 'CHICA 305', 'Mírame Baby', and 'CAMBIARÉ'\",\"His 2024 album 'Ferxxocalipsis' became one of the biggest Latin albums globally\",\"Known for his signature green aesthetic and Ferxxo alter ego\"]",
+    "artistBio": "Feid (Ferxxo) is a Colombian singer, songwriter, and producer from Medell\u00edn who has become one of reggaeton's most innovative voices with his smooth, melodic approach to urban Latin music.",
+    "artistFacts": "[\"Has released multiple singles in 2026 including 'CHICA 305', 'M\u00edrame Baby', and 'CAMBIAR\u00c9'\",\"His 2024 album 'Ferxxocalipsis' became one of the biggest Latin albums globally\",\"Known for his signature green aesthetic and Ferxxo alter ego\"]",
     "label": "Universal Music Latin",
     "year": 2026,
     "isAiRecommended": 1
@@ -3759,12 +3759,12 @@
   {
     "id": 210007,
     "title": "No Tiene Sentido",
-    "artist": "Beéle",
+    "artist": "Be\u00e9le",
     "genre": "reggaeton",
     "youtubeId": "HL9VoQ-er_U",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Beéle is a Colombian singer and songwriter from Barranquilla who has rapidly risen in the Latin urban scene with his blend of reggaeton, pop, and emotional balladry. His distinctive voice and catchy melodies have earned him collaborations with major artists like Ovy On The Drums and Feid.",
-    "artistFacts": "[\"He went viral at age 16 with his song 'Loco' which gained millions of streams on YouTube\",\"His real name is Brandon de Jesús López Orozco\",\"He signed with Ovy On The Drums' label Stendhal and has become one of Colombia's fastest-rising urban artists\"]",
+    "artistBio": "Be\u00e9le is a Colombian singer and songwriter from Barranquilla who has rapidly risen in the Latin urban scene with his blend of reggaeton, pop, and emotional balladry. His distinctive voice and catchy melodies have earned him collaborations with major artists like Ovy On The Drums and Feid.",
+    "artistFacts": "[\"He went viral at age 16 with his song 'Loco' which gained millions of streams on YouTube\",\"His real name is Brandon de Jes\u00fas L\u00f3pez Orozco\",\"He signed with Ovy On The Drums' label Stendhal and has become one of Colombia's fastest-rising urban artists\"]",
     "label": "Stendhal/Interscope",
     "year": 2025,
     "isAiRecommended": 1
@@ -3776,8 +3776,8 @@
     "genre": "reggaeton",
     "youtubeId": "oD5f55ohsc4",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":92}",
-    "artistBio": "Feid (Salomón Villada Hoyos) is a Colombian singer, songwriter and producer from Medellín whose melodic, perreo-driven reggaeton and 'Ferxxo' persona have made him a global Latin star.",
-    "artistFacts": "[\"'Normal' is a standout from his 2022 album 'Feliz Cumpleaños Ferxxo'.\",\"Before his solo fame he was a prolific songwriter, co-writing hits for artists like J Balvin.\",\"His signature neon-green aesthetic and 'Ferxxo' alias have become a recognizable brand.\"]",
+    "artistBio": "Feid (Salom\u00f3n Villada Hoyos) is a Colombian singer, songwriter and producer from Medell\u00edn whose melodic, perreo-driven reggaeton and 'Ferxxo' persona have made him a global Latin star.",
+    "artistFacts": "[\"'Normal' is a standout from his 2022 album 'Feliz Cumplea\u00f1os Ferxxo'.\",\"Before his solo fame he was a prolific songwriter, co-writing hits for artists like J Balvin.\",\"His signature neon-green aesthetic and 'Ferxxo' alias have become a recognizable brand.\"]",
     "label": "Universal Music Latino",
     "year": 2022,
     "isAiRecommended": 1
@@ -3790,7 +3790,7 @@
     "youtubeId": "IxEHLfUd2eM",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":3,\"bpm\":100}",
     "artistBio": "Feid is a Colombian singer-songwriter and one of reggaeton's most innovative voices, known for blending electronic production with Latin urban rhythms and emotionally charged lyrics.",
-    "artistFacts": "[\"Born Salomón Villada Hoyos in Medellín, he co-wrote hits for J Balvin and Nicky Jam before launching his solo career\",\"His album 'FERXXO VOL X: Sagrado' (2025) marked a creative evolution incorporating EDM and electronic elements\",\"He and Young Miko's collaboration 'Classy 101' became one of the biggest Latin hits of 2023 with over 600M YouTube views\"]",
+    "artistFacts": "[\"Born Salom\u00f3n Villada Hoyos in Medell\u00edn, he co-wrote hits for J Balvin and Nicky Jam before launching his solo career\",\"His album 'FERXXO VOL X: Sagrado' (2025) marked a creative evolution incorporating EDM and electronic elements\",\"He and Young Miko's collaboration 'Classy 101' became one of the biggest Latin hits of 2023 with over 600M YouTube views\"]",
     "label": "Universal Music Latino",
     "year": 2025,
     "isAiRecommended": 1
@@ -3816,7 +3816,7 @@
     "youtubeId": "CM-ojnBFEx4",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":6,\"darkness\":5,\"bpm\":94}",
     "artistBio": "Rauw Alejandro is a Puerto Rican singer blending classic perreo and dembow with R&B and experimental pop, dubbed one of reggaeton's most innovative new stars.",
-    "artistFacts": "[\"'Perreo Pesau'' comes from his 2020 debut album 'Afrodisíaco'.\",\"He fuses old-school reggaeton with electronic and funk influences across his albums.\",\"His 2021 album 'Vice Versa' produced the global smash 'Todo de Ti'.\"]",
+    "artistFacts": "[\"'Perreo Pesau'' comes from his 2020 debut album 'Afrodis\u00edaco'.\",\"He fuses old-school reggaeton with electronic and funk influences across his albums.\",\"His 2021 album 'Vice Versa' produced the global smash 'Todo de Ti'.\"]",
     "label": "Sony Music Latin / Duars Entertainment",
     "year": 2020,
     "isAiRecommended": 1
@@ -3870,7 +3870,7 @@
       "groove": 9,
       "vocals": 7
     },
-    "artistBio": "Rauw Alejandro is a Puerto Rican singer who blends reggaetón with R&B, pop, and electronic music, known for his dancing and visual artistry.",
+    "artistBio": "Rauw Alejandro is a Puerto Rican singer who blends reggaet\u00f3n with R&B, pop, and electronic music, known for his dancing and visual artistry.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -3910,13 +3910,13 @@
   },
   {
     "id": 420008,
-    "title": "QUÉ LÍO",
+    "title": "QU\u00c9 L\u00cdO",
     "artist": "Blessd",
     "genre": "reggaeton",
     "youtubeId": "QxpvTBNMMGM",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":3,\"bpm\":100}",
-    "artistBio": "Blessd (Stiven Mesa Londoño) is a Colombian rapper and singer from Medellín who has become one of the leading voices in modern reggaeton and Latin urban music. Known for his infectious energy and street-smart lyricism, he has collaborated with major artists including Anuel AA and Ovy On The Drums.",
-    "artistFacts": "[\"Born in Itagüí, Medellín, he rose from humble beginnings to become one of Colombia's biggest urban artists\",\"His collaboration 'Yogurcito Remix' has surpassed 100 million views on YouTube\",\"He has nearly 5 million subscribers on YouTube, making him one of the most-followed Latin urban artists on the platform\"]",
+    "artistBio": "Blessd (Stiven Mesa Londo\u00f1o) is a Colombian rapper and singer from Medell\u00edn who has become one of the leading voices in modern reggaeton and Latin urban music. Known for his infectious energy and street-smart lyricism, he has collaborated with major artists including Anuel AA and Ovy On The Drums.",
+    "artistFacts": "[\"Born in Itag\u00fc\u00ed, Medell\u00edn, he rose from humble beginnings to become one of Colombia's biggest urban artists\",\"His collaboration 'Yogurcito Remix' has surpassed 100 million views on YouTube\",\"He has nearly 5 million subscribers on YouTube, making him one of the most-followed Latin urban artists on the platform\"]",
     "label": "Dimelo Jae/Universal Music Latin",
     "year": 2026,
     "isAiRecommended": 1
@@ -3941,21 +3941,21 @@
     "genre": "reggaeton",
     "youtubeId": "2Fp-cU63CTU",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Feid is a Colombian reggaeton singer and songwriter from Medellín who has become one of Latin music's most consistent hitmakers. His melodic flow and romantic perreo style define modern Colombian urban music.",
-    "artistFacts": "[\"His real name is Salomón Villada Hoyos, from Medellín, Colombia\",\"Que Vuelta Vox is the lead track from his 2026 project EL GREEN PRINT: La Saga\",\"He is known for his alter ego Ferxxo and his signature green aesthetic\"]",
+    "artistBio": "Feid is a Colombian reggaeton singer and songwriter from Medell\u00edn who has become one of Latin music's most consistent hitmakers. His melodic flow and romantic perreo style define modern Colombian urban music.",
+    "artistFacts": "[\"His real name is Salom\u00f3n Villada Hoyos, from Medell\u00edn, Colombia\",\"Que Vuelta Vox is the lead track from his 2026 project EL GREEN PRINT: La Saga\",\"He is known for his alter ego Ferxxo and his signature green aesthetic\"]",
     "label": "Grabaciones Los Poderosos/Universal",
     "year": 2026,
     "isAiRecommended": 1
   },
   {
     "id": 2010007,
-    "title": "RÁPIDO",
+    "title": "R\u00c1PIDO",
     "artist": "Mora",
     "genre": "reggaeton",
     "youtubeId": "uU9Jor-8w1I",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":6,\"bpm\":105}",
     "artistBio": "Gabriel Armando Mora Quintero, known professionally as Mora, is a Puerto Rican singer, songwriter, and record producer who has helped shape modern reggaeton. He is known for blending reggaeton with electronica and trap, and has co-written major hits for artists like Bad Bunny and Karol G.",
-    "artistFacts": "[\"He was born in Bayamón, Puerto Rico, and began making his own music in 2015 after watching his cousin produce tracks.\",\"Before breaking out as a solo artist, he co-wrote massive hits including 'Dákiti' by Bad Bunny and Jhayco, and 'El Makinon' by Karol G.\",\"His debut album 'Primer Día de Clases' was released in 2021, and he is known for his futuristic sound and emotional melodies.\"]",
+    "artistFacts": "[\"He was born in Bayam\u00f3n, Puerto Rico, and began making his own music in 2015 after watching his cousin produce tracks.\",\"Before breaking out as a solo artist, he co-wrote massive hits including 'D\u00e1kiti' by Bad Bunny and Jhayco, and 'El Makinon' by Karol G.\",\"His debut album 'Primer D\u00eda de Clases' was released in 2021, and he is known for his futuristic sound and emotional melodies.\"]",
     "label": "Rimas Entertainment",
     "year": 2023,
     "isAiRecommended": 1
@@ -3993,8 +3993,8 @@
     "genre": "reggaeton",
     "youtubeId": "ROgcM9-N9jM",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":8,\"darkness\":5,\"bpm\":96}",
-    "artistBio": "Feid is a Colombian singer, songwriter, and producer from Medellín who has become one of the leading voices in modern reggaeton, known for his melodic style and collaborations with artists like Karol G and J Balvin.",
-    "artistFacts": "[\"His real name is Salomón Villada Hoyos, and he started as a songwriter for other artists before launching his solo career\",\"His album 'FERXXOCALIPSIS' (2023) became one of the biggest Latin albums of the year\",\"He is known for his alter ego 'Ferxxo' and has built a massive following in the Latin urban scene\"]",
+    "artistBio": "Feid is a Colombian singer, songwriter, and producer from Medell\u00edn who has become one of the leading voices in modern reggaeton, known for his melodic style and collaborations with artists like Karol G and J Balvin.",
+    "artistFacts": "[\"His real name is Salom\u00f3n Villada Hoyos, and he started as a songwriter for other artists before launching his solo career\",\"His album 'FERXXOCALIPSIS' (2023) became one of the biggest Latin albums of the year\",\"He is known for his alter ego 'Ferxxo' and has built a massive following in the Latin urban scene\"]",
     "label": "Universal Music Group",
     "year": 2024,
     "isAiRecommended": 1
@@ -4019,21 +4019,21 @@
     "genre": "reggaeton",
     "youtubeId": "og9ewQAioUk",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
-    "artistBio": "Blessd is a Colombian reggaeton artist from Medellín known for his energetic flow, collaborating here with Feid, one of the biggest names in modern Latin urban music.",
-    "artistFacts": "[\"Blessd rose to fame through the Medellín underground scene before breaking mainstream\",\"Feid (Ferxxo) is known for his distinctive melodic style and has collaborated with Bad Bunny and J Balvin\",\"The track has amassed over 42 million views on YouTube\"]",
+    "artistBio": "Blessd is a Colombian reggaeton artist from Medell\u00edn known for his energetic flow, collaborating here with Feid, one of the biggest names in modern Latin urban music.",
+    "artistFacts": "[\"Blessd rose to fame through the Medell\u00edn underground scene before breaking mainstream\",\"Feid (Ferxxo) is known for his distinctive melodic style and has collaborated with Bad Bunny and J Balvin\",\"The track has amassed over 42 million views on YouTube\"]",
     "label": "Icon Music / Universal",
     "year": 2024,
     "isAiRecommended": 1
   },
   {
     "id": 2010008,
-    "title": "SI TÚ SUPIERAS",
+    "title": "SI T\u00da SUPIERAS",
     "artist": "Feid",
     "genre": "reggaeton",
     "youtubeId": "75gaEbTLqpg",
     "attributes": "{\"energy\":7,\"groove\":9,\"vocals\":8,\"darkness\":4,\"bpm\":88}",
-    "artistBio": "Salomón Villada Hoyos, better known as Feid or Ferxxo, is a Colombian singer, songwriter, and record producer from Medellín. He has become a leading global voice in Latin music, known for his smooth vocals and unique fusion of reggaeton with urban rhythms.",
-    "artistFacts": "[\"He grew up in an artistic environment in Medellín, with a mother who is a preschool teacher and psychologist, and a father who is an arts teacher.\",\"He is famous for his signature green aesthetic, which has become a staple of his brand and live performances.\",\"He recently made history by becoming the first artist to sell out Puerto Rico's iconic 'El Choliseo' arena in an hour or less.\"]",
+    "artistBio": "Salom\u00f3n Villada Hoyos, better known as Feid or Ferxxo, is a Colombian singer, songwriter, and record producer from Medell\u00edn. He has become a leading global voice in Latin music, known for his smooth vocals and unique fusion of reggaeton with urban rhythms.",
+    "artistFacts": "[\"He grew up in an artistic environment in Medell\u00edn, with a mother who is a preschool teacher and psychologist, and a father who is an arts teacher.\",\"He is famous for his signature green aesthetic, which has become a staple of his brand and live performances.\",\"He recently made history by becoming the first artist to sell out Puerto Rico's iconic 'El Choliseo' arena in an hour or less.\"]",
     "label": "Universal Music Latino",
     "year": 2021,
     "isAiRecommended": 1
@@ -4046,7 +4046,7 @@
     "youtubeId": "JgqsAvvwZAQ",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":7,\"darkness\":3,\"bpm\":92}",
     "artistBio": "Myke Towers is a Puerto Rican rapper and singer who has risen to become one of reggaeton's most versatile artists, known for his melodic flow and ability to bridge Latin and European urban music.",
-    "artistFacts": "[\"Born Michael David Torres Monge in Río Piedras, Puerto Rico\",\"'SOLEAO' bridges Latin reggaeton with Spanish urban music through his collaboration with Spain's Quevedo\",\"His album 'ISLAND BOYZ' showcased a more melodic and international direction for his sound\"]",
+    "artistFacts": "[\"Born Michael David Torres Monge in R\u00edo Piedras, Puerto Rico\",\"'SOLEAO' bridges Latin reggaeton with Spanish urban music through his collaboration with Spain's Quevedo\",\"His album 'ISLAND BOYZ' showcased a more melodic and international direction for his sound\"]",
     "label": "Warner Music Latina",
     "year": 2025,
     "isAiRecommended": 1
@@ -4059,7 +4059,7 @@
     "youtubeId": "Q2ftMmazZCU",
     "attributes": "{\"energy\":6,\"groove\":8,\"vocals\":7,\"darkness\":4,\"bpm\":96}",
     "artistBio": "Feid is a Colombian singer, songwriter, and producer who has become one of reggaeton's most innovative voices. Known for his emotional depth and melodic approach to urban Latin music.",
-    "artistFacts": "[\"Feid's real name is Salomón Villada Hoyos and he started as a songwriter for other artists before his solo career\",\"His 2025 album X Sagrado was praised as his best work by fans and critics\",\"SORRY 4 THAT MUCH has amassed over 164 million views on YouTube\"]",
+    "artistFacts": "[\"Feid's real name is Salom\u00f3n Villada Hoyos and he started as a songwriter for other artists before his solo career\",\"His 2025 album X Sagrado was praised as his best work by fans and critics\",\"SORRY 4 THAT MUCH has amassed over 164 million views on YouTube\"]",
     "label": "Universal Music Latin",
     "year": 2024,
     "isAiRecommended": 1
@@ -4118,7 +4118,7 @@
   },
   {
     "id": 30,
-    "title": "Tití Me Preguntó",
+    "title": "Tit\u00ed Me Pregunt\u00f3",
     "artist": "Bad Bunny",
     "genre": "reggaeton",
     "youtubeId": "Cr8K88UcO0s",
@@ -4173,7 +4173,7 @@
     "youtubeId": "R931AAvWbjM",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":4,\"bpm\":100}",
     "artistBio": "Dei V is a Puerto Rican reggaeton artist from the new generation of Latin urban music, known for his smooth flow, catchy hooks, and authentic street-influenced sound.",
-    "artistFacts": "[\"He emerged from Puerto Rico's underground scene and quickly gained recognition with tracks like 'En Su Nota' and 'Los Dueños De La Calle'\",\"His album 'Underwater' (2025) was named among The New York Times' Best Albums of 2024 and Rolling Stone's 50 Best Latin Albums\",\"He runs his own label Under Water Music and manages his career independently\"]",
+    "artistFacts": "[\"He emerged from Puerto Rico's underground scene and quickly gained recognition with tracks like 'En Su Nota' and 'Los Due\u00f1os De La Calle'\",\"His album 'Underwater' (2025) was named among The New York Times' Best Albums of 2024 and Rolling Stone's 50 Best Latin Albums\",\"He runs his own label Under Water Music and manages his career independently\"]",
     "label": "Under Water Music",
     "year": 2025,
     "isAiRecommended": 1
@@ -4191,7 +4191,7 @@
       "groove": 7,
       "vocals": 8
     },
-    "artistBio": "A collaboration between Bad Bunny and Puerto Rican singer Mora, exploring a more melancholic and introspective side of reggaetón.",
+    "artistBio": "A collaboration between Bad Bunny and Puerto Rican singer Mora, exploring a more melancholic and introspective side of reggaet\u00f3n.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -4204,7 +4204,7 @@
     "genre": "reggaeton",
     "youtubeId": "-cdwUr6qSGo",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":7,\"darkness\":4,\"bpm\":100}",
-    "artistBio": "Feid is a Colombian singer-songwriter and producer from Medellín who has become one of reggaeton's most innovative voices, known for his melodic approach and the alter ego Ferxxo.",
+    "artistBio": "Feid is a Colombian singer-songwriter and producer from Medell\u00edn who has become one of reggaeton's most innovative voices, known for his melodic approach and the alter ego Ferxxo.",
     "artistFacts": "[\"Feid started as a songwriter for other artists including J Balvin and Nicky Jam before launching his solo career\",\"His 2026 album 'EL GREEN PRINT: La Saga' features a conceptual battle between his personas Feid and Ferxxo\",\"VACAXIONES tells the story of a woman who gave up on love after painful heartbreaks\"]",
     "label": "Universal Music Latin",
     "year": 2022,
@@ -4218,14 +4218,14 @@
     "youtubeId": "ZSV5sC8wPqk",
     "attributes": "{\"energy\":8,\"groove\":9,\"vocals\":6,\"darkness\":4,\"bpm\":98}",
     "artistBio": "Omar Courtz is a rising Puerto Rican reggaeton artist who blends old-school dembow rhythms with modern production, representing the new wave of urban Latin music.",
-    "artistFacts": "[\"His 2026 project 'POR SI MAÑANA NO ESTOY' established him as one of reggaeton's most exciting new voices\",\"He collaborated with Myke Towers on the hit 'De Lejitos' remix which gained over 11 million YouTube views\",\"He is signed to Pitbull's Mr.305 label, connecting classic reggaeton legacy with new generation artists\"]",
+    "artistFacts": "[\"His 2026 project 'POR SI MA\u00d1ANA NO ESTOY' established him as one of reggaeton's most exciting new voices\",\"He collaborated with Myke Towers on the hit 'De Lejitos' remix which gained over 11 million YouTube views\",\"He is signed to Pitbull's Mr.305 label, connecting classic reggaeton legacy with new generation artists\"]",
     "label": "Mr.305 Records",
     "year": 2026,
     "isAiRecommended": 1
   },
   {
     "id": 960008,
-    "title": "Volvió El Perreo",
+    "title": "Volvi\u00f3 El Perreo",
     "artist": "Dei V",
     "genre": "reggaeton",
     "youtubeId": "b6He30S1pa8",
@@ -4262,7 +4262,7 @@
       "groove": 9,
       "vocals": 7
     },
-    "artistBio": "A collaboration between reggaetón legend Yandel and new-gen star Feid, bridging two generations of the genre.",
+    "artistBio": "A collaboration between reggaet\u00f3n legend Yandel and new-gen star Feid, bridging two generations of the genre.",
     "artistFacts": [],
     "label": "",
     "year": null,
@@ -4288,7 +4288,7 @@
     "genre": "reggaeton",
     "youtubeId": "GtSRKwDCaZM",
     "attributes": "{\"energy\":8,\"groove\":8,\"vocals\":7,\"darkness\":5,\"bpm\":92}",
-    "artistBio": "Bad Bunny (Benito Antonio Martínez Ocasio) is a Puerto Rican superstar who reshaped modern reggaeton and Latin trap into a global phenomenon with his genre-blurring style.",
+    "artistBio": "Bad Bunny (Benito Antonio Mart\u00ednez Ocasio) is a Puerto Rican superstar who reshaped modern reggaeton and Latin trap into a global phenomenon with his genre-blurring style.",
     "artistFacts": "[\"'Yo Perreo Sola' from 2020's 'YHLQMDLG' is an empowerment anthem, with a video featuring Bad Bunny in drag.\",\"He became the most-streamed artist on Spotify globally for three consecutive years.\",\"He has also built a parallel career in pro wrestling and acting.\"]",
     "label": "Rimas Entertainment",
     "year": 2020,
@@ -4745,9 +4745,9 @@
       "groove": 8,
       "vocals": 1
     },
-    "artistBio": "Kiasmos is a duo of Ólafur Arnalds and Janus Rasmussen, blending minimal techno with neo-classical piano for a uniquely emotional electronic sound.",
+    "artistBio": "Kiasmos is a duo of \u00d3lafur Arnalds and Janus Rasmussen, blending minimal techno with neo-classical piano for a uniquely emotional electronic sound.",
     "artistFacts": [
-      "Ólafur Arnalds is also a renowned classical composer",
+      "\u00d3lafur Arnalds is also a renowned classical composer",
       "Their self-titled album became a crossover hit",
       "Known for intimate live shows combining piano and electronics"
     ],
@@ -5392,7 +5392,7 @@
     "youtubeId": "KHbZZ5yRc8Y",
     "attributes": "{\"energy\":7,\"groove\":8,\"vocals\":7,\"darkness\":3,\"bpm\":122}",
     "artistBio": "Laurence Guy is a London-based producer and Rinse FM radio host known for emotive, groove-driven house music released on labels like Shall Not Fade, Studio Barnhus, and Future Classic.",
-    "artistFacts": "[\"He hosts a regular show on Rinse FM showcasing underground house and disco\",\"His track 'Saw You For The First Time' became a viral deep house anthem\",\"He has released music on Swedish label Studio Barnhus alongside Axel Boman and Kornél Kovács\"]",
+    "artistFacts": "[\"He hosts a regular show on Rinse FM showcasing underground house and disco\",\"His track 'Saw You For The First Time' became a viral deep house anthem\",\"He has released music on Swedish label Studio Barnhus alongside Axel Boman and Korn\u00e9l Kov\u00e1cs\"]",
     "label": "Future Classic",
     "year": 2025,
     "isAiRecommended": 1
@@ -6255,7 +6255,7 @@
   {
     "id": 2040092,
     "title": "i think it's time.",
-    "artist": "Manïn",
+    "artist": "Man\u00efn",
     "genre": "techno",
     "youtubeId": "_npJsW1uVFg",
     "attributes": {
@@ -6875,7 +6875,7 @@
       "groove": 9,
       "vocals": 3
     },
-    "artistBio": "Javier Carballo is a Spanish DJ and producer from Gran Canaria, known for his deep groovy minimal techno and his connection to the Días de Campo festival scene. A true crate-digger with impeccable taste.",
+    "artistBio": "Javier Carballo is a Spanish DJ and producer from Gran Canaria, known for his deep groovy minimal techno and his connection to the D\u00edas de Campo festival scene. A true crate-digger with impeccable taste.",
     "artistFacts": [
       "His MEOKO mix showcases his signature deep groovy sound",
       "Plays regularly across European festivals",
@@ -7480,7 +7480,7 @@
       "groove": 8,
       "vocals": 7
     },
-    "artistBio": "DJ Koze is a German producer known for his eccentric, emotionally rich house music that defies categorization — playful, deep, and always surprising.",
+    "artistBio": "DJ Koze is a German producer known for his eccentric, emotionally rich house music that defies categorization \u2014 playful, deep, and always surprising.",
     "artistFacts": [
       "His album \"Knock Knock\" was critically acclaimed worldwide",
       "Runs the Pampa Records label",
@@ -7690,7 +7690,7 @@
   {
     "id": 1500007,
     "title": "Rej",
-    "artist": "Âme",
+    "artist": "\u00c2me",
     "genre": "techno",
     "youtubeId": "VkWg1xOQwTI",
     "attributes": {
@@ -7700,7 +7700,7 @@
       "groove": 10,
       "vocals": 4
     },
-    "artistBio": "Âme is a German electronic duo (Kristian Beyer and Frank Wiedemann) who co-founded the legendary Innervisions label with Dixon, defining melodic house/techno.",
+    "artistBio": "\u00c2me is a German electronic duo (Kristian Beyer and Frank Wiedemann) who co-founded the legendary Innervisions label with Dixon, defining melodic house/techno.",
     "artistFacts": [
       "Co-founders of Innervisions with Dixon",
       "Rej is considered one of the greatest house tracks ever made",
@@ -8400,10 +8400,10 @@
       "groove": 9,
       "vocals": 2
     },
-    "artistBio": "Javier Carballo is a Spanish DJ and producer from Gran Canaria, known for his deep groovy minimal techno and his connection to the Días de Campo festival scene. A true crate-digger with impeccable taste.",
+    "artistBio": "Javier Carballo is a Spanish DJ and producer from Gran Canaria, known for his deep groovy minimal techno and his connection to the D\u00edas de Campo festival scene. A true crate-digger with impeccable taste.",
     "artistFacts": [
       "Key figure in the Canary Islands electronic scene",
-      "Resident at Días de Campo festival",
+      "Resident at D\u00edas de Campo festival",
       "Known for blending minimal techno with organic grooves and deep house"
     ],
     "label": "Serkal",
@@ -9244,11 +9244,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9268,11 +9268,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9292,11 +9292,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9316,11 +9316,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9340,11 +9340,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9364,11 +9364,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9388,11 +9388,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9401,7 +9401,7 @@
   {
     "id": 2130013,
     "externalId": "kids-canciones-infantiles-pin-pon-es-un-mu-eco",
-    "title": "Pin Pon es un Muñeco",
+    "title": "Pin Pon es un Mu\u00f1eco",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "RX0VtkQOddw",
@@ -9412,11 +9412,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9436,11 +9436,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9449,7 +9449,7 @@
   {
     "id": 2130015,
     "externalId": "kids-canciones-infantiles-cuc--cantaba-la-rana",
-    "title": "Cucú Cantaba la Rana",
+    "title": "Cuc\u00fa Cantaba la Rana",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "pdSGbZPq1Gg",
@@ -9460,11 +9460,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9484,11 +9484,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9508,11 +9508,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9532,11 +9532,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9556,11 +9556,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9569,7 +9569,7 @@
   {
     "id": 2130020,
     "externalId": "kids-cantajuego-sal-de-ah--chivita",
-    "title": "Sal de Ahí Chivita",
+    "title": "Sal de Ah\u00ed Chivita",
     "artist": "CantaJuego",
     "genre": "infantil",
     "youtubeId": "ZSDIYLWd9ZU",
@@ -9580,11 +9580,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9594,7 +9594,7 @@
     "id": 2130021,
     "externalId": "kids-d-o-tiempo-de-sol-el-baile-del-movimiento",
     "title": "El Baile del Movimiento",
-    "artist": "Dúo Tiempo de Sol",
+    "artist": "D\u00fao Tiempo de Sol",
     "genre": "infantil",
     "youtubeId": "nxNvVbIycPg",
     "attributes": {
@@ -9604,11 +9604,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9618,7 +9618,7 @@
     "id": 2130022,
     "externalId": "kids-d-o-tiempo-de-sol-el-baile-de-los-animales",
     "title": "El Baile de los Animales",
-    "artist": "Dúo Tiempo de Sol",
+    "artist": "D\u00fao Tiempo de Sol",
     "genre": "infantil",
     "youtubeId": "pgzXRKtg6ik",
     "attributes": {
@@ -9628,11 +9628,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9652,11 +9652,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9665,7 +9665,7 @@
   {
     "id": 2130024,
     "externalId": "kids-canciones-infantiles-susanita-tiene-un-rat-n",
-    "title": "Susanita Tiene un Ratón",
+    "title": "Susanita Tiene un Rat\u00f3n",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "yCjJyiqpAuU",
@@ -9676,11 +9676,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9689,7 +9689,7 @@
   {
     "id": 2130025,
     "externalId": "kids-canciones-infantiles-debajo-un-bot-n",
-    "title": "Debajo un Botón",
+    "title": "Debajo un Bot\u00f3n",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "bYLEqgowAHQ",
@@ -9700,11 +9700,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9724,11 +9724,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9737,7 +9737,7 @@
   {
     "id": 2130027,
     "externalId": "kids-canciones-infantiles-tengo-una-mu-eca-vestida-de-azul",
-    "title": "Tengo una Muñeca Vestida de Azul",
+    "title": "Tengo una Mu\u00f1eca Vestida de Azul",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "mbpuTH5FZvo",
@@ -9748,11 +9748,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9761,7 +9761,7 @@
   {
     "id": 2130028,
     "externalId": "kids-canciones-infantiles-el-auto-de-pap-",
-    "title": "El Auto de Papá",
+    "title": "El Auto de Pap\u00e1",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "enVHR3HTxas",
@@ -9772,11 +9772,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9785,7 +9785,7 @@
   {
     "id": 2130029,
     "externalId": "kids-canciones-infantiles-la-ara-a-peque-ita",
-    "title": "La Araña Pequeñita",
+    "title": "La Ara\u00f1a Peque\u00f1ita",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "XvKotqrAPFA",
@@ -9796,11 +9796,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9809,7 +9809,7 @@
   {
     "id": 2130030,
     "externalId": "kids-little-baby-bum-las-ruedas-del-autob-s",
-    "title": "Las Ruedas del Autobús",
+    "title": "Las Ruedas del Autob\u00fas",
     "artist": "Little Baby Bum",
     "genre": "infantil",
     "youtubeId": "e_04ZrNroTo",
@@ -9820,11 +9820,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9833,7 +9833,7 @@
   {
     "id": 2130031,
     "externalId": "kids-looloo-kids-johny-johny-s--pap-",
-    "title": "Johny Johny Sí Papá",
+    "title": "Johny Johny S\u00ed Pap\u00e1",
     "artist": "LooLoo Kids",
     "genre": "infantil",
     "youtubeId": "F4tHL8reNCs",
@@ -9844,11 +9844,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9857,7 +9857,7 @@
   {
     "id": 2130032,
     "externalId": "kids-canciones-infantiles-estrellita-d-nde-est-s",
-    "title": "Estrellita Dónde Estás",
+    "title": "Estrellita D\u00f3nde Est\u00e1s",
     "artist": "Canciones Infantiles",
     "genre": "infantil",
     "youtubeId": "qDUfm2_beKE",
@@ -9868,11 +9868,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9892,11 +9892,11 @@
       "groove": 7,
       "vocals": 9
     },
-    "artistBio": "Canción infantil popular en español, perfecta para cantar y bailar con los niños.",
+    "artistBio": "Canci\u00f3n infantil popular en espa\u00f1ol, perfecta para cantar y bailar con los ni\u00f1os.",
     "artistFacts": [
-      "Canción clásica del repertorio infantil en español",
+      "Canci\u00f3n cl\u00e1sica del repertorio infantil en espa\u00f1ol",
       "Ideal para cantar con gestos y movimientos",
-      "Favorita en fiestas infantiles y guarderías"
+      "Favorita en fiestas infantiles y guarder\u00edas"
     ],
     "label": null,
     "year": null,
@@ -9906,7 +9906,7 @@
     "id": 2130034,
     "externalId": "frozen_rVjI9YRc4pE",
     "title": "Libre Soy",
-    "artist": "Carmen Sarahí (Frozen)",
+    "artist": "Carmen Sarah\u00ed (Frozen)",
     "genre": "infantil",
     "youtubeId": "rVjI9YRc4pE",
     "attributes": {
@@ -9929,8 +9929,8 @@
   {
     "id": 2130035,
     "externalId": "frozen_V2J-zzifWzU",
-    "title": "¿Y Si Hacemos Un Muñeco?",
-    "artist": "Romina Marroquín Payró (Frozen)",
+    "title": "\u00bfY Si Hacemos Un Mu\u00f1eco?",
+    "artist": "Romina Marroqu\u00edn Payr\u00f3 (Frozen)",
     "genre": "infantil",
     "youtubeId": "V2J-zzifWzU",
     "attributes": {
@@ -9953,8 +9953,8 @@
   {
     "id": 2130036,
     "externalId": "frozen_3e5P6CiwjaA",
-    "title": "Por Primera Vez en Años",
-    "artist": "Carmen López & Gisela (Frozen)",
+    "title": "Por Primera Vez en A\u00f1os",
+    "artist": "Carmen L\u00f3pez & Gisela (Frozen)",
     "genre": "infantil",
     "youtubeId": "3e5P6CiwjaA",
     "attributes": {
@@ -9977,7 +9977,7 @@
   {
     "id": 2130037,
     "externalId": "frozen_nD5He6e_iYc",
-    "title": "Hazme un Muñeco de Nieve",
+    "title": "Hazme un Mu\u00f1eco de Nieve",
     "artist": "Naima Barrosa (Frozen)",
     "genre": "infantil",
     "youtubeId": "nD5He6e_iYc",
@@ -10001,7 +10001,7 @@
   {
     "id": 2130038,
     "externalId": "frozen_TszQIGHLqJM",
-    "title": "Helado Corazón",
+    "title": "Helado Coraz\u00f3n",
     "artist": "Elenco de Frozen",
     "genre": "infantil",
     "youtubeId": "TszQIGHLqJM",
@@ -10025,8 +10025,8 @@
   {
     "id": 2130039,
     "externalId": "frozen_VxBtzRiWBsY",
-    "title": "Mucho Más Allá",
-    "artist": "Carmen Sarahí & AURORA (Frozen 2)",
+    "title": "Mucho M\u00e1s All\u00e1",
+    "artist": "Carmen Sarah\u00ed & AURORA (Frozen 2)",
     "genre": "infantil",
     "youtubeId": "VxBtzRiWBsY",
     "attributes": {
@@ -10049,8 +10049,8 @@
   {
     "id": 2130040,
     "externalId": "frozen_jcllZ4jSIGI",
-    "title": "Muéstrate",
-    "artist": "Carmen Sarahí & Leslie Gil (Frozen 2)",
+    "title": "Mu\u00e9strate",
+    "artist": "Carmen Sarah\u00ed & Leslie Gil (Frozen 2)",
     "genre": "infantil",
     "youtubeId": "jcllZ4jSIGI",
     "attributes": {
@@ -10140,6 +10140,1013 @@
     ],
     "label": "Walt Disney Records",
     "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000001,
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "TUVcZfQe-Kw",
+    "attributes": {
+      "bpm": 103,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "Dua Lipa is a British-Albanian pop superstar known for her retro-disco influenced dance-pop anthems.",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000002,
+    "title": "Don't Start Now",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "oygrmJFKYZY",
+    "attributes": {
+      "bpm": 124,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000003,
+    "title": "Physical",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "9HDEHj2yzew",
+    "attributes": {
+      "bpm": 148,
+      "darkness": 3,
+      "energy": 9,
+      "groove": 8,
+      "vocals": 7
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000004,
+    "title": "New Rules",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "k2qgadSvNyU",
+    "attributes": {
+      "bpm": 116,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2017,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000005,
+    "title": "Houdini",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "suAR1PYFNYA",
+    "attributes": {
+      "bpm": 128,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2023,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000006,
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "genre": "popdance",
+    "youtubeId": "H5v3kku4y6Q",
+    "attributes": {
+      "bpm": 174,
+      "darkness": 4,
+      "energy": 7,
+      "groove": 7,
+      "vocals": 8
+    },
+    "artistBio": "Harry Styles is a British singer-songwriter known for his genre-blending pop-rock sound and charismatic stage presence.",
+    "artistFacts": [],
+    "label": "Columbia Records",
+    "year": 2022,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000007,
+    "title": "Watermelon Sugar",
+    "artist": "Harry Styles",
+    "genre": "popdance",
+    "youtubeId": "E07s5ZYadZA",
+    "attributes": {
+      "bpm": 95,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 7
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Columbia Records",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000008,
+    "title": "Late Night Talking",
+    "artist": "Harry Styles",
+    "genre": "popdance",
+    "youtubeId": "jjt9Eo4mbIo",
+    "attributes": {
+      "bpm": 107,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Columbia Records",
+    "year": 2022,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000009,
+    "title": "Satisfaction",
+    "artist": "Benny Benassi",
+    "genre": "popdance",
+    "youtubeId": "a0fkNdPiIL4",
+    "attributes": {
+      "bpm": 130,
+      "darkness": 3,
+      "energy": 9,
+      "groove": 9,
+      "vocals": 3
+    },
+    "artistBio": "Benny Benassi is an Italian DJ and producer, a pioneer of electro house known for his minimalist, bass-heavy productions.",
+    "artistFacts": [],
+    "label": "Ultra Records",
+    "year": 2002,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000010,
+    "title": "Cinema",
+    "artist": "Benny Benassi ft. Gary Go",
+    "genre": "popdance",
+    "youtubeId": "2GKHFPEbVJQ",
+    "attributes": {
+      "bpm": 128,
+      "darkness": 3,
+      "energy": 8,
+      "groove": 8,
+      "vocals": 7
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Ultra Records",
+    "year": 2011,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000011,
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "genre": "popdance",
+    "youtubeId": "4NRXx6U8ABQ",
+    "attributes": {
+      "bpm": 171,
+      "darkness": 4,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "The Weeknd is a Canadian artist known for his dark, atmospheric R&B-pop and cinematic productions.",
+    "artistFacts": [],
+    "label": "XO/Republic",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000012,
+    "title": "Save Your Tears",
+    "artist": "The Weeknd",
+    "genre": "popdance",
+    "youtubeId": "XXYlFuWEuKI",
+    "attributes": {
+      "bpm": 118,
+      "darkness": 3,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "XO/Republic",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000013,
+    "title": "Flowers",
+    "artist": "Miley Cyrus",
+    "genre": "popdance",
+    "youtubeId": "G7KNmW9a75Y",
+    "attributes": {
+      "bpm": 118,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Miley Cyrus is an American singer known for her powerful vocals and genre-spanning pop anthems.",
+    "artistFacts": [],
+    "label": "Columbia Records",
+    "year": 2023,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000014,
+    "title": "About Damn Time",
+    "artist": "Lizzo",
+    "genre": "popdance",
+    "youtubeId": "IXXxciRUMzE",
+    "attributes": {
+      "bpm": 109,
+      "darkness": 1,
+      "energy": 9,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "Lizzo is an American singer and rapper known for her empowering, feel-good pop-funk anthems.",
+    "artistFacts": [],
+    "label": "Atlantic Records",
+    "year": 2022,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000015,
+    "title": "Uptown Funk",
+    "artist": "Bruno Mars",
+    "genre": "popdance",
+    "youtubeId": "OPf0YbXqDm0",
+    "attributes": {
+      "bpm": 115,
+      "darkness": 1,
+      "energy": 9,
+      "groove": 10,
+      "vocals": 8
+    },
+    "artistBio": "Bruno Mars is an American singer-songwriter known for his retro-funk pop and electrifying live performances.",
+    "artistFacts": [],
+    "label": "Atlantic Records",
+    "year": 2014,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000016,
+    "title": "24K Magic",
+    "artist": "Bruno Mars",
+    "genre": "popdance",
+    "youtubeId": "UqyT8IEBkvY",
+    "attributes": {
+      "bpm": 107,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Atlantic Records",
+    "year": 2016,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000017,
+    "title": "Dance The Night",
+    "artist": "Dua Lipa",
+    "genre": "popdance",
+    "youtubeId": "OiC1rgCPmUQ",
+    "attributes": {
+      "bpm": 110,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2023,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000018,
+    "title": "Titanium",
+    "artist": "David Guetta ft. Sia",
+    "genre": "popdance",
+    "youtubeId": "JRfuAukYTKg",
+    "attributes": {
+      "bpm": 126,
+      "darkness": 3,
+      "energy": 9,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "David Guetta is a French DJ and producer who helped bring EDM into mainstream pop.",
+    "artistFacts": [],
+    "label": "Virgin Records",
+    "year": 2011,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000019,
+    "title": "Hey Brother",
+    "artist": "Avicii",
+    "genre": "popdance",
+    "youtubeId": "6Cp6mKbRTQY",
+    "attributes": {
+      "bpm": 125,
+      "darkness": 3,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 8
+    },
+    "artistBio": "Avicii was a Swedish DJ and producer whose melodic EDM defined a generation of dance music.",
+    "artistFacts": [],
+    "label": "PRMD Music",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3000020,
+    "title": "Shut Up and Dance",
+    "artist": "Walk the Moon",
+    "genre": "popdance",
+    "youtubeId": "6JCLY0Rlx6Q",
+    "attributes": {
+      "bpm": 128,
+      "darkness": 1,
+      "energy": 9,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Walk the Moon is an American indie pop band known for their energetic, synth-driven anthems.",
+    "artistFacts": [],
+    "label": "RCA Records",
+    "year": 2014,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100001,
+    "title": "Weightless",
+    "artist": "Marconi Union",
+    "genre": "relax",
+    "youtubeId": "UfcAVejslrU",
+    "attributes": {
+      "bpm": 60,
+      "darkness": 3,
+      "energy": 1,
+      "groove": 3,
+      "vocals": 0
+    },
+    "artistBio": "Marconi Union is a British ambient trio known for creating scientifically-designed relaxation music.",
+    "artistFacts": [],
+    "label": "Just Music",
+    "year": 2011,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100002,
+    "title": "Clair de Lune",
+    "artist": "Debussy",
+    "genre": "relax",
+    "youtubeId": "CvFH_6DNRCY",
+    "attributes": {
+      "bpm": 72,
+      "darkness": 3,
+      "energy": 2,
+      "groove": 2,
+      "vocals": 0
+    },
+    "artistBio": "Claude Debussy was a French impressionist composer whose piano works evoke dreamy, atmospheric landscapes.",
+    "artistFacts": [],
+    "label": "Classical",
+    "year": 1905,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100003,
+    "title": "Gymnop\u00e9die No. 1",
+    "artist": "Erik Satie",
+    "genre": "relax",
+    "youtubeId": "S-Xm7s9eGxU",
+    "attributes": {
+      "bpm": 66,
+      "darkness": 3,
+      "energy": 1,
+      "groove": 2,
+      "vocals": 0
+    },
+    "artistBio": "Erik Satie was a French composer known for his minimalist, meditative piano compositions.",
+    "artistFacts": [],
+    "label": "Classical",
+    "year": 1888,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100004,
+    "title": "River Flows in You",
+    "artist": "Yiruma",
+    "genre": "relax",
+    "youtubeId": "7maJOI3QMu0",
+    "attributes": {
+      "bpm": 70,
+      "darkness": 2,
+      "energy": 3,
+      "groove": 3,
+      "vocals": 0
+    },
+    "artistBio": "Yiruma is a South Korean pianist known for his gentle, emotionally evocative neo-classical compositions.",
+    "artistFacts": [],
+    "label": "Stomp Music",
+    "year": 2001,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100005,
+    "title": "Experience",
+    "artist": "Ludovico Einaudi",
+    "genre": "relax",
+    "youtubeId": "hN_q-_nGv4U",
+    "attributes": {
+      "bpm": 75,
+      "darkness": 4,
+      "energy": 4,
+      "groove": 3,
+      "vocals": 0
+    },
+    "artistBio": "Ludovico Einaudi is an Italian pianist and composer known for his minimalist, emotionally rich compositions.",
+    "artistFacts": [],
+    "label": "Decca Records",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100006,
+    "title": "Nuvole Bianche",
+    "artist": "Ludovico Einaudi",
+    "genre": "relax",
+    "youtubeId": "4VR-6AS0-l4",
+    "attributes": {
+      "bpm": 68,
+      "darkness": 3,
+      "energy": 3,
+      "groove": 2,
+      "vocals": 0
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Decca Records",
+    "year": 2004,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100007,
+    "title": "Comptine d'un autre \u00e9t\u00e9",
+    "artist": "Yann Tiersen",
+    "genre": "relax",
+    "youtubeId": "NvryolGa19A",
+    "attributes": {
+      "bpm": 100,
+      "darkness": 3,
+      "energy": 4,
+      "groove": 4,
+      "vocals": 0
+    },
+    "artistBio": "Yann Tiersen is a French musician known for his delicate piano compositions, especially the Am\u00e9lie soundtrack.",
+    "artistFacts": [],
+    "label": "EMI",
+    "year": 2001,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100008,
+    "title": "Arrival of the Birds",
+    "artist": "The Cinematic Orchestra",
+    "genre": "relax",
+    "youtubeId": "MqoANESQ4cQ",
+    "attributes": {
+      "bpm": 60,
+      "darkness": 2,
+      "energy": 3,
+      "groove": 2,
+      "vocals": 0
+    },
+    "artistBio": "The Cinematic Orchestra is a British group blending jazz, electronic, and orchestral music.",
+    "artistFacts": [],
+    "label": "Ninja Tune",
+    "year": 2007,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100009,
+    "title": "Snowfall",
+    "artist": "\u00d8neheart & Reidenshi",
+    "genre": "relax",
+    "youtubeId": "2u1mLSMB9IA",
+    "attributes": {
+      "bpm": 85,
+      "darkness": 3,
+      "energy": 2,
+      "groove": 4,
+      "vocals": 0
+    },
+    "artistBio": "\u00d8neheart is an ambient electronic producer known for atmospheric, lo-fi soundscapes.",
+    "artistFacts": [],
+    "label": "Independent",
+    "year": 2022,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100010,
+    "title": "Intro",
+    "artist": "The xx",
+    "genre": "relax",
+    "youtubeId": "xMV6l2y67rk",
+    "attributes": {
+      "bpm": 110,
+      "darkness": 4,
+      "energy": 3,
+      "groove": 5,
+      "vocals": 0
+    },
+    "artistBio": "The xx are a British indie band known for their minimal, intimate electronic-pop sound.",
+    "artistFacts": [],
+    "label": "Young",
+    "year": 2009,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100011,
+    "title": "Saturn",
+    "artist": "Sleeping At Last",
+    "genre": "relax",
+    "youtubeId": "h3lWwMHFhnA",
+    "attributes": {
+      "bpm": 70,
+      "darkness": 3,
+      "energy": 4,
+      "groove": 2,
+      "vocals": 7
+    },
+    "artistBio": "Sleeping At Last is the solo project of Ryan O'Neal, creating cinematic, orchestral indie folk.",
+    "artistFacts": [],
+    "label": "Independent",
+    "year": 2014,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100012,
+    "title": "Bloom",
+    "artist": "The Paper Kites",
+    "genre": "relax",
+    "youtubeId": "8inJtTG_DuU",
+    "attributes": {
+      "bpm": 78,
+      "darkness": 2,
+      "energy": 3,
+      "groove": 4,
+      "vocals": 7
+    },
+    "artistBio": "The Paper Kites are an Australian indie folk band known for their gentle, romantic songwriting.",
+    "artistFacts": [],
+    "label": "Wonderlick",
+    "year": 2013,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100013,
+    "title": "Holocene",
+    "artist": "Bon Iver",
+    "genre": "relax",
+    "youtubeId": "TWcyIpul8OE",
+    "attributes": {
+      "bpm": 108,
+      "darkness": 4,
+      "energy": 4,
+      "groove": 3,
+      "vocals": 7
+    },
+    "artistBio": "Bon Iver is the project of Justin Vernon, blending folk, electronic, and experimental sounds.",
+    "artistFacts": [],
+    "label": "Jagjaguwar",
+    "year": 2011,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100014,
+    "title": "Re: Stacks",
+    "artist": "Bon Iver",
+    "genre": "relax",
+    "youtubeId": "GhDnyPsQBSA",
+    "attributes": {
+      "bpm": 80,
+      "darkness": 4,
+      "energy": 2,
+      "groove": 3,
+      "vocals": 7
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Jagjaguwar",
+    "year": 2007,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3100015,
+    "title": "Opus 23",
+    "artist": "Dustin O'Halloran",
+    "genre": "relax",
+    "youtubeId": "MNxHMjGmBDc",
+    "attributes": {
+      "bpm": 65,
+      "darkness": 3,
+      "energy": 2,
+      "groove": 2,
+      "vocals": 0
+    },
+    "artistBio": "Dustin O'Halloran is an American pianist and composer known for his delicate neo-classical works.",
+    "artistFacts": [],
+    "label": "FatCat Records",
+    "year": 2006,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200001,
+    "title": "Cruel Summer",
+    "artist": "Taylor Swift",
+    "genre": "salon",
+    "youtubeId": "ic8j13piAhQ",
+    "attributes": {
+      "bpm": 170,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 8,
+      "vocals": 9
+    },
+    "artistBio": "Taylor Swift is an American singer-songwriter who transitioned from country to become one of pop's biggest artists.",
+    "artistFacts": [],
+    "label": "Republic Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200002,
+    "title": "Shake It Off",
+    "artist": "Taylor Swift",
+    "genre": "salon",
+    "youtubeId": "nfWlot6h_JM",
+    "attributes": {
+      "bpm": 160,
+      "darkness": 1,
+      "energy": 9,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Republic Records",
+    "year": 2014,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200003,
+    "title": "Anti-Hero",
+    "artist": "Taylor Swift",
+    "genre": "salon",
+    "youtubeId": "b1kbLwvqugk",
+    "attributes": {
+      "bpm": 97,
+      "darkness": 3,
+      "energy": 7,
+      "groove": 7,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Republic Records",
+    "year": 2022,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200004,
+    "title": "Espresso",
+    "artist": "Sabrina Carpenter",
+    "genre": "salon",
+    "youtubeId": "eVli-tstM5E",
+    "attributes": {
+      "bpm": 104,
+      "darkness": 1,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Sabrina Carpenter is an American singer known for her catchy, playful pop with retro influences.",
+    "artistFacts": [],
+    "label": "Island Records",
+    "year": 2024,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200005,
+    "title": "Please Please Please",
+    "artist": "Sabrina Carpenter",
+    "genre": "salon",
+    "youtubeId": "cF1Na4AIecM",
+    "attributes": {
+      "bpm": 107,
+      "darkness": 2,
+      "energy": 6,
+      "groove": 7,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Island Records",
+    "year": 2024,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200006,
+    "title": "Vampire",
+    "artist": "Olivia Rodrigo",
+    "genre": "salon",
+    "youtubeId": "RlPNh_PBZb4",
+    "attributes": {
+      "bpm": 138,
+      "darkness": 4,
+      "energy": 8,
+      "groove": 7,
+      "vocals": 9
+    },
+    "artistBio": "Olivia Rodrigo is an American singer known for her emotionally raw pop-rock anthems.",
+    "artistFacts": [],
+    "label": "Geffen Records",
+    "year": 2023,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200007,
+    "title": "good 4 u",
+    "artist": "Olivia Rodrigo",
+    "genre": "salon",
+    "youtubeId": "gNi_6U5Pm_o",
+    "attributes": {
+      "bpm": 166,
+      "darkness": 3,
+      "energy": 9,
+      "groove": 8,
+      "vocals": 9
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Geffen Records",
+    "year": 2021,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200008,
+    "title": "Attention",
+    "artist": "Charlie Puth",
+    "genre": "salon",
+    "youtubeId": "nfs8NYg7yQM",
+    "attributes": {
+      "bpm": 100,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Charlie Puth is an American singer-songwriter known for his catchy, R&B-influenced pop productions.",
+    "artistFacts": [],
+    "label": "Atlantic Records",
+    "year": 2017,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200009,
+    "title": "Se\u00f1orita",
+    "artist": "Shawn Mendes & Camila Cabello",
+    "genre": "salon",
+    "youtubeId": "Pkh8UtuejGw",
+    "attributes": {
+      "bpm": 117,
+      "darkness": 2,
+      "energy": 6,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Shawn Mendes is a Canadian pop artist known for his romantic, guitar-driven hits.",
+    "artistFacts": [],
+    "label": "Island Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200010,
+    "title": "Peaches",
+    "artist": "Justin Bieber ft. Daniel Caesar",
+    "genre": "salon",
+    "youtubeId": "tQ0yjYUFKAE",
+    "attributes": {
+      "bpm": 90,
+      "darkness": 2,
+      "energy": 6,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Justin Bieber is a Canadian pop superstar known for his smooth vocal delivery and R&B-pop crossovers.",
+    "artistFacts": [],
+    "label": "Def Jam",
+    "year": 2021,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200011,
+    "title": "Kiss Me More",
+    "artist": "Doja Cat ft. SZA",
+    "genre": "salon",
+    "youtubeId": "0EVVKs6DQLo",
+    "attributes": {
+      "bpm": 111,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Doja Cat is an American rapper and singer known for her genre-blending pop-rap with playful, catchy hooks.",
+    "artistFacts": [],
+    "label": "Kemosabe/RCA",
+    "year": 2021,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200012,
+    "title": "Say So",
+    "artist": "Doja Cat",
+    "genre": "salon",
+    "youtubeId": "pok8H_KF1FA",
+    "attributes": {
+      "bpm": 111,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Kemosabe/RCA",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200013,
+    "title": "Heat Waves",
+    "artist": "Glass Animals",
+    "genre": "salon",
+    "youtubeId": "mRD0-GxDwss",
+    "attributes": {
+      "bpm": 81,
+      "darkness": 3,
+      "energy": 6,
+      "groove": 7,
+      "vocals": 7
+    },
+    "artistBio": "Glass Animals are a British indie-pop band known for their psychedelic, groove-driven productions.",
+    "artistFacts": [],
+    "label": "Polydor",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200014,
+    "title": "Positions",
+    "artist": "Ariana Grande",
+    "genre": "salon",
+    "youtubeId": "tcYodQoapMg",
+    "attributes": {
+      "bpm": 144,
+      "darkness": 2,
+      "energy": 6,
+      "groove": 8,
+      "vocals": 9
+    },
+    "artistBio": "Ariana Grande is an American singer known for her powerful vocals and R&B-pop fusion.",
+    "artistFacts": [],
+    "label": "Republic Records",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200015,
+    "title": "7 rings",
+    "artist": "Ariana Grande",
+    "genre": "salon",
+    "youtubeId": "QYh6mYIJG2Y",
+    "attributes": {
+      "bpm": 140,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Republic Records",
+    "year": 2019,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200016,
+    "title": "Havana",
+    "artist": "Camila Cabello",
+    "genre": "salon",
+    "youtubeId": "BQ0mxQXmLsk",
+    "attributes": {
+      "bpm": 105,
+      "darkness": 2,
+      "energy": 7,
+      "groove": 8,
+      "vocals": 8
+    },
+    "artistBio": "Camila Cabello is a Cuban-American singer known for her Latin-pop crossover hits.",
+    "artistFacts": [],
+    "label": "Syco/Epic",
+    "year": 2017,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200017,
+    "title": "Levitating (feat. DaBaby)",
+    "artist": "Dua Lipa",
+    "genre": "salon",
+    "youtubeId": "WHuBW3qKm9g",
+    "attributes": {
+      "bpm": 103,
+      "darkness": 2,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 8
+    },
+    "artistBio": "",
+    "artistFacts": [],
+    "label": "Warner Records",
+    "year": 2020,
+    "isAiRecommended": 0
+  },
+  {
+    "id": 3200018,
+    "title": "Butter",
+    "artist": "BTS",
+    "genre": "salon",
+    "youtubeId": "WMweEpGlu_U",
+    "attributes": {
+      "bpm": 110,
+      "darkness": 1,
+      "energy": 8,
+      "groove": 9,
+      "vocals": 7
+    },
+    "artistBio": "BTS is a South Korean boy band known for their catchy pop anthems and global cultural impact.",
+    "artistFacts": [],
+    "label": "BIGHIT MUSIC",
+    "year": 2021,
     "isAiRecommended": 0
   }
 ]

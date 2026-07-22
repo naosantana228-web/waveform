@@ -44,6 +44,10 @@ const genreDescriptions: Record<string, string> = {
   reggaeton: "Reggaetón Moderno - modern reggaeton. Artists like Bad Bunny, Feid, Karol G, Myke Towers, Rauw Alejandro. Perreo, dembow beats, urban Latin.",
   hiphop: "Hip-Hop & R&B Blends - ONLY hip-hop/R&B crossover. Artists like Ja Rule ft. Ashanti, Nelly, 50 Cent, Lauryn Hill, Aaliyah, TLC, Usher, Craig David. Late 90s/early 2000s era. MUST have R&B elements.",
   infantil: "Canciones Infantiles en Español - canciones divertidas para cantar y bailar con niños. CantaJuego, Toy Cantando, Dúo Tiempo de Sol, El Reino Infantil. Canciones como Soy una Taza, La Vaca Lola, Chu Chu Ua. MUST be in Spanish.",
+  popdance: "Pop & Dance - upbeat, catchy pop-dance hits. Artists like Dua Lipa, Harry Styles, Benny Benassi, The Weeknd, Bruno Mars, Miley Cyrus, Avicii, David Guetta, Calvin Harris. High energy, danceable, radio-friendly pop with electronic production.",
+  relax: "Relajación & Lectura - ambient, neo-classical piano, lo-fi, calm instrumental music for reading and relaxing. Artists like Ludovico Einaudi, Yiruma, Marconi Union, Debussy, Øneheart, Bon Iver, The Paper Kites. Mostly instrumental, peaceful, meditative.",
+  salon: "Salón de Uñas - fun, upbeat pop hits perfect for a nail salon vibe. Artists like Taylor Swift, Sabrina Carpenter, Olivia Rodrigo, Doja Cat, Ariana Grande, Charlie Puth, Dua Lipa, BTS. Catchy, feel-good, girly pop.",
+  custom: "Custom user collection - recommend tracks based on what the user has already added to this collection. Analyze their taste from the liked tracks and suggest similar music.",
 };
 
 export interface RecommendedTrack {

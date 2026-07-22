@@ -211,6 +211,11 @@ export async function pullFromGist(): Promise<{ success: boolean; error?: string
     // Apply the remote state to localStorage
     localStorage.setItem('waveform_state', JSON.stringify(data.state));
 
+    // Also restore custom tracks if present
+    if (data.customTracks && data.customTracks.length > 0) {
+      localStorage.setItem('waveform_custom_tracks', JSON.stringify(data.customTracks));
+    }
+
     console.log('[Gist Sync] Pulled successfully. Last updated:', data.lastUpdated);
     return { success: true, data };
   } catch (err: any) {
@@ -254,7 +259,10 @@ export function scheduleSync() {
   
   if (syncTimeout) clearTimeout(syncTimeout);
   syncTimeout = setTimeout(async () => {
-    const result = await pushToGist();
+    // Include custom tracks in sync
+    const customTracksStr = localStorage.getItem('waveform_custom_tracks');
+    const customTracks = customTracksStr ? JSON.parse(customTracksStr) : undefined;
+    const result = await pushToGist(customTracks);
     if (!result.success) {
       console.warn('[Gist Sync] Auto-sync failed:', result.error);
     }
