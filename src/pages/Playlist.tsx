@@ -15,11 +15,11 @@ const genreColors: Record<string, string> = {
   infantil: '#ff69b4',
   popdance: '#7c3aed',
   relax: '#06b6d4',
-  salon: '#f472b6',
+    salon: '#f472b6',
+  classics: '#f59e0b',
   custom: '#a3e635',
 };
-
-const genreKeys = ['techno', 'afrobeats', 'reggae', 'reggaeton', 'hiphop', 'infantil', 'popdance', 'relax', 'salon', 'custom'] as const;
+const genreKeys = ['techno', 'afrobeats', 'reggae', 'reggaeton', 'hiphop', 'infantil', 'popdance', 'relax', 'salon', 'classics', 'custom'] as const;
 type GenreFilter = 'all' | typeof genreKeys[number];
 
 function exportPlaylist(tracks: Track[]) {

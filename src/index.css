@@ -64,6 +64,10 @@ body {
   .genre-glow-custom {
     box-shadow: 0 0 60px rgba(163, 230, 53, 0.15), 0 0 120px rgba(163, 230, 53, 0.05);
   }
+
+  .genre-glow-classics {
+    box-shadow: 0 0 60px rgba(245, 158, 11, 0.15), 0 0 120px rgba(245, 158, 11, 0.05);
+  }
 }
 
 ::-webkit-scrollbar {

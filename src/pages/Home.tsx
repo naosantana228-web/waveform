@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic, Settings, Sparkles, BookOpen, Palette, Search } from "lucide-react";
+import { Music, Headphones, Radio, Disc3, Mic, Baby, ListMusic, Settings, Sparkles, BookOpen, Palette, Search, Disc } from "lucide-react";
 import { genres, getTracksByGenre } from "@/data";
 
 const genreIcons: Record<string, any> = {
@@ -13,6 +13,7 @@ const genreIcons: Record<string, any> = {
   popdance: Sparkles,
   relax: BookOpen,
   salon: Palette,
+  classics: Disc,
   custom: Search,
 };
 
@@ -26,6 +27,7 @@ const genreColors: Record<string, string> = {
   popdance: '#7c3aed',
   relax: '#06b6d4',
   salon: '#f472b6',
+  classics: '#f59e0b',
   custom: '#a3e635',
 };
 
@@ -39,6 +41,7 @@ const genreGlows: Record<string, string> = {
   popdance: 'genre-glow-popdance',
   relax: 'genre-glow-relax',
   salon: 'genre-glow-salon',
+  classics: 'genre-glow-classics',
   custom: 'genre-glow-custom',
 };
 

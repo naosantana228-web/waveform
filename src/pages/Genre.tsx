@@ -17,6 +17,7 @@ const genreColors: Record<string, string> = {
   popdance: '#7c3aed',
   relax: '#06b6d4',
   salon: '#f472b6',
+  classics: '#f59e0b',
   custom: '#a3e635',
 };
 const genreBgImages: Record<string, string> = {

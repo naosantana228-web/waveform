@@ -47,6 +47,7 @@ const genreDescriptions: Record<string, string> = {
   popdance: "Pop & Dance - upbeat, catchy pop-dance hits. Artists like Dua Lipa, Harry Styles, Benny Benassi, The Weeknd, Bruno Mars, Miley Cyrus, Avicii, David Guetta, Calvin Harris. High energy, danceable, radio-friendly pop with electronic production.",
   relax: "Relajación & Lectura - ambient, neo-classical piano, lo-fi, calm instrumental music for reading and relaxing. Artists like Ludovico Einaudi, Yiruma, Marconi Union, Debussy, Øneheart, Bon Iver, The Paper Kites. Mostly instrumental, peaceful, meditative.",
   salon: "Salón de Uñas - fun, upbeat pop hits perfect for a nail salon vibe. Artists like Taylor Swift, Sabrina Carpenter, Olivia Rodrigo, Doja Cat, Ariana Grande, Charlie Puth, Dua Lipa, BTS. Catchy, feel-good, girly pop.",
+  classics: "Clásicos 60s-90s - the greatest hits from the 1960s, 1970s, 1980s, and 1990s across rock, pop, soul, disco, funk, and grunge. Artists like Queen, The Beatles, Michael Jackson, Nirvana, ABBA, Led Zeppelin, Stevie Wonder, Oasis, Radiohead, Bee Gees, Eagles, Madonna, The Police, Fleetwood Mac, Prince, David Bowie, Pink Floyd, Bob Marley, Elton John, Whitney Houston, Aretha Franklin, The Rolling Stones, U2. Timeless classics that defined their era.",
   custom: "Custom user collection - recommend tracks based on what the user has already added to this collection. Analyze their taste from the liked tracks and suggest similar music.",
 };
 

@@ -27,6 +27,7 @@ export const genres = [
   { key: "popdance", name: "Pop & Dance", subtitle: "Dua Lipa, Harry Styles, Benny Benassi — upbeat pop-dance hits", color: "accent-popdance" },
   { key: "relax", name: "Relajación & Lectura", subtitle: "Ambient, piano, neo-classical — para leer y relajarse", color: "accent-relax" },
   { key: "salon", name: "Salón de Uñas", subtitle: "Pop hits perfectos para el salón — Taylor, Sabrina, Doja Cat", color: "accent-salon" },
+  { key: "classics", name: "Clásicos 60s-90s", subtitle: "Lo mejor del rock, pop, soul y disco — de los 60s a los 90s", color: "accent-classics" },
   { key: "custom", name: "Búsqueda Propia", subtitle: "Busca canciones en YouTube y crea tu propia colección", color: "accent-custom" },
 ] as const;
 
