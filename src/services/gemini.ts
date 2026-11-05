@@ -163,7 +163,7 @@ Match these attribute ranges closely.`;
     }
   }
 
-  // Top artists
+  // Positive and negative artist signals from the user's explicit feedback.
   const artistCounts: Record<string, number> = {};
   likedTracks.forEach(t => {
     const artist = t.artist.split(' ft.')[0].split(' feat.')[0].split(' &')[0].trim();
@@ -172,7 +172,17 @@ Match these attribute ranges closely.`;
   const topArtists = Object.entries(artistCounts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 8)
-    .map(([name, count]) => `${name} (${count} tracks)`)
+    .map(([name, count]) => `${name} (${count} liked tracks)`)
+    .join(', ');
+
+  const dislikedArtistCounts: Record<string, number> = {};
+  dislikedTracks.forEach(t => {
+    const artist = t.artist.split(' ft.')[0].split(' feat.')[0].split(' &')[0].trim();
+    dislikedArtistCounts[artist] = (dislikedArtistCounts[artist] || 0) + 1;
+  });
+  const dislikedArtists = Object.entries(dislikedArtistCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, count]) => `${name} (${count} disliked tracks)`)
     .join(', ');
 
   const existingList = existingTracks.slice(0, 80).map(t => `${t.artist} - ${t.title}`).join(", ");
@@ -182,11 +192,12 @@ Match these attribute ranges closely.`;
 ## User's Liked Tracks (${likedTracks.length} total, showing top ${Math.min(30, likedTracks.length)}):
 ${likedContext || 'None yet'}
 
-## User's Most Played Artists: ${topArtists || 'None yet'}
+## Artists represented in the user's liked tracks: ${topArtists || 'None yet'}
 ${tasteProfile}
 
-${dislikedContext ? `## Tracks the user DISLIKED (AVOID similar style/artists):
-${dislikedContext}` : ''}
+${dislikedContext ? `## Tracks the user EXPLICITLY DISLIKED (strong negative feedback):
+${dislikedContext}
+Artists appearing in disliked feedback: ${dislikedArtists || 'None listed'}` : 'No disliked tracks yet.'}
 
 ## Already in library (DO NOT recommend these): 
 ${existingList}
@@ -194,13 +205,14 @@ ${existingList}
 ---
 
 Recommend exactly ${limit + 3} tracks from the "${genreName}" genre that:
-1. MATCH the user's taste profile and preferred attributes
-2. Are from artists SIMILAR to their top artists but NOT the same artists they already have
-3. AVOID the style/mood of disliked tracks
-4. Each track should be from a DIFFERENT artist
-5. ALL tracks MUST authentically belong to the "${genreName}" genre
-6. Recommend REAL tracks by REAL artists that actually exist
-7. Prefer well-known tracks that have official YouTube videos
+1. Treat liked tracks as strong positive signals: match their sound, mood, production, era, energy and attributes.
+2. Treat disliked tracks as strong negative signals: do NOT recommend those exact tracks, and avoid the disliked artists and the musical traits shared by disliked tracks.
+3. Balance similarity with discovery: find new artists and songs that fit the liked examples without copying the existing library.
+4. Each recommendation must be by a DIFFERENT artist.
+5. ALL tracks MUST authentically belong to the "${genreName}" genre.
+6. Recommend REAL tracks by REAL artists that actually exist.
+7. Prefer tracks with official or otherwise clearly relevant YouTube videos.
+8. When liked and disliked signals conflict, prioritize avoiding the disliked sound over matching a broad genre label.
 
 DO NOT include youtubeId in your response.
 
@@ -212,12 +224,13 @@ Respond ONLY with a JSON object: { "tracks": [...] }`;
 
 CRITICAL RULES:
 1. EVERY track MUST be from the "${genreName}" genre. No exceptions.
-2. NEVER recommend generic pop hits or meme songs. Only authentic ${genreName} tracks.
-3. NEVER recommend tracks already in the user's library.
-4. Only recommend REAL tracks that actually exist — real artist names, real song titles, real release years.
-5. Always respond with valid JSON only, no markdown, no code blocks.
-6. For the infantil genre, all songs MUST be in Spanish.
-7. Do NOT include any youtubeId field.`;
+2. Use the user's liked tracks as positive examples and disliked tracks as negative examples; both are explicit preference feedback.
+3. Do not recommend disliked tracks or artists represented in the disliked list.
+4. NEVER recommend tracks already in the user's library.
+5. Only recommend REAL tracks that actually exist — real artist names, real song titles, real release years.
+6. Always respond with valid JSON only, no markdown, no code blocks.
+7. For the infantil genre, all songs MUST be in Spanish.
+8. Do NOT include any youtubeId field.`;
 
   // Call Groq API
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
